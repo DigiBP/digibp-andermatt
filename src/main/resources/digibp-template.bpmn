@@ -9,7 +9,7 @@
       <bpmn:incoming>SequenceFlow_051aerh</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_051aerh" sourceRef="Task_0e9oyde" targetRef="EndEvent_0g4qkhm" />
-    <bpmn:businessRuleTask id="Task_0e9oyde" name="User Task">
+    <bpmn:businessRuleTask id="Task_0e9oyde" name="User Task2">
       <bpmn:incoming>SequenceFlow_13q687d</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_051aerh</bpmn:outgoing>
     </bpmn:businessRuleTask>
