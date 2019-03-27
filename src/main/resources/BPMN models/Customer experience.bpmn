@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0hi8rlm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0hi8rlm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="2.2.4">
   <bpmn:collaboration id="Collaboration_02m02h1">
     <bpmn:participant id="Participant_0ec3vbv" name="Customer journey" processRef="Process_0p963r8" />
     <bpmn:participant id="Participant_1juip4u" name="Marketing" processRef="Process_0awxx59" />
@@ -131,9 +131,6 @@
       <bpmn:incoming>SequenceFlow_125e037</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_010sewf</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:endEvent id="EndEvent_18ez151">
-      <bpmn:incoming>SequenceFlow_0njpppi</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1fxoxei" sourceRef="Task_1vzx2ln" targetRef="ExclusiveGateway_1bbl49w" />
     <bpmn:sequenceFlow id="SequenceFlow_1rqyiov" name="No" sourceRef="ExclusiveGateway_1bbl49w" targetRef="Task_04myjrh" />
     <bpmn:sequenceFlow id="SequenceFlow_13qy44p" name="Yes" sourceRef="Task_1vzx2ln" targetRef="Task_1rtlb8k" />
@@ -157,6 +154,9 @@
     <bpmn:sequenceFlow id="SequenceFlow_0h7j4l4" name="Yes" sourceRef="ExclusiveGateway_0vzfxqp" targetRef="Task_0omcx9i" />
     <bpmn:sequenceFlow id="SequenceFlow_125e037" sourceRef="Task_0omcx9i" targetRef="Task_0cqw12b" />
     <bpmn:sequenceFlow id="SequenceFlow_0njpppi" sourceRef="Task_08eefvf" targetRef="EndEvent_18ez151" />
+    <bpmn:endEvent id="EndEvent_18ez151">
+      <bpmn:incoming>SequenceFlow_0njpppi</bpmn:incoming>
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:process id="Process_0awxx59" isExecutable="false">
     <bpmn:task id="Task_0ji0uqu" name="Marketing activities" />
@@ -362,9 +362,6 @@
         <di:waypoint x="1399" y="539" />
         <di:waypoint x="1399" y="498" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="EndEvent_18ez151_di" bpmnElement="EndEvent_18ez151">
-        <dc:Bounds x="1499" y="777" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0njpppi_di" bpmnElement="SequenceFlow_0njpppi">
         <di:waypoint x="1449" y="795" />
         <di:waypoint x="1499" y="795" />
@@ -379,6 +376,9 @@
         <di:waypoint x="310" y="235" />
         <di:waypoint x="310" y="539" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_18ez151_di" bpmnElement="EndEvent_18ez151">
+        <dc:Bounds x="1499" y="777" width="36" height="36" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
