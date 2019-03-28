@@ -12,12 +12,12 @@
     <bpmn:messageFlow id="MessageFlow_1u3ewwe" sourceRef="Task_1fytuku" targetRef="Participant_0zp63kv" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0x8rz2m" isExecutable="true">
+    <bpmn:dataStoreReference id="DataStoreReference_0mg7n63" name="CRM" />
     <bpmn:subProcess id="Task_0l790d4" name="Registration and measurement process ">
       <bpmn:dataOutputAssociation id="DataOutputAssociation_1uj8q11">
         <bpmn:targetRef>DataStoreReference_0mg7n63</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:subProcess>
-    <bpmn:dataStoreReference id="DataStoreReference_0mg7n63" name="CRM" />
   </bpmn:process>
   <bpmn:process id="Process_0al4k6s" isExecutable="false">
     <bpmn:laneSet id="LaneSet_1cvn793">
@@ -196,7 +196,6 @@
       <bpmn:incoming>SequenceFlow_13771ut</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tp53od</bpmn:outgoing>
     </bpmn:manualTask>
-    <bpmn:dataStoreReference id="DataStoreReference_19t1gz6" name="ERP" />
     <bpmn:task id="Task_0txqegp" name="Update customer account">
       <bpmn:incoming>SequenceFlow_1tp53od</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1dz1ge1</bpmn:outgoing>
@@ -265,6 +264,7 @@
       <bpmn:incoming>SequenceFlow_0djxlfn</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15d2eyg</bpmn:outgoing>
     </bpmn:subProcess>
+    <bpmn:dataStoreReference id="DataStoreReference_19t1gz6" name="ERP" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_020ru6p">
@@ -552,7 +552,7 @@
         <dc:Bounds x="1861" y="1217" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_095ukyf_di" bpmnElement="Task_0l790d4">
-        <dc:Bounds x="436" y="51" width="100" height="80" />
+        <dc:Bounds x="436" y="48" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataStoreReference_0mg7n63_di" bpmnElement="DataStoreReference_0mg7n63">
         <dc:Bounds x="579" y="66" width="50" height="50" />
@@ -561,33 +561,33 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1uj8q11_di" bpmnElement="DataOutputAssociation_1uj8q11">
-        <di:waypoint x="536" y="91" />
-        <di:waypoint x="579" y="91" />
+        <di:waypoint x="536" y="89" />
+        <di:waypoint x="579" y="90" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_19t1gz6_di" bpmnElement="DataStoreReference_19t1gz6">
-        <dc:Bounds x="850" y="499" width="50" height="50" />
+        <dc:Bounds x="831" y="499" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="863" y="556" width="24" height="14" />
+          <dc:Bounds x="844" y="556" width="24" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0je32b6_di" bpmnElement="DataOutputAssociation_0je32b6">
-        <di:waypoint x="696" y="621" />
-        <di:waypoint x="850" y="538" />
+        <di:waypoint x="696" y="619" />
+        <di:waypoint x="831" y="540" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_1220et2_di" bpmnElement="DataOutputAssociation_1220et2">
-        <di:waypoint x="863" y="448" />
-        <di:waypoint x="871" y="499" />
+        <di:waypoint x="857" y="448" />
+        <di:waypoint x="856" y="499" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0v8vp5s_di" bpmnElement="DataOutputAssociation_0v8vp5s">
-        <di:waypoint x="773" y="724" />
-        <di:waypoint x="862" y="549" />
+        <di:waypoint x="770" y="724" />
+        <di:waypoint x="845" y="549" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ManualTask_1aji50r_di" bpmnElement="Task_100l6lb">
         <dc:Bounds x="1836" y="1109" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataOutputAssociation_04syuwr_di" bpmnElement="DataOutputAssociation_04syuwr">
         <di:waypoint x="1538" y="524" />
-        <di:waypoint x="900" y="524" />
+        <di:waypoint x="881" y="524" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_0txqegp_di" bpmnElement="Task_0txqegp">
         <dc:Bounds x="1986" y="1109" width="100" height="80" />
