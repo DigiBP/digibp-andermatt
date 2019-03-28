@@ -7,8 +7,8 @@
     <bpmn:messageFlow id="MessageFlow_1ggsb8t" sourceRef="Task_0w6kx1f" targetRef="Participant_0zp63kv" />
     <bpmn:messageFlow id="MessageFlow_16dhqeu" sourceRef="Task_0j8xipv" targetRef="Participant_0zp63kv" />
     <bpmn:messageFlow id="MessageFlow_1ant7gf" sourceRef="Task_1k4srz9" targetRef="Participant_0zp63kv" />
-    <bpmn:messageFlow id="MessageFlow_02gb5s9" sourceRef="Participant_0zp63kv" targetRef="Task_12e6qnl" />
-    <bpmn:messageFlow id="MessageFlow_19lx7hc" sourceRef="Participant_0zp63kv" targetRef="Task_0lye4z5" />
+    <bpmn:messageFlow id="MessageFlow_02gb5s9" sourceRef="Participant_0zp63kv" targetRef="IntermediateThrowEvent_0bui4d5" />
+    <bpmn:messageFlow id="MessageFlow_19lx7hc" sourceRef="Participant_0zp63kv" targetRef="IntermediateThrowEvent_0nweq44" />
     <bpmn:messageFlow id="MessageFlow_1u3ewwe" sourceRef="Task_1fytuku" targetRef="Participant_0zp63kv" />
   </bpmn:collaboration>
   <bpmn:process id="Process_0x8rz2m" isExecutable="true">
@@ -48,7 +48,6 @@
       <bpmn:lane id="Lane_1ktfyvf" name="Customer Service Agent">
         <bpmn:flowNodeRef>Task_12e6qnl</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>IntermediateThrowEvent_0bui4d5</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_004bodl</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_100l6lb</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0txqegp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1yj4x45</bpmn:flowNodeRef>
@@ -56,6 +55,7 @@
         <bpmn:flowNodeRef>Task_1rp7m2m</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_0wq9vll</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0hq4b21</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_004bodl</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_1yxeqy9" name="Shipping">
         <bpmn:flowNodeRef>Task_15t67bc</bpmn:flowNodeRef>
@@ -182,16 +182,6 @@
       <bpmn:incoming>SequenceFlow_1bzm9dt</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0olsvy5" sourceRef="Task_1mzazje" targetRef="Task_1rp7m2m" />
-    <bpmn:inclusiveGateway id="ExclusiveGateway_0burhqi">
-      <bpmn:incoming>SequenceFlow_0uojtpi</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0l6fmjq</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_01o22km</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
-    <bpmn:inclusiveGateway id="ExclusiveGateway_004bodl">
-      <bpmn:incoming>SequenceFlow_18cmpvg</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0z6bi2h</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_13771ut</bpmn:outgoing>
-    </bpmn:inclusiveGateway>
     <bpmn:manualTask id="Task_100l6lb" name="Treat customer complaint">
       <bpmn:incoming>SequenceFlow_13771ut</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1tp53od</bpmn:outgoing>
@@ -265,6 +255,16 @@
       <bpmn:outgoing>SequenceFlow_15d2eyg</bpmn:outgoing>
     </bpmn:subProcess>
     <bpmn:dataStoreReference id="DataStoreReference_19t1gz6" name="ERP" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_004bodl">
+      <bpmn:incoming>SequenceFlow_18cmpvg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0z6bi2h</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_13771ut</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0burhqi">
+      <bpmn:incoming>SequenceFlow_0uojtpi</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0l6fmjq</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_01o22km</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_020ru6p">
@@ -457,8 +457,8 @@
         <di:waypoint x="2484" y="1373" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_02gb5s9_di" bpmnElement="MessageFlow_02gb5s9">
-        <di:waypoint x="1755" y="142" />
-        <di:waypoint x="1755" y="1202" />
+        <di:waypoint x="1749" y="142" />
+        <di:waypoint x="1631" y="1224" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Task_0lye4z5_di" bpmnElement="Task_0lye4z5">
         <dc:Bounds x="446" y="608" width="100" height="80" />
@@ -468,8 +468,8 @@
         <di:waypoint x="596" y="648" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_19lx7hc_di" bpmnElement="MessageFlow_19lx7hc">
-        <di:waypoint x="487" y="142" />
-        <di:waypoint x="487" y="608" />
+        <di:waypoint x="476" y="142" />
+        <di:waypoint x="378" y="631" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_13771ut_di" bpmnElement="SequenceFlow_13771ut">
         <di:waypoint x="1886" y="1217" />
@@ -545,12 +545,6 @@
         <di:waypoint x="2813" y="1333" />
         <di:waypoint x="2813" y="1240" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="InclusiveGateway_08wokp9_di" bpmnElement="ExclusiveGateway_0burhqi">
-        <dc:Bounds x="728" y="383" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="InclusiveGateway_1ocg41b_di" bpmnElement="ExclusiveGateway_004bodl">
-        <dc:Bounds x="1861" y="1217" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_095ukyf_di" bpmnElement="Task_0l790d4">
         <dc:Bounds x="436" y="48" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -629,6 +623,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="SubProcess_0qwaz2l_di" bpmnElement="Task_07xigbo">
         <dc:Bounds x="283" y="253" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_167m0gn_di" bpmnElement="ExclusiveGateway_004bodl" isMarkerVisible="true">
+        <dc:Bounds x="1861" y="1217" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_02s9izf_di" bpmnElement="ExclusiveGateway_0burhqi" isMarkerVisible="true">
+        <dc:Bounds x="728" y="383" width="50" height="50" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
