@@ -162,7 +162,7 @@
     <bpmn:sequenceFlow id="SequenceFlow_13771ut" name="Non-size related" sourceRef="ExclusiveGateway_004bodl" targetRef="Task_100l6lb" />
     <bpmn:sequenceFlow id="SequenceFlow_18qhbtn" sourceRef="Task_1nile7a" targetRef="Task_1uxbi9u" />
     <bpmn:sequenceFlow id="SequenceFlow_1bzm9dt" sourceRef="Task_1uxbi9u" targetRef="EndEvent_16oh4lx" />
-    <bpmn:task id="Task_1uxbi9u" name="Update invenftory of fabrics">
+    <bpmn:task id="Task_1uxbi9u" name="Update inventory of fabrics">
       <bpmn:incoming>SequenceFlow_18qhbtn</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1bzm9dt</bpmn:outgoing>
       <bpmn:dataOutputAssociation id="DataOutputAssociation_04syuwr">
