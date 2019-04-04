@@ -7,9 +7,9 @@
           <text></text>
         </inputExpression>
       </input>
-      <input id="InputClause_1cmb6vf">
+      <input id="InputClause_1cmb6vf" label="Preferences">
         <inputExpression id="LiteralExpression_178whhx" typeRef="string">
-          <text>Preferences</text>
+          <text></text>
         </inputExpression>
         <inputValues id="UnaryTests_1r0sgt5">
           <text>"Classic","Boho-Chic","Vintage","Themed","Classic","Business-casual"</text>
