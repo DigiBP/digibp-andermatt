@@ -79,10 +79,6 @@
       <bpmn:incoming>SequenceFlow_0artre0</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0lp9hh0</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:manualTask id="Task_1wn2fse" name="Customise order items with picture">
-      <bpmn:incoming>SequenceFlow_1wii1n6</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1o3wjj7</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:inclusiveGateway id="InclusiveGateway_0reqz8b">
       <bpmn:incoming>SequenceFlow_1o3wjj7</bpmn:incoming>
       <bpmn:incoming>SequenceFlow_0lp9hh0</bpmn:incoming>
@@ -210,6 +206,10 @@
     <bpmn:sequenceFlow id="SequenceFlow_1czymsf" sourceRef="Task_1p6uuum" targetRef="ExclusiveGateway_0iyd6mc" />
     <bpmn:sequenceFlow id="SequenceFlow_1t6ptbh" sourceRef="ExclusiveGateway_0iyd6mc" targetRef="EndEvent_1mlxn6x" />
     <bpmn:sequenceFlow id="SequenceFlow_18ntbii" sourceRef="ExclusiveGateway_1oj9ycr" targetRef="ExclusiveGateway_0iyd6mc" />
+    <bpmn:task id="Task_1wn2fse" name="Customise order items with picture">
+      <bpmn:incoming>SequenceFlow_1wii1n6</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1o3wjj7</bpmn:outgoing>
+    </bpmn:task>
   </bpmn:process>
   <bpmn:process id="Process_1tcpcgn" isExecutable="false">
     <bpmn:startEvent id="StartEvent_0l7ifee" name="Payment requested">
@@ -559,9 +559,6 @@
         <di:waypoint x="1221" y="269" />
         <di:waypoint x="1248" y="269" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ManualTask_1enlu9c_di" bpmnElement="Task_1wn2fse">
-        <dc:Bounds x="1248" y="338" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_0hx91qo_di" bpmnElement="Participant_0hx91qo" isHorizontal="true">
         <dc:Bounds x="1286" y="1854" width="1390" height="377" />
       </bpmndi:BPMNShape>
@@ -1305,6 +1302,9 @@
         <di:waypoint x="1939" y="1263" />
         <di:waypoint x="1939" y="1340" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0wz8f0d_di" bpmnElement="Task_1wn2fse">
+        <dc:Bounds x="1248" y="338" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
