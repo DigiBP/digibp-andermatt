@@ -486,14 +486,6 @@
     <bpmn:endEvent id="EndEvent_0rsd4es" name="Complaint transmitted">
       <bpmn:incoming>SequenceFlow_19rsm0x</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:task id="Task_05wm4on" name="Transfer to customer service agent">
-      <bpmn:incoming>SequenceFlow_1jgpcu9</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_06pube7</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="Task_0glrr5l" name="Inform of closest local Swiss tailor">
-      <bpmn:incoming>SequenceFlow_0uh7yas</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0b89hhj</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:sequenceFlow id="SequenceFlow_0i0x0k8" name="Mass.market&#10;item" sourceRef="InclusiveGateway_1lgax67" targetRef="Task_0lf0xzu" />
     <bpmn:sequenceFlow id="SequenceFlow_096pk6h" sourceRef="Task_0lf0xzu" targetRef="InclusiveGateway_1afw39d" />
     <bpmn:sequenceFlow id="SequenceFlow_1jgpcu9" name="&#34;Just-me&#34; production item" sourceRef="InclusiveGateway_1lgax67" targetRef="Task_05wm4on" />
@@ -522,6 +514,14 @@
       <bpmn:outgoing>SequenceFlow_020jvz0</bpmn:outgoing>
       <bpmn:messageEventDefinition />
     </bpmn:startEvent>
+    <bpmn:subProcess id="Task_05wm4on" name="Transfer to customer service agent">
+      <bpmn:incoming>SequenceFlow_1jgpcu9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_06pube7</bpmn:outgoing>
+    </bpmn:subProcess>
+    <bpmn:subProcess id="Task_0glrr5l" name="Inform of closest local Swiss tailor">
+      <bpmn:incoming>SequenceFlow_0uh7yas</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0b89hhj</bpmn:outgoing>
+    </bpmn:subProcess>
   </bpmn:process>
   <bpmn:process id="Process_0nqubag" isExecutable="false" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -1234,12 +1234,6 @@
       <bpmndi:BPMNShape id="Task_0lf0xzu_di" bpmnElement="Task_0lf0xzu">
         <dc:Bounds x="567" y="1535" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_05wm4on_di" bpmnElement="Task_05wm4on">
-        <dc:Bounds x="656" y="1645" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Task_0glrr5l_di" bpmnElement="Task_0glrr5l">
-        <dc:Bounds x="755" y="1747" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0i0x0k8_di" bpmnElement="SequenceFlow_0i0x0k8">
         <di:waypoint x="545" y="1660" />
         <di:waypoint x="545" y="1575" />
@@ -1265,7 +1259,7 @@
         <di:waypoint x="545" y="1787" />
         <di:waypoint x="755" y="1787" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="554" y="1754.5" width="75" height="27" />
+          <dc:Bounds x="554" y="1755" width="75" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_06pube7_di" bpmnElement="SequenceFlow_06pube7">
@@ -1341,6 +1335,12 @@
         <di:waypoint x="1988" y="1361" />
         <di:waypoint x="1988" y="1287" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="SubProcess_0gpcfvh_di" bpmnElement="Task_05wm4on">
+        <dc:Bounds x="656" y="1645" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="SubProcess_1dw7swl_di" bpmnElement="Task_0glrr5l">
+        <dc:Bounds x="755" y="1747" width="100" height="80" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
