@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Watson Assistant service credentials-->
+    <string name="assistant_id">d516da82-c95c-43ac-8153-f8b1b816411a</string>
+    <string name="assistant_apikey">wBfKWG-sJMIJJUOSn0-04wdinDK4APcHv3J0NaCJvTzw</string>
+    <string name="assistant_url">https://gateway-lon.watsonplatform.net/assistant/api</string>
+
+    <!--Watson Speech To Text(STT) service credentials-->
+    <string name="STT_apikey">vYBj4e6xqFoctGGyNyM55Bx_c4o_9Y9uqOXhwcKI1rde</string>
+    <string name="STT_url">https://gateway-lon.watsonplatform.net/speech-to-text/api</string>
+
+    <!--Watson Text To Speech(TTS) service credentials-->
+    <string name="TTS_apikey">jr8wwYrszzJq5ETb0RabOtudjlBwnt-soKRSc7N85J_8</string>
+    <string name="TTS_url">https://stream-fra.watsonplatform.net/text-to-speech/api</string>
+
+    <!--Watson Visual Recognition(VR) service credentials-->
+    <string name="VR_apikey">JFGma5R__xA8-wJxh6motmtNP9G-KSP25eSYbPqp6Lu2</string>
+    <string name="VR_url">https://gateway.watsonplatform.net/visual-recognition/api</string>
+</resources>
