@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">JustMe</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="send_message">Send</string>
+    <string name="record">Rec</string>
+    <string name="gallery_upload">Pic</string>
+    <string name="register">Register</string>
+    <string name="credit_card">Card number</string>
+    <string name="cvc">CVC</string>
+    <string name="month_short">MM</string>
+    <string name="year_short">YY</string>
+    <string name="address_line_1">Address line 1</string>
+    <string name="postcode">Postcode</string>
+    <string name="town_city">Town / City</string>
+    <string name="cardholder">Cardholder name</string>
+    <string name="save">Save</string>
+    <string name="address_line_2">Address line 2</string>
+</resources>

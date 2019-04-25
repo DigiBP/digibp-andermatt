@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_surrounding">5dp</dimen>
+    <item name="cvc" type="dimen">50%</item>
+    <item name="mm_width" type="dimen">25%</item>
+</resources>
