@@ -2,10 +2,10 @@
 
     <process-archive>
         <resource>
-            modelling/JustMe.bpmn
+            BPMN models/JustMe.bpmn
         </resource>
         <resource>
-            src/main/resources/DMN models/Occasion selection to options.dmn
+            DMN models/Occasion selection to options.dmn
         </resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
