@@ -1,4 +1,4 @@
-package ch.fhnw.justme;
+package ch.fhnw.justme.model;
 
 import android.graphics.Bitmap;
 

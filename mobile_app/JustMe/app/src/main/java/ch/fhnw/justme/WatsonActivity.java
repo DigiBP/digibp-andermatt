@@ -53,6 +53,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import ch.fhnw.justme.model.Message;
 
 public class WatsonActivity extends AppCompatActivity {
 
