@@ -23,12 +23,12 @@
           <text>"1-100","101-200","201-500","501-1000","1000-1500","1501-2000","2000+"</text>
         </inputValues>
       </input>
-      <output id="output_1" label="Producer" typeRef="string">
+      <output id="output_1" label="Producer" name="producer" typeRef="string">
         <outputValues id="UnaryTests_0rq3yl2">
           <text>"Partner","Just-me production","Just-me tailor"</text>
         </outputValues>
       </output>
-      <output id="OutputClause_0xbcdds" label="Brand" typeRef="string">
+      <output id="OutputClause_0xbcdds" label="Brand" name="brand" typeRef="string">
         <outputValues id="UnaryTests_111pfuj">
           <text>"Bugatti","MassimoDutti","H&amp;M","C&amp;A","Zara","Mango","GraceLovesLace","Lacoste"</text>
         </outputValues>

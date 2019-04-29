@@ -1,8 +1,8 @@
 <process-application xmlns="http://www.camunda.org/schema/1.0/ProcessApplication">
 
     <process-archive>
-        <resource>src/main/BPMN models/JustMe.bpmn</resource>
-        <resource>src/main/DMN models/Occasion selection to options.dmn</resource>
+        <resource>BPMN models/JustMe.bpmn</resource>
+        <resource>DMN models/Occasion selection to options.dmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
             <property name="isScanForProcessDefinitions">false</property>

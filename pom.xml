@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.fhnw.digibp</groupId>
-    <artifactId>digibp-camunda-template</artifactId>
+    <artifactId>digibp-andermatt</artifactId>
     <version>3.2.3</version>
     <packaging>${packaging.type}</packaging>
 
