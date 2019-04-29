@@ -3,7 +3,7 @@
   <bpmn:collaboration id="Collaboration_11h9dju">
     <bpmn:participant id="Participant_1ap8y14" name="&#34;Just-me&#34; order handling process" processRef="Process_0yhwlt2" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_0yhwlt2" isExecutable="false">
+  <bpmn:process id="Process_0yhwlt2" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0icouuo">
       <bpmn:lane id="Lane_1e4sb46" name="&#34;Just-me&#34; office agent">
         <bpmn:flowNodeRef>Task_0fkt3mh</bpmn:flowNodeRef>
