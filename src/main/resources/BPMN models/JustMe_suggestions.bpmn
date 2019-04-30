@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_11u7hb5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:collaboration id="Collaboration_11h9dju">
+    <bpmn:participant id="Participant_1ap8y14" name="&#34;Just-me&#34; order handling process" processRef="Process_Suggestions" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Suggestions" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0icouuo">
+      <bpmn:lane id="Lane_1e4sb46" name="&#34;Just-me&#34; office agent">
+        <bpmn:flowNodeRef>Task_0fkt3mh</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_198xkod</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>StartEvent_13v9fcb</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_06on66u</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:businessRuleTask id="Task_0fkt3mh" name="Determine production partner" camunda:decisionRef="Decision_1t4d49w">
+      <bpmn:incoming>SequenceFlow_0bvkagu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0149voo</bpmn:outgoing>
+    </bpmn:businessRuleTask>
+    <bpmn:serviceTask id="Task_198xkod" name="Lookup clothing" camunda:class="ch.fhnw.digibp.ClothingLookup">
+      <bpmn:incoming>SequenceFlow_0149voo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16c9ic7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_13v9fcb" name="Preferences received">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="color" type="string" />
+          <camunda:formField id="clothing" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>SequenceFlow_0bvkagu</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_16c9ic7" sourceRef="Task_198xkod" targetRef="EndEvent_06on66u" />
+    <bpmn:sequenceFlow id="SequenceFlow_0149voo" sourceRef="Task_0fkt3mh" targetRef="Task_198xkod" />
+    <bpmn:sequenceFlow id="SequenceFlow_0bvkagu" sourceRef="StartEvent_13v9fcb" targetRef="Task_0fkt3mh" />
+    <bpmn:endEvent id="EndEvent_06on66u" name="Suggestions chosen">
+      <bpmn:incoming>SequenceFlow_16c9ic7</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_11h9dju">
+      <bpmndi:BPMNShape id="Participant_1ap8y14_di" bpmnElement="Participant_1ap8y14" isHorizontal="true">
+        <dc:Bounds x="156" y="81" width="568" height="233" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1e4sb46_di" bpmnElement="Lane_1e4sb46" isHorizontal="true">
+        <dc:Bounds x="186" y="81" width="538" height="233" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BusinessRuleTask_1cp99go_di" bpmnElement="Task_0fkt3mh">
+        <dc:Bounds x="312" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bvkagu_di" bpmnElement="SequenceFlow_0bvkagu">
+        <di:waypoint x="272" y="190" />
+        <di:waypoint x="312" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0149voo_di" bpmnElement="SequenceFlow_0149voo">
+        <di:waypoint x="412" y="190" />
+        <di:waypoint x="445" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_141954o_di" bpmnElement="Task_198xkod">
+        <dc:Bounds x="445" y="150" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_16c9ic7_di" bpmnElement="SequenceFlow_16c9ic7">
+        <di:waypoint x="545" y="190" />
+        <di:waypoint x="597" y="190" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="StartEvent_0sl06bj_di" bpmnElement="StartEvent_13v9fcb">
+        <dc:Bounds x="236" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="224" y="215" width="60" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_06on66u_di" bpmnElement="EndEvent_06on66u">
+        <dc:Bounds x="597" y="172" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="585" y="215" width="61" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
