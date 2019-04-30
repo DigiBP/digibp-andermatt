@@ -294,16 +294,18 @@ public class WatsonActivity extends AppCompatActivity {
     private void checkVariables() {
         Call<GetVariableResponse> call = service.getVariables(processInstanceId);
         boolean ready = false;
+        List<String> possibilities = null;
         try {
             Response<GetVariableResponse> res = call.execute();
             Log.d(ACTIVITY, String.format("received variables: %s", res.body().toString()));
             ready = "true".equals(res.body().getReadyForPickup().getValue());
+            possibilities = new ArrayList<String>(res.body().getPossibilities().getValue());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         if (ready) {
-            triggerWaitMessage();
+            triggerWaitMessage(possibilities);
         } else {
             runOnUiThread(() -> {
                 Handler handler = new Handler();
@@ -312,7 +314,7 @@ public class WatsonActivity extends AppCompatActivity {
         }
     }
 
-    private void triggerWaitMessage() {
+    private void triggerWaitMessage(List<String> possibilities) {
         Log.d(ACTIVITY, "triggering wait message");
         CorrelateMessageRequest req = new CorrelateMessageRequest(WAIT_MESSAGE, processInstanceId);
         Call call = service.correlateMessage(req);
@@ -320,6 +322,8 @@ public class WatsonActivity extends AppCompatActivity {
             Response res = call.execute();
             if (res.isSuccessful()) {
                 Intent shopping = new Intent(WatsonActivity.this, ShoppingActivity.class);
+                Log.d(ACTIVITY, String.format("passing possibilities to ShoppingActivity: %s", possibilities));
+                shopping.putExtra("possibilities", new ArrayList<String>(possibilities));
                 startActivity(shopping);
             } else {
                 Log.e(ACTIVITY, String.format("Something went wrong; response: %s", res.toString()));
