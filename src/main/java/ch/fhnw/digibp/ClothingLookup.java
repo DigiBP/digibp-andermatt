@@ -12,6 +12,6 @@ public class ClothingLookup implements JavaDelegate {
     public void execute(DelegateExecution delegateExecution) {
         LOG.info("I have looked up some clothes");
 
-        delegateExecution.setVariable("result", new String("HelloWorld"));
+        delegateExecution.setVariable("readyForPickup", "true");
     }
 }
