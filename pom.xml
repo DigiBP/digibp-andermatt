@@ -102,6 +102,11 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- spin: serialize custom java objects -->
+        <dependency>
+            <groupId>org.camunda.spin</groupId>
+            <artifactId>camunda-spin-dataformat-all</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
