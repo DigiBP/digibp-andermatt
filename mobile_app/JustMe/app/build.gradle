@@ -65,5 +65,6 @@ dependencies {
     implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.5.0'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 }

@@ -450,30 +450,17 @@ public class WatsonActivity extends AppCompatActivity {
     }
 
     private void showMicText(final String text) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                inputMessage.setText(text);
-            }
-        });
+        runOnUiThread(() -> inputMessage.setText(text));
     }
 
     private void enableMicButton() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                btnRecord.setEnabled(true);
-            }
-        });
+        runOnUiThread(() -> btnRecord.setEnabled(true));
     }
 
     private void showError(final Exception e) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(WatsonActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+        runOnUiThread(() -> {
+            Toast.makeText(WatsonActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         });
     }
 

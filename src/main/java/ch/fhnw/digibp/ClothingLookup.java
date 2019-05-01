@@ -14,7 +14,7 @@ public class ClothingLookup implements JavaDelegate {
 
     private PictureDescription peterHahnStrickJackeCoral = new PictureDescription(
                 "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/PE/R2/1E/00/KG/11/PER21E00K-G11@10.1.jpg",
-                "Peter Hahn Strickjacke Coral",
+                "Peter Hahn Strickjacke",
                 17.50);
 
     @Override
@@ -23,8 +23,10 @@ public class ClothingLookup implements JavaDelegate {
 
         List<PictureDescription> singlePossibilities = new LinkedList<>();
         singlePossibilities.add(peterHahnStrickJackeCoral);
+        singlePossibilities.add(peterHahnStrickJackeCoral);
 
         List<PictureDescription> setPossibilities = new LinkedList<>();
+        setPossibilities.add(peterHahnStrickJackeCoral);
         setPossibilities.add(peterHahnStrickJackeCoral);
 
         ObjectValue singleItems =
