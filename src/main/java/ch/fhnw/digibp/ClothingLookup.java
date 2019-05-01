@@ -50,7 +50,7 @@ public class ClothingLookup implements JavaDelegate {
         private String description;
         private Double price;
 
-        public PictureDescription(String url, String description, Double price) {
+        PictureDescription(String url, String description, Double price) {
             this.url = url;
             this.description = description;
             this.price = price;

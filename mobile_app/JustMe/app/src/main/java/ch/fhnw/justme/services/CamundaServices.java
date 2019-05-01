@@ -15,7 +15,7 @@ public interface CamundaServices {
     @POST("/rest/process-definition/key/{key}/start")
     Call<StartProcessFormResponse> startProcess(@Path("key") String key, @Body StartProcessFormRequest request);
 
-    @GET("/rest/process-instance/{id}/variables")
+    @GET("/rest/process-instance/{id}/variables?deserializeValues=false")
     Call<GetVariableResponse> getVariables(@Path("id") String processInstanceId);
 
     @POST("/rest/message")

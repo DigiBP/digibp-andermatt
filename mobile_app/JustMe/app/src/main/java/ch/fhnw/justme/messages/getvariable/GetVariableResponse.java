@@ -1,16 +1,13 @@
 package ch.fhnw.justme.messages.getvariable;
 
-import ch.fhnw.justme.model.ListVariable;
 import ch.fhnw.justme.model.Variable;
 
 public class GetVariableResponse {
     Variable readyForPickup;
-    ListVariable possibilities;
-
-    //TODO: pictures
+    Variable possibilities;
 
 
-    public GetVariableResponse(Variable readyForPickup, ListVariable possibilities) {
+    public GetVariableResponse(Variable readyForPickup, Variable possibilities) {
         this.readyForPickup = readyForPickup;
         this.possibilities = possibilities;
     }
@@ -23,11 +20,11 @@ public class GetVariableResponse {
         this.readyForPickup = readyForPickup;
     }
 
-    public ListVariable getPossibilities() {
+    public Variable getPossibilities() {
         return possibilities;
     }
 
-    public void setPossibilities(ListVariable possibilities) {
+    public void setPossibilities(Variable possibilities) {
         this.possibilities = possibilities;
     }
 
