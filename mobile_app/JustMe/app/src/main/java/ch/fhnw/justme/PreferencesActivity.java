@@ -68,6 +68,8 @@ public class PreferencesActivity extends AppCompatActivity {
         // TODO API savePreferences(prefs)
         Log.d(ACTIVITY, prefs.toString());
 
+        getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit().putString(getString(R.string.card_number_key), prefs.getCardNumber()).commit();
+
         Intent watson = new Intent(PreferencesActivity.this, WatsonActivity.class);
         startActivity(watson);
     }

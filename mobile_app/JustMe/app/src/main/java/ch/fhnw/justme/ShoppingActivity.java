@@ -1,7 +1,9 @@
 package ch.fhnw.justme;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,6 +24,8 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
     double totalSum;
     TextView sumTextView;
 
+    ImageButton checkoutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,13 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
         setContentView(R.layout.shopping);
 
         sumTextView = findViewById(R.id.shopping_cart_total);
+        checkoutButton = findViewById(R.id.buy);
+
+        checkoutButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ShoppingActivity.this, CheckoutActivity.class);
+            intent.putExtra("totalAmount", totalSum);
+            startActivity(intent);
+        });
 
         recyclerView = findViewById(R.id.items);
         recyclerView.setHasFixedSize(true);
