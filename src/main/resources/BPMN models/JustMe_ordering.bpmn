@@ -7,8 +7,6 @@
     <bpmn:laneSet id="LaneSet_0icouuo">
       <bpmn:lane id="Lane_1e4sb46" name="&#34;Just-me&#34; office agent">
         <bpmn:flowNodeRef>IntermediateThrowEvent_0vbxn6s</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_12xl67n</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1prkqk2</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1j7p16w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0lrce43</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_06msoyt</bpmn:flowNodeRef>
@@ -16,9 +14,11 @@
         <bpmn:flowNodeRef>Task_1wg61mw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1y47752</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1gsetme</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ChargeCreditCard</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0wxvze0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_067rpz2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1prkqk2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_12xl67n</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ChargeCreditCard</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0nxo40c" sourceRef="IntermediateThrowEvent_0vbxn6s" targetRef="Task_12xl67n" />
@@ -26,39 +26,6 @@
     <bpmn:startEvent id="IntermediateThrowEvent_0vbxn6s" name="Shopping cart received">
       <bpmn:outgoing>SequenceFlow_0nxo40c</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Task_12xl67n" name="Process data" camunda:class="ch.fhnw.digibp.ProcessData">
-      <bpmn:incoming>SequenceFlow_0nxo40c</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0ryqwgl</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_1prkqk2" name="Store order information">
-      <bpmn:documentation>REST call to integromat storing order</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="url">www.google.ch</camunda:inputParameter>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="JavaScript">out = JSON.stringify(
-{
-"orderId": orderId,
-"cardNumber": cardNumber,
-"totalAmount": totalAmount
-}
-);</camunda:script>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/gsh7vqblzotopwnmy2um46k204icjloz</camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_0ryqwgl</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1ho2vnh</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_1ho2vnh" sourceRef="Task_1prkqk2" targetRef="Task_067rpz2" />
     <bpmn:sequenceFlow id="SequenceFlow_0vu6owj" sourceRef="Task_067rpz2" targetRef="ChargeCreditCard" />
     <bpmn:serviceTask id="Task_1j7p16w" name="Email order to partner" camunda:class="ch.fhnw.digibp.EmailToPartner">
@@ -98,7 +65,19 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
         <camunda:connector>
           <camunda:inputOutput>
             <camunda:inputParameter name="url">https://hook.integromat.com/3x97x2wxfju79g48u633qxmdklaxq3qt</camunda:inputParameter>
-            <camunda:inputParameter name="method">GET</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify(
+{
+"orderId": orderId
+}
+);</camunda:script>
+            </camunda:inputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
@@ -106,19 +85,13 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:incoming>SequenceFlow_04j78bm</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1ir6mpp</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="ChargeCreditCard" name="Charge credit card" camunda:class="ch.fhnw.digibp.ChargeCreditCard">
-      <bpmn:documentation>integromat call to show, we done something, maybe also mq?
-ah, no, send something to this url mocking service</bpmn:documentation>
-      <bpmn:incoming>SequenceFlow_0vu6owj</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_03uhxkv</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:manualTask id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor">
       <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_05heb9k</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0atp8io</bpmn:outgoing>
     </bpmn:manualTask>
     <bpmn:sequenceFlow id="SequenceFlow_1d8gh6s" name="Mass-market product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1j7p16w">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${1==3}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${1==1}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_03l3af8" sourceRef="Task_1j7p16w" targetRef="Task_0lrce43" />
     <bpmn:sequenceFlow id="SequenceFlow_1d8tslp" sourceRef="Task_0lrce43" targetRef="ExclusiveGateway_1a6ambt" />
@@ -127,7 +100,7 @@ ah, no, send something to this url mocking service</bpmn:documentation>
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${1==2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_05heb9k" name="&#34;Just-me&#34; tailored product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_0wxvze0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${1==1}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${1==2}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0x27abj" sourceRef="Task_1wg61mw" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0atp8io" sourceRef="Task_0wxvze0" targetRef="ExclusiveGateway_1a6ambt" />
@@ -161,6 +134,44 @@ ah, no, send something to this url mocking service</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_1ho2vnh</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vu6owj</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="orderItems" camunda:elementVariable="order" />
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_1prkqk2" name="Store order information">
+      <bpmn:documentation>REST call to integromat storing order</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify(
+{
+"orderId": orderId,
+"cardNumber": cardNumber,
+"totalAmount": totalAmount
+}
+);</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/gsh7vqblzotopwnmy2um46k204icjloz</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0ryqwgl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ho2vnh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_12xl67n" name="Process data" camunda:class="ch.fhnw.digibp.ProcessData">
+      <bpmn:incoming>SequenceFlow_0nxo40c</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ryqwgl</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ChargeCreditCard" name="Charge credit card" camunda:class="ch.fhnw.digibp.ChargeCreditCard">
+      <bpmn:documentation>integromat call to show, we done something, maybe also mq?
+ah, no, send something to this url mocking service</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_0vu6owj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03uhxkv</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmn:message id="Message_1xh4ouf" name="startOrderProcess" />
@@ -225,10 +236,10 @@ ah, no, send something to this url mocking service</bpmn:documentation>
         <dc:Bounds x="186" y="67" width="1674" height="405" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_19rgcrd_di" bpmnElement="ChargeCreditCard">
-        <dc:Bounds x="859" y="203" width="100" height="80" />
+        <dc:Bounds x="818" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_03uhxkv_di" bpmnElement="SequenceFlow_03uhxkv">
-        <di:waypoint x="959" y="243" />
+        <di:waypoint x="918" y="243" />
         <di:waypoint x="988" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ExclusiveGateway_1lqqehn_di" bpmnElement="ExclusiveGateway_06msoyt" isMarkerVisible="true">
@@ -239,7 +250,7 @@ ah, no, send something to this url mocking service</bpmn:documentation>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0nxo40c_di" bpmnElement="SequenceFlow_0nxo40c">
         <di:waypoint x="263" y="243" />
-        <di:waypoint x="307" y="243" />
+        <di:waypoint x="329" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_03l3af8_di" bpmnElement="SequenceFlow_03l3af8">
         <di:waypoint x="1278" y="348" />
@@ -252,7 +263,7 @@ ah, no, send something to this url mocking service</bpmn:documentation>
         <dc:Bounds x="1178" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_02f3t17_di" bpmnElement="Task_1prkqk2">
-        <dc:Bounds x="434" y="203" width="100" height="80" />
+        <dc:Bounds x="484" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1ir6mpp_di" bpmnElement="SequenceFlow_1ir6mpp">
         <di:waypoint x="1666" y="243" />
@@ -268,19 +279,19 @@ ah, no, send something to this url mocking service</bpmn:documentation>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0ujsfgr_di" bpmnElement="Task_12xl67n">
-        <dc:Bounds x="307" y="203" width="100" height="80" />
+        <dc:Bounds x="329" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0ryqwgl_di" bpmnElement="SequenceFlow_0ryqwgl">
-        <di:waypoint x="407" y="243" />
-        <di:waypoint x="434" y="243" />
+        <di:waypoint x="429" y="243" />
+        <di:waypoint x="484" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1ho2vnh_di" bpmnElement="SequenceFlow_1ho2vnh">
-        <di:waypoint x="534" y="243" />
+        <di:waypoint x="584" y="243" />
         <di:waypoint x="647" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0vu6owj_di" bpmnElement="SequenceFlow_0vu6owj">
         <di:waypoint x="747" y="243" />
-        <di:waypoint x="859" y="243" />
+        <di:waypoint x="818" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_1oskl2t_di" bpmnElement="Task_067rpz2">
         <dc:Bounds x="647" y="203" width="100" height="80" />
