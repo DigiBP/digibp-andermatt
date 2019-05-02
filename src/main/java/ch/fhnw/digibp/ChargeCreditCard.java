@@ -1,4 +1,11 @@
 package ch.fhnw.digibp;
 
-public class ChargeCreditCard {
+import org.camunda.bpm.engine.delegate.DelegateExecution;
+import org.camunda.bpm.engine.delegate.JavaDelegate;
+
+public class ChargeCreditCard implements JavaDelegate {
+    @Override
+    public void execute(DelegateExecution delegateExecution) throws Exception {
+
+    }
 }

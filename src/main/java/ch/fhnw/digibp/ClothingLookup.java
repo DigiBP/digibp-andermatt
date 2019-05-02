@@ -1,5 +1,6 @@
 package ch.fhnw.digibp;
 
+import ch.fhnw.digibp.model.PictureDescription;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
@@ -45,50 +46,5 @@ public class ClothingLookup implements JavaDelegate {
 
         // dedicated flag indicating that the variables are ready for pickup
         delegateExecution.setVariable("readyForPickup", "true");
-    }
-
-    private class PictureDescription {
-        private String url;
-        private String description;
-        private Double price;
-
-        PictureDescription(String url, String description, Double price) {
-            this.url = url;
-            this.description = description;
-            this.price = price;
-        }
-
-        public Double getPrice() {
-            return price;
-        }
-
-        public void setPrice(Double price) {
-            this.price = price;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public void setDescription(String description) {
-            this.description = description;
-        }
-
-        @Override
-        public String toString() {
-            return "PictureDescription{" +
-                    "url='" + url + '\'' +
-                    ", description='" + description + '\'' +
-                    ", price=" + price +
-                    '}';
-        }
     }
 }

@@ -2,6 +2,7 @@
 
     <process-archive>
         <resource>BPMN models/JustMe_suggestions.bpmn</resource>
+        <resource>BPMN models/JustMe_ordering.bpmn</resource>
         <resource>DMN models/Occasion selection to options.dmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
