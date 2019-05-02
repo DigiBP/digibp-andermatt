@@ -1,8 +1,11 @@
 <process-application xmlns="http://www.camunda.org/schema/1.0/ProcessApplication">
 
     <process-archive>
+        <resource>BPMN models/JustMe_suggestions.bpmn</resource>
+        <resource>DMN models/Occasion selection to options.dmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
+            <property name="isScanForProcessDefinitions">false</property>
         </properties>
     </process-archive>
 

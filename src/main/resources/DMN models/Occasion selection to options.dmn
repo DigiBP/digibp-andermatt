@@ -4,12 +4,12 @@
     <decisionTable id="decisionTable_1">
       <input id="input_1" label="Occasion">
         <inputExpression id="inputExpression_1" typeRef="string">
-          <text></text>
+          <text>color</text>
         </inputExpression>
       </input>
       <input id="InputClause_1cmb6vf" label="Preferences">
         <inputExpression id="LiteralExpression_178whhx" typeRef="string">
-          <text></text>
+          <text>clothing</text>
         </inputExpression>
         <inputValues id="UnaryTests_1r0sgt5">
           <text>"Classic","Boho-Chic","Vintage","Themed","Classic","Business-casual"</text>
@@ -23,14 +23,9 @@
           <text>"1-100","101-200","201-500","501-1000","1000-1500","1501-2000","2000+"</text>
         </inputValues>
       </input>
-      <output id="output_1" label="Producer" typeRef="string">
+      <output id="output_1" label="Producer" name="producer" typeRef="string">
         <outputValues id="UnaryTests_0rq3yl2">
           <text>"Partner","Just-me production","Just-me tailor"</text>
-        </outputValues>
-      </output>
-      <output id="OutputClause_0xbcdds" label="Brand" typeRef="string">
-        <outputValues id="UnaryTests_111pfuj">
-          <text>"Bugatti","MassimoDutti","H&amp;M","C&amp;A","Zara","Mango","GraceLovesLace","Lacoste"</text>
         </outputValues>
       </output>
       <rule id="DecisionRule_0u9ety2">
@@ -44,9 +39,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1l3tm41">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1ekluo1">
           <text></text>
         </outputEntry>
       </rule>
@@ -63,9 +55,6 @@
         <outputEntry id="LiteralExpression_0ddygpu">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1tn9wyn">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_03vhriz">
         <inputEntry id="UnaryTests_0veuha9">
@@ -78,9 +67,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1oy799i">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1qyv5vf">
           <text></text>
         </outputEntry>
       </rule>
@@ -97,9 +83,6 @@
         <outputEntry id="LiteralExpression_09gn184">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0jce1qg">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_1iyhts5">
         <inputEntry id="UnaryTests_0j7da0k">
@@ -112,9 +95,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0wpef2j">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1fnivb8">
           <text></text>
         </outputEntry>
       </rule>
@@ -131,9 +111,6 @@
         <outputEntry id="LiteralExpression_01nqwxp">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1tji2un">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_0nj12tf">
         <inputEntry id="UnaryTests_0x00tnv">
@@ -146,9 +123,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_10qw026">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0p0fx2m">
           <text></text>
         </outputEntry>
       </rule>
@@ -165,9 +139,6 @@
         <outputEntry id="LiteralExpression_08ofl5t">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1al1aj8">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_1m8besd">
         <inputEntry id="UnaryTests_0et46ao">
@@ -180,9 +151,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0fapk3j">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0njtduh">
           <text></text>
         </outputEntry>
       </rule>
@@ -199,9 +167,6 @@
         <outputEntry id="LiteralExpression_09amw3m">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1apwe6p">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_0gehkbm">
         <inputEntry id="UnaryTests_0abrkp5">
@@ -214,9 +179,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1b779om">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0x8whgf">
           <text></text>
         </outputEntry>
       </rule>
@@ -233,9 +195,6 @@
         <outputEntry id="LiteralExpression_09kkppz">
           <text></text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_124w5yi">
-          <text></text>
-        </outputEntry>
       </rule>
       <rule id="DecisionRule_01n4oaj">
         <inputEntry id="UnaryTests_0sbqvm3">
@@ -248,43 +207,6 @@
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0uuc1jo">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0iez1ad">
-          <text></text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0gvcoqd">
-        <inputEntry id="UnaryTests_1i2kn3e">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1oatnjm">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0p7l4z0">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_11g9han">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_1c8fjqu">
-          <text></text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_16b8hsj">
-        <inputEntry id="UnaryTests_1ikzuyy">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_11xjspl">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0j3k5dv">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1atsp3e">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_05erpb6">
           <text></text>
         </outputEntry>
       </rule>
