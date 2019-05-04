@@ -42,7 +42,8 @@
 "orderId": orderId,
 "description": order.getDescription(),
 "url": order.getUrl(),
-"price": order.getPrice()
+"price": order.getPrice(),
+"count": order.getCount()
 }
 );</camunda:script>
             </camunda:inputParameter>

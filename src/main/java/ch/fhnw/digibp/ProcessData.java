@@ -36,6 +36,7 @@ public class ProcessData implements JavaDelegate {
             item.setDescription((String) map.get("description"));
             item.setUrl((String) map.get("url"));
             item.setPrice(Double.parseDouble(map.get("price").toString()));
+            item.setCount(Integer.parseInt(map.get("count").toString()));
 
             orderItemList.add(item);
         }
