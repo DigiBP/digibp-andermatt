@@ -24,7 +24,7 @@ public class ProcessData implements JavaDelegate {
 
         delegateExecution.setVariable("orderId", orderId);
 
-        LOG.info(String.format("cart object debugging: %s", delegateExecution.getVariable("cart").toString()));
+        LOG.info(String.format("cart object debugging: %s", delegateExecution.getVariables().toString()));
 
         ArrayList<LinkedHashMap> list = (ArrayList) delegateExecution.getVariable("cart");
 
