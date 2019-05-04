@@ -47,6 +47,7 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
         sumTextView = findViewById(R.id.shopping_cart_total);
         checkoutButton = findViewById(R.id.buy);
 
+        checkoutButton.setEnabled(false);
         checkoutButton.setOnClickListener(v -> startCheckoutActivity());
 
         recyclerView = findViewById(R.id.items);
@@ -70,5 +71,11 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
     public void onAmountChanged(double value) {
         totalSum += value;
         sumTextView.setText(Double.toString(totalSum));
+
+        if (totalSum > 0) {
+            checkoutButton.setEnabled(true);
+        } else {
+            checkoutButton.setEnabled(false);
+        }
     }
  }
