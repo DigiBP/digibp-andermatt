@@ -63,9 +63,9 @@ import ch.fhnw.justme.messages.getvariable.GetVariableResponse;
 import ch.fhnw.justme.messages.message.CorrelateMessageRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormResponse;
-import ch.fhnw.justme.model.FormVariables;
 import ch.fhnw.justme.model.Message;
 import ch.fhnw.justme.model.PictureDescription;
+import ch.fhnw.justme.model.SuggestionsFormVariables;
 import ch.fhnw.justme.model.Variable;
 import ch.fhnw.justme.services.CamundaServices;
 import retrofit2.Call;
@@ -268,7 +268,7 @@ public class WatsonActivity extends AppCompatActivity {
 
     private void startClothingRecommendationProcess(String key, List<RuntimeEntity> entities) {
         StartProcessFormRequest request = new StartProcessFormRequest();
-        FormVariables vars = new FormVariables();
+        SuggestionsFormVariables vars = new SuggestionsFormVariables();
 
         for (int i = 0; i < entities.size(); i++) {
             if ("clothing".equals(entities.get(i).getEntity())) {
@@ -298,6 +298,7 @@ public class WatsonActivity extends AppCompatActivity {
         Call<GetVariableResponse> call = service.getVariables(processInstanceId);
         boolean ready = false;
         List<PictureDescription> possibilities = null;
+        String producer = null;
         try {
             Response<GetVariableResponse> res = call.execute();
             Log.d(ACTIVITY, String.format("received variables: %s", res.body().toString()));
@@ -305,12 +306,15 @@ public class WatsonActivity extends AppCompatActivity {
             ObjectMapper mapper = new ObjectMapper();
             possibilities =  mapper.readValue(res.body().getPossibilities().getValue(), new TypeReference<List<PictureDescription>>(){});
             Log.d(ACTIVITY, String.format("Read the following possibilities: %s", possibilities.toString()));
+
+            producer = res.body().getProducer().getValue();
+            Log.d(ACTIVITY, String.format("Read the following producer: %s", producer));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         if (ready) {
-            triggerWaitMessage(possibilities);
+            triggerWaitMessage(possibilities, producer);
         } else {
             runOnUiThread(() -> {
                 Handler handler = new Handler();
@@ -319,7 +323,7 @@ public class WatsonActivity extends AppCompatActivity {
         }
     }
 
-    private void triggerWaitMessage(List<PictureDescription> possibilities) {
+    private void triggerWaitMessage(List<PictureDescription> possibilities, String producer) {
         Log.d(ACTIVITY, "triggering wait message");
         CorrelateMessageRequest req = new CorrelateMessageRequest(WAIT_MESSAGE, processInstanceId);
         Call call = service.correlateMessage(req);
@@ -329,6 +333,7 @@ public class WatsonActivity extends AppCompatActivity {
                 Intent shopping = new Intent(WatsonActivity.this, ShoppingActivity.class);
                 Log.d(ACTIVITY, String.format("passing possibilities to ShoppingActivity: %s", possibilities));
                 shopping.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
+                shopping.putExtra("producer", producer);
                 startActivity(shopping);
             } else {
                 Log.e(ACTIVITY, String.format("Something went wrong; response: %s", res.toString()));

@@ -12,6 +12,9 @@ import retrofit2.http.Path;
 
 public interface CamundaServices {
 
+    @POST("/test")
+    Call<StartProcessFormResponse> test(@Body StartProcessFormRequest req);
+
     @POST("/rest/process-definition/key/{key}/start")
     Call<StartProcessFormResponse> startProcess(@Path("key") String key, @Body StartProcessFormRequest request);
 

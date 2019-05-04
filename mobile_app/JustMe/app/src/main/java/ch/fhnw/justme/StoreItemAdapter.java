@@ -65,23 +65,19 @@ public class StoreItemAdapter extends RecyclerView.Adapter<StoreItemAdapter.Stor
         holder.price.setText(items.get(position).getPrice().toString());
         holder.counter.setText(Integer.toString(holder.c));
 
-        holder.more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.c += 1;
-                holder.counter.setText(Integer.toString(holder.c));
-                listener.onAmountChanged(items.get(position).getPrice());
-            }
+        holder.more.setOnClickListener(v -> {
+            holder.c += 1;
+            holder.counter.setText(Integer.toString(holder.c));
+            listener.onAmountChanged(items.get(position).getPrice());
+            items.get(position).incrementCount();
         });
 
-        holder.less.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.c > 0) {
-                    holder.c -= 1;
-                    holder.counter.setText(Integer.toString(holder.c));
-                    listener.onAmountChanged(-items.get(position).getPrice());
-                }
+        holder.less.setOnClickListener(v -> {
+            if (holder.c > 0) {
+                holder.c -= 1;
+                holder.counter.setText(Integer.toString(holder.c));
+                listener.onAmountChanged(-items.get(position).getPrice());
+                items.get(position).decrementCount();
             }
         });
 

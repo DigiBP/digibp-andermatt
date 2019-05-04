@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
 
     private final static String ACTIVITY = "ShoppingActivity";
     private List<PictureDescription> possibilities;
+    private String producer;
 
     private RecyclerView recyclerView;
     private StoreItemAdapter adapter;
@@ -26,25 +28,26 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
 
     ImageButton checkoutButton;
 
+    private List<PictureDescription> cart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        cart = new ArrayList<PictureDescription>();
+
         possibilities = (List<PictureDescription>) getIntent().getExtras().get("possibilities");
+        producer = (String) getIntent().getExtras().get("producer");
 
-        Log.d(ACTIVITY, possibilities.toString());
-
+        Log.d(ACTIVITY, String.format("received the following possibilities: %S", possibilities.toString()));
+        Log.d(ACTIVITY, String.format("received the following producer: %s", producer));
 
         setContentView(R.layout.shopping);
 
         sumTextView = findViewById(R.id.shopping_cart_total);
         checkoutButton = findViewById(R.id.buy);
 
-        checkoutButton.setOnClickListener(v -> {
-            Intent intent = new Intent(ShoppingActivity.this, CheckoutActivity.class);
-            intent.putExtra("totalAmount", totalSum);
-            startActivity(intent);
-        });
+        checkoutButton.setOnClickListener(v -> startCheckoutActivity());
 
         recyclerView = findViewById(R.id.items);
         recyclerView.setHasFixedSize(true);
@@ -53,6 +56,14 @@ public class ShoppingActivity extends AppCompatActivity implements AmountChanged
 
         adapter = new StoreItemAdapter(possibilities, this);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void startCheckoutActivity() {
+        Intent intent = new Intent(ShoppingActivity.this, CheckoutActivity.class);
+        intent.putExtra("totalAmount", totalSum);
+        intent.putExtra("producer", producer);
+        intent.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
+        startActivity(intent);
     }
 
     @Override
