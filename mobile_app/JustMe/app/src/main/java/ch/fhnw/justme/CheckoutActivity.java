@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,6 +46,7 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         possibilities = (List<PictureDescription>) getIntent().getExtras().get("possibilities");
+        possibilities = removeItemsWithoutCount(possibilities);
         producer = (String) getIntent().getExtras().get("producer");
 
         Log.d(ACTIVITY, String.format("received the following possibilities: %S", possibilities.toString()));
@@ -77,6 +79,18 @@ public class CheckoutActivity extends AppCompatActivity {
                 .build();
 
         service = retrofit.create(CamundaServices.class);
+    }
+
+    private List<PictureDescription> removeItemsWithoutCount(List<PictureDescription> items) {
+        List<PictureDescription> result = new ArrayList<PictureDescription>();
+
+        items.forEach(item -> {
+            if (item.getCount() > 0) {
+                result.add(item);
+            }
+        });
+
+        return result;
     }
 
     private class StartProcessTask extends AsyncTask<String, Void, String> {
