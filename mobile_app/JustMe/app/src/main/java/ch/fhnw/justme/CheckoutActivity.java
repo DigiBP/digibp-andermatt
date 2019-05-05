@@ -1,6 +1,7 @@
 package ch.fhnw.justme;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     String creditCardNumber;
     Double totalAmount;
+    String customerId;
 
     TextView cardNumberView;
     TextView amountView;
@@ -54,7 +56,10 @@ public class CheckoutActivity extends AppCompatActivity {
 
         initializeProcessService();
 
-        creditCardNumber = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.card_number_key), "");
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        creditCardNumber = prefs.getString(getString(R.string.card_number_key), "");
+        customerId = prefs.getString(getString(R.string.customer_id_key), "");
         totalAmount = getIntent().getDoubleExtra("totalAmount", 0.0d);
 
         setContentView(R.layout.checkout);
@@ -104,6 +109,7 @@ public class CheckoutActivity extends AppCompatActivity {
             vars.setCart(new ListVariable<PictureDescription>(possibilities, valInf));
             vars.setPartnerName(new Variable("Zalando"));
             vars.setTotalAmount(new Variable(String.format("%.2f", totalAmount)));
+            vars.setCustomerId(new Variable(customerId));
 
             req.setVariables(vars);
             try {

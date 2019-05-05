@@ -76,6 +76,7 @@
               <camunda:script scriptFormat="JavaScript">out = JSON.stringify(
 {
 "orderId": orderId,
+"customerId": customerId,
 "cardNumber": cardNumber,
 "totalAmount": totalAmount
 }
