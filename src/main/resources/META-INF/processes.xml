@@ -4,6 +4,8 @@
         <resource>BPMN models/JustMe_suggestions.bpmn</resource>
         <resource>BPMN models/JustMe_ordering.bpmn</resource>
         <resource>DMN models/Occasion selection to options.dmn</resource>
+        <resource>BPMN models/JustMe_production.bpmn</resource>
+        <resource>BPMN models/JustMe_tailoring.bpmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
             <property name="isScanForProcessDefinitions">false</property>

@@ -14,12 +14,13 @@
         <bpmn:flowNodeRef>Task_0lrce43</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_06msoyt</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_1a6ambt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0dcan9j</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1j7p16w</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0wxvze0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1wg61mw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1y47752</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1gsetme</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0wxvze0</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0dcan9j</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_1j7p16w</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_145nxim</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0nxo40c" sourceRef="IntermediateThrowEvent_0vbxn6s" targetRef="Task_12xl67n" />
@@ -116,45 +117,6 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:incoming>SequenceFlow_1d8tslp</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_04j78bm</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:manualTask id="Task_1wg61mw" name="Send order to &#34;Just-me&#34; production">
-      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
-      <bpmn:incoming>SequenceFlow_0ke47ms</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0x27abj</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:endEvent id="EndEvent_1y47752" name="Order closed">
-      <bpmn:incoming>SequenceFlow_1ir6mpp</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:serviceTask id="Task_1gsetme" name="Update order status">
-      <bpmn:documentation>REST call to integromat updating order row with state</bpmn:documentation>
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/3x97x2wxfju79g48u633qxmdklaxq3qt</camunda:inputParameter>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="javascript">out = JSON.stringify(
-{
-"orderId": orderId
-}
-);</camunda:script>
-            </camunda:inputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_04j78bm</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1ir6mpp</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:manualTask id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor">
-      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
-      <bpmn:incoming>SequenceFlow_05heb9k</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0atp8io</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:sequenceFlow id="SequenceFlow_03l3af8" sourceRef="Task_1j7p16w" targetRef="Task_0lrce43" />
     <bpmn:sequenceFlow id="SequenceFlow_1d8tslp" sourceRef="Task_0lrce43" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0ke47ms" name="&#34;Just-me&#34; Fair &#38; eco product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1wg61mw">
@@ -165,8 +127,7 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0x27abj" sourceRef="Task_1wg61mw" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0atp8io" sourceRef="Task_0wxvze0" targetRef="ExclusiveGateway_1a6ambt" />
-    <bpmn:sequenceFlow id="SequenceFlow_04j78bm" sourceRef="ExclusiveGateway_1a6ambt" targetRef="Task_1gsetme" />
-    <bpmn:sequenceFlow id="SequenceFlow_1ir6mpp" sourceRef="Task_1gsetme" targetRef="EndEvent_1y47752" />
+    <bpmn:sequenceFlow id="SequenceFlow_04j78bm" sourceRef="ExclusiveGateway_1a6ambt" targetRef="ServiceTask_145nxim" />
     <bpmn:serviceTask id="Task_0dcan9j" name="Lookup partner information">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -227,6 +188,52 @@ partnerClassification=object.classification;</camunda:script>
       <bpmn:incoming>SequenceFlow_1h8gdyu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03l3af8</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:callActivity id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor" calledElement="Process_Tailoring">
+      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_05heb9k</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0atp8io</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Task_1wg61mw" name="Send order to &#34;Just-me&#34; production" calledElement="Process_Production">
+      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_0ke47ms</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0x27abj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="EndEvent_1y47752" name="Order closed">
+      <bpmn:incoming>SequenceFlow_1ir6mpp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_1gsetme" name="Update order status">
+      <bpmn:documentation>REST call to integromat updating order row with state</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/3x97x2wxfju79g48u633qxmdklaxq3qt</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify(
+{
+"orderId": orderId,
+"trackingId": trackingId
+}
+);</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_08pu2v8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ir6mpp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1ir6mpp" sourceRef="Task_1gsetme" targetRef="EndEvent_1y47752" />
+    <bpmn:serviceTask id="ServiceTask_145nxim" name="Generate package tracking ID" camunda:class="ch.fhnw.digibp.GeneratePackageTracking">
+      <bpmn:incoming>SequenceFlow_04j78bm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_08pu2v8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_08pu2v8" sourceRef="ServiceTask_145nxim" targetRef="Task_1gsetme" />
   </bpmn:process>
   <bpmn:message id="Message_1xh4ouf" name="startOrderProcess" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -255,7 +262,7 @@ partnerClassification=object.classification;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_04j78bm_di" bpmnElement="SequenceFlow_04j78bm">
         <di:waypoint x="1697" y="243" />
-        <di:waypoint x="1755" y="243" />
+        <di:waypoint x="1779" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0atp8io_di" bpmnElement="SequenceFlow_0atp8io">
         <di:waypoint x="1467" y="141" />
@@ -263,9 +270,9 @@ partnerClassification=object.classification;</camunda:script>
         <di:waypoint x="1672" y="218" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="EndEvent_1y47752_di" bpmnElement="EndEvent_1y47752">
-        <dc:Bounds x="1927" y="225" width="36" height="36" />
+        <dc:Bounds x="2158" y="225" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1914" y="268" width="64" height="14" />
+          <dc:Bounds x="2145" y="268" width="64" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1swuvap_di" bpmnElement="Task_0lrce43">
@@ -276,10 +283,10 @@ partnerClassification=object.classification;</camunda:script>
         <di:waypoint x="1672" y="268" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Participant_1ap8y14_di" bpmnElement="Participant_1ap8y14" isHorizontal="true">
-        <dc:Bounds x="156" y="67" width="1847" height="409" />
+        <dc:Bounds x="156" y="67" width="2179" height="411" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1e4sb46_di" bpmnElement="Lane_1e4sb46" isHorizontal="true">
-        <dc:Bounds x="186" y="67" width="1817" height="409" />
+        <dc:Bounds x="186" y="67" width="2149" height="411" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_19rgcrd_di" bpmnElement="ChargeCreditCard">
         <dc:Bounds x="818" y="203" width="100" height="80" />
@@ -302,21 +309,15 @@ partnerClassification=object.classification;</camunda:script>
         <di:waypoint x="1467" y="348" />
         <di:waypoint x="1622" y="348" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ManualTask_1eilasx_di" bpmnElement="Task_0wxvze0">
-        <dc:Bounds x="1367" y="101" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ManualTask_0fj2aov_di" bpmnElement="Task_1wg61mw">
-        <dc:Bounds x="1367" y="203" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_02f3t17_di" bpmnElement="Task_1prkqk2">
         <dc:Bounds x="484" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1ir6mpp_di" bpmnElement="SequenceFlow_1ir6mpp">
-        <di:waypoint x="1855" y="243" />
-        <di:waypoint x="1927" y="243" />
+        <di:waypoint x="2086" y="243" />
+        <di:waypoint x="2158" y="243" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="ServiceTask_0li5fnj_di" bpmnElement="Task_1gsetme">
-        <dc:Bounds x="1755" y="203" width="100" height="80" />
+        <dc:Bounds x="1986" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="StartEvent_1y75hpt_di" bpmnElement="IntermediateThrowEvent_0vbxn6s">
         <dc:Bounds x="227" y="225" width="36" height="36" />
@@ -356,6 +357,19 @@ partnerClassification=object.classification;</camunda:script>
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1237" y="358" width="65" height="27" />
         </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_1ms34yr_di" bpmnElement="Task_0wxvze0">
+        <dc:Bounds x="1367" y="101" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_0m5m73k_di" bpmnElement="Task_1wg61mw">
+        <dc:Bounds x="1367" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_145nxim_di" bpmnElement="ServiceTask_145nxim">
+        <dc:Bounds x="1779" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08pu2v8_di" bpmnElement="SequenceFlow_08pu2v8">
+        <di:waypoint x="1879" y="243" />
+        <di:waypoint x="1986" y="243" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
