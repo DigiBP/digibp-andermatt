@@ -3,64 +3,44 @@ package ch.fhnw.justme;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
+
+import java.io.IOException;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import ch.fhnw.justme.databinding.PreferencesBinding;
+import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
+import ch.fhnw.justme.model.NewCustomerFormVariables;
+import ch.fhnw.justme.model.Variable;
+import ch.fhnw.justme.services.CamundaServices;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PreferencesActivity extends AppCompatActivity {
 
     private static final String ACTIVITY = "PreferencesActivity";
-    private final String USERNAME = "username";
+    private static final String PROCESS_KEY = "Process_NewCustomer";
 
-    TextView username;
-    TextView password;
     SharedPreferences sharedPref;
     private Preferences prefs;
+
+    CamundaServices service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        sharedPref = getPreferences(Context.MODE_PRIVATE);
-
-        if (!sharedPref.contains(USERNAME)) {
-            setContentView(R.layout.register);
-            username = this.findViewById(R.id.username);
-            password = this.findViewById(R.id.password);
-        } else {
-            Intent watson = new Intent(PreferencesActivity.this, WatsonActivity.class);
-            startActivity(watson);
-        }
-    }
-
-    public void register(View view) {
-        boolean errorOccurred = false;
-
-        if (username.getText() == null || username.getText().toString().isEmpty()) {
-            username.setError("username required");
-            errorOccurred = true;
-        }
-
-        if (password.getText() == null || password.getText().toString().isEmpty()) {
-            password.setError("password required");
-            errorOccurred = true;
-        }
-
-        if (errorOccurred) {
-            return;
-        }
-        // TODO: API call: getCredentials(username)
-        // TODO: API call: setCredentials(username, password)
-        sharedPref.edit().putString(username.getText().toString(), password.getText().toString()).apply();
-
         this.prefs = new Preferences();
         PreferencesBinding binding = DataBindingUtil.setContentView(this, R.layout.preferences);
         binding.setPref(prefs);
+
+        sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        initializeProcessService();
     }
 
     public void save(View view) {
@@ -68,13 +48,58 @@ public class PreferencesActivity extends AppCompatActivity {
         // TODO API savePreferences(prefs)
         Log.d(ACTIVITY, prefs.toString());
 
-        getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit().putString(getString(R.string.card_number_key), prefs.getCardNumber()).commit();
+        SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+        editor.putString(getString(R.string.card_number_key), prefs.getCardNumber());
+        editor.putString(getString(R.string.full_name_key), prefs.getFullName());
+        editor.commit();
+
+        StartProcessTask task = new StartProcessTask();
+        task.execute();
 
         Intent watson = new Intent(PreferencesActivity.this, WatsonActivity.class);
         startActivity(watson);
     }
 
+    private void initializeProcessService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://andermatt.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        service = retrofit.create(CamundaServices.class);
+    }
+
+    private class StartProcessTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            StartProcessFormRequest request = new StartProcessFormRequest();
+            NewCustomerFormVariables variables = new NewCustomerFormVariables();
+            variables.setFullName(new Variable(prefs.getFullName()));
+            variables.setAddressLineOne(new Variable(prefs.getAddressLineOne()));
+            variables.setAddressLineTwo(new Variable(prefs.getAddressLineTwo()));
+            variables.setCardHolderName(new Variable(prefs.getCardHolderName()));
+            variables.setCardNumber(new Variable(prefs.getCardNumber()));
+            variables.setCvc(new Variable(prefs.getCvc()));
+            variables.setMm(new Variable(prefs.getMm()));
+            variables.setYy(new Variable(prefs.getYy()));
+            variables.setPostcode(new Variable(prefs.getPostcode()));
+            variables.setTown(new Variable(prefs.getTown()));
+
+            request.setVariables(variables);
+
+            service.startProcess(PROCESS_KEY, request);
+            try {
+                //service.startProcess(PROCESS_KEY, req).execute();
+                service.startProcess(PROCESS_KEY, request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return "Did synthesize";
+        }
+    }
+
     public class Preferences {
+        private String fullName;
         private String cardHolderName;
         private String cardNumber;
         private String cvc;
@@ -87,7 +112,8 @@ public class PreferencesActivity extends AppCompatActivity {
 
         public Preferences() {}
 
-        public Preferences(String cardHolderName, String cardNumber, String cvc, String yy, String mm, String addressLineOne, String addressLineTwo, String postcode, String town) {
+        public Preferences(String fullName, String cardHolderName, String cardNumber, String cvc, String yy, String mm, String addressLineOne, String addressLineTwo, String postcode, String town) {
+            this.fullName = fullName;
             this.cardHolderName = cardHolderName;
             this.cardNumber = cardNumber;
             this.cvc = cvc;
@@ -97,6 +123,14 @@ public class PreferencesActivity extends AppCompatActivity {
             this.addressLineTwo = addressLineTwo;
             this.postcode = postcode;
             this.town = town;
+        }
+
+        public String getFullName() {
+            return fullName;
+        }
+
+        public void setFullName(String fullName) {
+            this.fullName = fullName;
         }
 
         public String getCardHolderName() {
@@ -174,7 +208,8 @@ public class PreferencesActivity extends AppCompatActivity {
         @Override
         public String toString() {
             return "Preferences{" +
-                    "cardHolderName='" + cardHolderName + '\'' +
+                    "fullName='" + fullName + '\'' +
+                    ", cardHolderName='" + cardHolderName + '\'' +
                     ", cardNumber='" + cardNumber + '\'' +
                     ", cvc='" + cvc + '\'' +
                     ", yy='" + yy + '\'' +

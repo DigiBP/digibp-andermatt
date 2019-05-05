@@ -21,8 +21,10 @@
     <string name="chf">CHF</string>
     <string name="preference_file_key">ch.fhnw.justme.PREFERENCE_FILE_KEY</string>
     <string name="card_number_key">ch.fhnw.justme.preferences.card_number</string>
+    <string name="full_name_key">ch.fhnw.justme.preferences.full_name</string>
     <string name="approve">Approve</string>
     <string name="with">with</string>
     <string name="initText">Charge card</string>
     <string name="thankyou">Thank you for your purchase!</string>
+    <string name="full_name">Full name</string>
 </resources>
