@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0f6u6qh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:process id="Process_Tailoring" isExecutable="true">
-    <bpmn:manualTask id="ManualTask_1ad7v1x" name="Print cutting pattern">
-      <bpmn:incoming>SequenceFlow_0d7zlfr</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_03u2pfi</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="ManualTask_1x23bgv" name="Fetch materials">
-      <bpmn:incoming>SequenceFlow_03u2pfi</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_19wiszo</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="ManualTask_1qi3k81" name="Tailor clothes">
-      <bpmn:incoming>SequenceFlow_19wiszo</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_15d8n20</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="ManualTask_0f7o9gb" name="Pack order">
-      <bpmn:incoming>SequenceFlow_15d8n20</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0oau7in</bpmn:outgoing>
-    </bpmn:manualTask>
-    <bpmn:manualTask id="ManualTask_0mo7rpw" name="Ship order">
-      <bpmn:incoming>SequenceFlow_0oau7in</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1lt5x2s</bpmn:outgoing>
-    </bpmn:manualTask>
     <bpmn:endEvent id="EndEvent_0cmfszs" name="Order handled">
       <bpmn:incoming>SequenceFlow_1lt5x2s</bpmn:incoming>
     </bpmn:endEvent>
@@ -33,24 +13,29 @@
     <bpmn:startEvent id="StartEvent_1trrwl5">
       <bpmn:outgoing>SequenceFlow_0d7zlfr</bpmn:outgoing>
     </bpmn:startEvent>
+    <bpmn:userTask id="ManualTask_1ad7v1x" name="Print cutting pattern">
+      <bpmn:incoming>SequenceFlow_0d7zlfr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03u2pfi</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ManualTask_1x23bgv" name="Fetch materials">
+      <bpmn:incoming>SequenceFlow_03u2pfi</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19wiszo</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ManualTask_1qi3k81" name="Tailor clothes">
+      <bpmn:incoming>SequenceFlow_19wiszo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_15d8n20</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ManualTask_0f7o9gb" name="Pack order">
+      <bpmn:incoming>SequenceFlow_15d8n20</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0oau7in</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="ManualTask_0mo7rpw" name="Ship order">
+      <bpmn:incoming>SequenceFlow_0oau7in</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1lt5x2s</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_Tailoring">
-      <bpmndi:BPMNShape id="ManualTask_1ad7v1x_di" bpmnElement="ManualTask_1ad7v1x">
-        <dc:Bounds x="270" y="81" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ManualTask_1x23bgv_di" bpmnElement="ManualTask_1x23bgv">
-        <dc:Bounds x="428" y="81" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ManualTask_1qi3k81_di" bpmnElement="ManualTask_1qi3k81">
-        <dc:Bounds x="588" y="81" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ManualTask_0f7o9gb_di" bpmnElement="ManualTask_0f7o9gb">
-        <dc:Bounds x="729" y="81" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ManualTask_0mo7rpw_di" bpmnElement="ManualTask_0mo7rpw">
-        <dc:Bounds x="871" y="81" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0cmfszs_di" bpmnElement="EndEvent_0cmfszs">
         <dc:Bounds x="1030" y="103" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -83,6 +68,21 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="StartEvent_0iiznz7_di" bpmnElement="StartEvent_1trrwl5">
         <dc:Bounds x="156" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1c3gmrk_di" bpmnElement="ManualTask_1ad7v1x">
+        <dc:Bounds x="270" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_01ijy1i_di" bpmnElement="ManualTask_1x23bgv">
+        <dc:Bounds x="428" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1aojfsd_di" bpmnElement="ManualTask_1qi3k81">
+        <dc:Bounds x="588" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0ux1qch_di" bpmnElement="ManualTask_0f7o9gb">
+        <dc:Bounds x="729" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_1cprftm_di" bpmnElement="ManualTask_0mo7rpw">
+        <dc:Bounds x="871" y="81" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
