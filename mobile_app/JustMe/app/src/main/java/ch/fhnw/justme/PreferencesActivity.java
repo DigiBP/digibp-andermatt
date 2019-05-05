@@ -14,16 +14,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import ch.fhnw.justme.databinding.PreferencesBinding;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
+import ch.fhnw.justme.messages.startprocess.StartProcessFormResponse;
 import ch.fhnw.justme.model.NewCustomerFormVariables;
 import ch.fhnw.justme.model.Variable;
 import ch.fhnw.justme.services.CamundaServices;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PreferencesActivity extends AppCompatActivity {
 
     private static final String ACTIVITY = "PreferencesActivity";
-    private static final String PROCESS_KEY = "Process_NewCustomer";
 
     SharedPreferences sharedPref;
     private Preferences prefs;
@@ -45,7 +47,6 @@ public class PreferencesActivity extends AppCompatActivity {
 
     public void save(View view) {
         // TODO validate fields
-        // TODO API savePreferences(prefs)
         Log.d(ACTIVITY, prefs.toString());
 
         SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
@@ -86,15 +87,21 @@ public class PreferencesActivity extends AppCompatActivity {
             variables.setTown(new Variable(prefs.getTown()));
 
             request.setVariables(variables);
+            request.setWithVariablesInReturn(true);
 
-            service.startProcess(PROCESS_KEY, request);
+            Call<StartProcessFormResponse<NewCustomerFormVariables>> call = service.startProcessNewCustomer(request);
             try {
-                //service.startProcess(PROCESS_KEY, req).execute();
-                service.startProcess(PROCESS_KEY, request).execute();
+                Response<StartProcessFormResponse<NewCustomerFormVariables>> response = call.execute();
+                String customerId = response.body().getVariables().getCustomerId().getValue();
+
+                SharedPreferences.Editor editor = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).edit();
+                editor.putString(getString(R.string.customer_id_key), customerId);
+                editor.commit();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return "Did synthesize";
+
+            return "Did store";
         }
     }
 

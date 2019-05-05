@@ -1,6 +1,7 @@
 package ch.fhnw.justme.model;
 
 public class NewCustomerFormVariables implements FormVariables {
+    private Variable customerId;
     private Variable fullName;
     private Variable cardHolderName;
     private Variable cardNumber;
@@ -15,7 +16,8 @@ public class NewCustomerFormVariables implements FormVariables {
     public NewCustomerFormVariables() {
     }
 
-    public NewCustomerFormVariables(Variable fullName, Variable cardHolderName, Variable cardNumber, Variable cvc, Variable yy, Variable mm, Variable addressLineOne, Variable addressLineTwo, Variable postcode, Variable town) {
+    public NewCustomerFormVariables(Variable customerId, Variable fullName, Variable cardHolderName, Variable cardNumber, Variable cvc, Variable yy, Variable mm, Variable addressLineOne, Variable addressLineTwo, Variable postcode, Variable town) {
+        this.customerId = customerId;
         this.fullName = fullName;
         this.cardHolderName = cardHolderName;
         this.cardNumber = cardNumber;
@@ -26,6 +28,14 @@ public class NewCustomerFormVariables implements FormVariables {
         this.addressLineTwo = addressLineTwo;
         this.postcode = postcode;
         this.town = town;
+    }
+
+    public Variable getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Variable customerId) {
+        this.customerId = customerId;
     }
 
     public Variable getFullName() {

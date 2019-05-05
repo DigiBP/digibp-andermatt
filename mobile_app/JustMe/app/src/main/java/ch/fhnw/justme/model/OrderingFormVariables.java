@@ -1,19 +1,29 @@
 package ch.fhnw.justme.model;
 
 public class OrderingFormVariables implements FormVariables {
-    public Variable cardNumber;
-    public Variable totalAmount;
-    public Variable partnerName;
-    public ListVariable<PictureDescription> cart;
+    private Variable customerId;
+    private Variable cardNumber;
+    private Variable totalAmount;
+    private Variable partnerName;
+    private ListVariable<PictureDescription> cart;
 
     public OrderingFormVariables() {
     }
 
-    public OrderingFormVariables(Variable cardNumber, Variable totalAmount, Variable partnerName, ListVariable<PictureDescription> cart) {
+    public OrderingFormVariables(Variable customerId, Variable cardNumber, Variable totalAmount, Variable partnerName, ListVariable<PictureDescription> cart) {
+        this.customerId = customerId;
         this.cardNumber = cardNumber;
         this.totalAmount = totalAmount;
         this.partnerName = partnerName;
         this.cart = cart;
+    }
+
+    public Variable getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Variable customerId) {
+        this.customerId = customerId;
     }
 
     public Variable getCardNumber() {
@@ -51,7 +61,8 @@ public class OrderingFormVariables implements FormVariables {
     @Override
     public String toString() {
         return "OrderingFormVariables{" +
-                "cardNumber=" + cardNumber +
+                "customerId=" + customerId +
+                ", cardNumber=" + cardNumber +
                 ", totalAmount=" + totalAmount +
                 ", partnerName=" + partnerName +
                 ", cart=" + cart +

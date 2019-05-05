@@ -4,6 +4,7 @@ import ch.fhnw.justme.messages.getvariable.GetVariableResponse;
 import ch.fhnw.justme.messages.message.CorrelateMessageRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormResponse;
+import ch.fhnw.justme.model.NewCustomerFormVariables;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -17,6 +18,9 @@ public interface CamundaServices {
 
     @POST("/rest/process-definition/key/{key}/start")
     Call<StartProcessFormResponse> startProcess(@Path("key") String key, @Body StartProcessFormRequest request);
+
+    @POST("/rest/process-definition/key/Process_NewCustomer/start")
+    Call<StartProcessFormResponse<NewCustomerFormVariables>> startProcessNewCustomer(@Body StartProcessFormRequest request);
 
     @GET("/rest/process-instance/{id}/variables?deserializeValues=false")
     Call<GetVariableResponse> getVariables(@Path("id") String processInstanceId);
