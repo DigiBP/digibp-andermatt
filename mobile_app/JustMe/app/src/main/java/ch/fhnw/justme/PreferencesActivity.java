@@ -56,7 +56,10 @@ public class PreferencesActivity extends AppCompatActivity {
 
         StartProcessTask task = new StartProcessTask();
         task.execute();
+        startActivity();
+    }
 
+    private void startActivity() {
         Intent watson = new Intent(PreferencesActivity.this, WatsonActivity.class);
         startActivity(watson);
     }
