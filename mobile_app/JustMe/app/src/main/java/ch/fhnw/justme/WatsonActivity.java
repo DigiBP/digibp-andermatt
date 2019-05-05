@@ -108,11 +108,15 @@ public class WatsonActivity extends AppCompatActivity {
     private String processInstanceId;
     private static final String WAIT_MESSAGE = "WaitMessage";
 
+    private String customerName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.watson_activity);
+
+        customerName = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.full_name_key), "");
 
         recyclerView = findViewById(R.id.chat_history);
         recyclerView.setHasFixedSize(true);
@@ -182,8 +186,11 @@ public class WatsonActivity extends AppCompatActivity {
                 .build());
         watsonAssistant.setEndPoint(context.getString(R.string.assistant_url));
 
-        // TODO: commented out to save a bit requests for testing
-        sendChatbotMessage(new Message(this.inputMessage.getText().toString().trim(), Message.Sender.USER));
+        if ("".equals(customerName)) {
+            sendChatbotMessage(new Message(this.inputMessage.getText().toString().trim(), Message.Sender.USER));
+        } else {
+            sendChatbotMessage(new Message(customerName.split(" ")[0], Message.Sender.USER));
+        }
 
         textToSpeech = new TextToSpeech();
         textToSpeech.setIamCredentials(new IamOptions.Builder()
