@@ -4,7 +4,7 @@
     <decisionTable id="decisionTable_1" hitPolicy="FIRST">
       <input id="input_1" label="Occasion">
         <inputExpression id="inputExpression_1" typeRef="string">
-          <text>color</text>
+          <text>occasion</text>
         </inputExpression>
         <inputValues id="UnaryTests_1sxegz7">
           <text>"Wedding","Business Attire","Business Casual","Smart Casual","Casual / Leisure","Leisure Chic","Leisure Sporty"</text>
@@ -12,7 +12,7 @@
       </input>
       <input id="InputClause_1f4wn1d" label="Price range">
         <inputExpression id="LiteralExpression_113e16e" typeRef="string">
-          <text></text>
+          <text>priceRange</text>
         </inputExpression>
         <inputValues id="UnaryTests_00tujgp">
           <text>"low","medium","high"</text>
@@ -20,7 +20,7 @@
       </input>
       <input id="InputClause_0gltkem" label="Sex">
         <inputExpression id="LiteralExpression_0o1t5pk" typeRef="string">
-          <text></text>
+          <text>sex</text>
         </inputExpression>
         <inputValues id="UnaryTests_104gamu">
           <text>"Male","Female"</text>
@@ -28,7 +28,7 @@
       </input>
       <input id="InputClause_0ncgkbm" label="Size">
         <inputExpression id="LiteralExpression_1envckg" typeRef="string">
-          <text></text>
+          <text>size</text>
         </inputExpression>
         <inputValues id="UnaryTests_0scs3qt">
           <text>"32-44","&lt;32","&gt;44","44-56","&lt;44","&gt;56"</text>
@@ -36,7 +36,7 @@
       </input>
       <input id="InputClause_1aay05s" label="Latest delivery date">
         <inputExpression id="LiteralExpression_1ttub33" typeRef="string">
-          <text></text>
+          <text>latestDeliveryDate</text>
         </inputExpression>
         <inputValues id="UnaryTests_0vzstd3">
           <text>"less than 20 days","less than 10 days"</text>
@@ -44,22 +44,22 @@
       </input>
       <input id="InputClause_03syfc9" label="Brand">
         <inputExpression id="LiteralExpression_1end8ww" typeRef="boolean">
-          <text></text>
+          <text>brand</text>
         </inputExpression>
       </input>
       <input id="InputClause_123bebf" label="Piece of clothing">
         <inputExpression id="LiteralExpression_0kxatne" typeRef="string">
-          <text></text>
+          <text>pieceOfClothing</text>
         </inputExpression>
       </input>
       <input id="InputClause_1jeyok2" label="Color">
         <inputExpression id="LiteralExpression_0qijhvu" typeRef="string">
-          <text></text>
+          <text>color</text>
         </inputExpression>
       </input>
       <input id="InputClause_058ut50" label="Material">
         <inputExpression id="LiteralExpression_0b3ivy3" typeRef="string">
-          <text></text>
+          <text>material</text>
         </inputExpression>
       </input>
       <output id="OutputClause_0ssv1p8" label="Producer" name="producer" typeRef="string">
@@ -67,7 +67,7 @@
           <text>"Massmarket","Just-me Production","Just-me Tailor"</text>
         </outputValues>
       </output>
-      <output id="OutputClause_0dxeurg" label="Partner" typeRef="string">
+      <output id="OutputClause_0dxeurg" label="Partner" name="partner" typeRef="string">
         <outputValues id="UnaryTests_06yemw4">
           <text>"Zalando","Zara","About you","Grace Loves Lace"</text>
         </outputValues>
@@ -454,6 +454,41 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0oszf3y">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wyqwln">
+        <inputEntry id="UnaryTests_0ye8gcj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uwqtuj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0whf6uo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jn0kai">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g164zo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oiss50">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fqgo22">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0crh0d3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kzudo6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bqsh5t">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mb23u3">
           <text></text>
         </outputEntry>
       </rule>
