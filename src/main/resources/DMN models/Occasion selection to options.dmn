@@ -67,7 +67,7 @@
           <text>"Massmarket","Just-me Production","Just-me Tailor"</text>
         </outputValues>
       </output>
-      <output id="OutputClause_0dxeurg" label="Partner" typeRef="string">
+      <output id="OutputClause_0dxeurg" label="Partner" name="partnerList" typeRef="string">
         <outputValues id="UnaryTests_06yemw4">
           <text>"Zalando","Zara","About you","Grace Loves Lace"</text>
         </outputValues>
@@ -454,6 +454,41 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0oszf3y">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0wyqwln">
+        <inputEntry id="UnaryTests_0ye8gcj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uwqtuj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0whf6uo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jn0kai">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g164zo">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0oiss50">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0fqgo22">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0crh0d3">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kzudo6">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bqsh5t">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mb23u3">
           <text></text>
         </outputEntry>
       </rule>
