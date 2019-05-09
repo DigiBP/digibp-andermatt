@@ -1,0 +1,49 @@
+package ch.fhnw.digibp;
+
+import ch.fhnw.digibp.model.OrderItem;
+import org.camunda.bpm.engine.delegate.DelegateExecution;
+import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.engine.variable.Variables;
+import org.camunda.bpm.engine.variable.value.ObjectValue;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.UUID;
+import java.util.logging.Logger;
+
+public class ProcessData implements JavaDelegate {
+
+    private final static Logger LOG = Logger.getLogger("ProcessData");
+
+    @Override
+    public void execute(DelegateExecution delegateExecution) throws Exception {
+        LOG.info("what do I have here?" + delegateExecution.getVariables().toString());
+
+        String orderId = UUID.randomUUID().toString();
+
+        delegateExecution.setVariable("orderId", orderId);
+
+        LOG.info(String.format("cart object debugging: %s", delegateExecution.getVariables().toString()));
+
+        ArrayList<LinkedHashMap> list = (ArrayList) delegateExecution.getVariable("cart");
+
+        List<OrderItem> orderItemList = new ArrayList<OrderItem>();
+        for (LinkedHashMap map : list) {
+            OrderItem item = new OrderItem();
+
+            item.setOrderId(orderId);
+            item.setDescription((String) map.get("description"));
+            item.setUrl((String) map.get("url"));
+            item.setPrice(Double.parseDouble(map.get("price").toString()));
+            item.setCount(Integer.parseInt(map.get("count").toString()));
+
+            orderItemList.add(item);
+        }
+
+        ObjectValue serializedOrderItems =
+                Variables.objectValue(orderItemList).serializationDataFormat("application/json").create();
+
+        delegateExecution.setVariable("orderItems", serializedOrderItems);
+    }
+}

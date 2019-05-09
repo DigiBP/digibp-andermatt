@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.fhnw.digibp</groupId>
-    <artifactId>digibp-camunda-template</artifactId>
+    <artifactId>digibp-andermatt</artifactId>
     <version>3.2.3</version>
     <packaging>${packaging.type}</packaging>
 
@@ -102,6 +102,25 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- spin: serialize custom java objects -->
+        <dependency>
+            <groupId>org.camunda.spin</groupId>
+            <artifactId>camunda-spin-dataformat-all</artifactId>
+        </dependency>
+
+        <!-- logging: because fuck camunda -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <!-- email integration -->
+        <dependency>
+            <groupId>org.camunda.bpm.extension</groupId>
+            <artifactId>camunda-bpm-mail-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

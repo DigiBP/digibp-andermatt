@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "a9939e8d-2c0b-40d0-b033-0f184de2d075",
+		"name": "ProcessTesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://andermatt.herokuapp.com/rest/process-definition/key/Process_Suggestions/start",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"variables\": {\n\t\t\"color\": {\n\t\t\t\"value\": \"green\"\n\t\t},\n\t\t\"clothing\": {\n\t\t\t\"value\": \"shirt\"\n\t\t}\n\t}\n}"
+				},
+				"url": {
+					"raw": "https://andermatt.herokuapp.com/rest/process-definition/key/Process_Suggestions/start",
+					"protocol": "https",
+					"host": [
+						"andermatt",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rest",
+						"process-definition",
+						"key",
+						"Process_Suggestions",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://andermatt.herokuapp.com/rest/process-instance/08edd9b6-6b72-11e9-b984-da9d7a343b34/variables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://andermatt.herokuapp.com/rest/process-instance/08edd9b6-6b72-11e9-b984-da9d7a343b34/variables",
+					"protocol": "https",
+					"host": [
+						"andermatt",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rest",
+						"process-instance",
+						"08edd9b6-6b72-11e9-b984-da9d7a343b34",
+						"variables"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://andermatt.herokuapp.com/rest/message",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"messageName\": \"WaitMessage\",\n\t\"processInstanceId\": \"474f1eb3-6b6f-11e9-be5a-522c71d872cf\"\n}"
+				},
+				"url": {
+					"raw": "https://andermatt.herokuapp.com/rest/message",
+					"protocol": "https",
+					"host": [
+						"andermatt",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"rest",
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

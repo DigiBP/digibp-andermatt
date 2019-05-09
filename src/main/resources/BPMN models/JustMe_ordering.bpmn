@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_11u7hb5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:collaboration id="Collaboration_11h9dju">
+    <bpmn:participant id="Participant_1ap8y14" name="&#34;Just-me&#34; order handling process" processRef="Process_Ordering" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_Ordering" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0icouuo">
+      <bpmn:lane id="Lane_1e4sb46" name="&#34;Just-me&#34; office agent">
+        <bpmn:flowNodeRef>IntermediateThrowEvent_0vbxn6s</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_067rpz2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1prkqk2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_12xl67n</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ChargeCreditCard</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0lrce43</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_06msoyt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_1a6ambt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0dcan9j</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1j7p16w</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_0wxvze0</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1wg61mw</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_1y47752</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1gsetme</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_145nxim</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:sequenceFlow id="SequenceFlow_0nxo40c" sourceRef="IntermediateThrowEvent_0vbxn6s" targetRef="Task_12xl67n" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ryqwgl" sourceRef="Task_12xl67n" targetRef="Task_1prkqk2" />
+    <bpmn:startEvent id="IntermediateThrowEvent_0vbxn6s" name="Shopping cart received">
+      <bpmn:outgoing>SequenceFlow_0nxo40c</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ho2vnh" sourceRef="Task_1prkqk2" targetRef="Task_067rpz2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0vu6owj" sourceRef="Task_067rpz2" targetRef="ChargeCreditCard" />
+    <bpmn:sequenceFlow id="SequenceFlow_03uhxkv" sourceRef="ChargeCreditCard" targetRef="Task_0dcan9j" />
+    <bpmn:serviceTask id="Task_067rpz2" name="Store order items">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/52fxw0m2k7omfc8mblfrn06m7nqhcn3i</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify(
+{
+"orderId": orderId,
+"description": order.getDescription(),
+"url": order.getUrl(),
+"price": order.getPrice(),
+"count": order.getCount()
+}
+);</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1ho2vnh</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vu6owj</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="orderItems" camunda:elementVariable="order" />
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_1prkqk2" name="Store order information">
+      <bpmn:documentation>REST call to integromat storing order</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify(
+{
+"orderId": orderId,
+"customerId": customerId,
+"cardNumber": cardNumber,
+"totalAmount": totalAmount
+}
+);</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/gsh7vqblzotopwnmy2um46k204icjloz</camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0ryqwgl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ho2vnh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_12xl67n" name="Process data" camunda:class="ch.fhnw.digibp.ProcessData">
+      <bpmn:incoming>SequenceFlow_0nxo40c</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ryqwgl</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ChargeCreditCard" name="Charge credit card" camunda:class="ch.fhnw.digibp.ChargeCreditCard">
+      <bpmn:documentation>integromat call to show, we done something, maybe also mq?
+ah, no, send something to this url mocking service</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_0vu6owj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03uhxkv</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_0lrce43" name="Handle payment to partner" camunda:class="ch.fhnw.digibp.PaymentToPartner">
+      <bpmn:documentation>just do something??? tbd...
+maybe something, the backoffice need to do? so send a message to them?</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_03l3af8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1d8tslp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_06msoyt">
+      <bpmn:incoming>SequenceFlow_0n2n4xb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ke47ms</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_05heb9k</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1h8gdyu</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_1a6ambt">
+      <bpmn:incoming>SequenceFlow_0x27abj</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0atp8io</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1d8tslp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_04j78bm</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_03l3af8" sourceRef="Task_1j7p16w" targetRef="Task_0lrce43" />
+    <bpmn:sequenceFlow id="SequenceFlow_1d8tslp" sourceRef="Task_0lrce43" targetRef="ExclusiveGateway_1a6ambt" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ke47ms" name="&#34;Just-me&#34; Fair &#38; eco product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1wg61mw">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="fair"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_05heb9k" name="&#34;Just-me&#34; tailored product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_0wxvze0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="tailor"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_0x27abj" sourceRef="Task_1wg61mw" targetRef="ExclusiveGateway_1a6ambt" />
+    <bpmn:sequenceFlow id="SequenceFlow_0atp8io" sourceRef="Task_0wxvze0" targetRef="ExclusiveGateway_1a6ambt" />
+    <bpmn:sequenceFlow id="SequenceFlow_04j78bm" sourceRef="ExclusiveGateway_1a6ambt" targetRef="ServiceTask_145nxim" />
+    <bpmn:serviceTask id="Task_0dcan9j" name="Lookup partner information">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/ynk3ynab4s577d2rl6ilqjc8fwbm5k74</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify({
+"name": partnerName
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="partnerEmail">
+              <camunda:script scriptFormat="javascript">object=JSON.parse(response);
+partnerEmail=object.email;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="partnerClassification">
+              <camunda:script scriptFormat="javascript">object=JSON.parse(response);
+partnerClassification=object.classification;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_03uhxkv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0n2n4xb</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0n2n4xb" sourceRef="Task_0dcan9j" targetRef="ExclusiveGateway_06msoyt" />
+    <bpmn:sequenceFlow id="SequenceFlow_1h8gdyu" name="Mass-market product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1j7p16w">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="mass-market"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Task_1j7p16w" name="Email order to partner">
+      <bpmn:documentation>integromat storing the email info - step two: mq impl</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/whkj5y0o5vsowubo7lap2p2rbgbs5xv2</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out=JSON.stringify({
+"to": partnerName,
+"subject": "Order " + orderId
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1h8gdyu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03l3af8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:callActivity id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor" calledElement="Process_Tailoring">
+      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_05heb9k</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0atp8io</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:callActivity id="Task_1wg61mw" name="Send order to &#34;Just-me&#34; production" calledElement="Process_Production">
+      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
+      <bpmn:incoming>SequenceFlow_0ke47ms</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0x27abj</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:endEvent id="EndEvent_1y47752" name="Order closed">
+      <bpmn:incoming>SequenceFlow_1ir6mpp</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_1gsetme" name="Update order status">
+      <bpmn:documentation>REST call to integromat updating order row with state</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/3x97x2wxfju79g48u633qxmdklaxq3qt</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify(
+{
+"orderId": orderId,
+"trackingId": trackingId
+}
+);</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_08pu2v8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ir6mpp</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1ir6mpp" sourceRef="Task_1gsetme" targetRef="EndEvent_1y47752" />
+    <bpmn:serviceTask id="ServiceTask_145nxim" name="Generate package tracking ID" camunda:class="ch.fhnw.digibp.GeneratePackageTracking">
+      <bpmn:incoming>SequenceFlow_04j78bm</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_08pu2v8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_08pu2v8" sourceRef="ServiceTask_145nxim" targetRef="Task_1gsetme" />
+  </bpmn:process>
+  <bpmn:message id="Message_1xh4ouf" name="startOrderProcess" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_11h9dju">
+      <bpmndi:BPMNShape id="ServiceTask_1ai6ibz_di" bpmnElement="Task_1j7p16w">
+        <dc:Bounds x="1367" y="308" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_05heb9k_di" bpmnElement="SequenceFlow_05heb9k">
+        <di:waypoint x="1202" y="218" />
+        <di:waypoint x="1202" y="141" />
+        <di:waypoint x="1367" y="141" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1241" y="155" width="87" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ke47ms_di" bpmnElement="SequenceFlow_0ke47ms">
+        <di:waypoint x="1227" y="243" />
+        <di:waypoint x="1367" y="243" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1253" y="250" width="80" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0x27abj_di" bpmnElement="SequenceFlow_0x27abj">
+        <di:waypoint x="1467" y="243" />
+        <di:waypoint x="1647" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_04j78bm_di" bpmnElement="SequenceFlow_04j78bm">
+        <di:waypoint x="1697" y="243" />
+        <di:waypoint x="1779" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0atp8io_di" bpmnElement="SequenceFlow_0atp8io">
+        <di:waypoint x="1467" y="141" />
+        <di:waypoint x="1672" y="141" />
+        <di:waypoint x="1672" y="218" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1y47752_di" bpmnElement="EndEvent_1y47752">
+        <dc:Bounds x="2158" y="225" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2145" y="268" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1swuvap_di" bpmnElement="Task_0lrce43">
+        <dc:Bounds x="1622" y="308" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1d8tslp_di" bpmnElement="SequenceFlow_1d8tslp">
+        <di:waypoint x="1672" y="308" />
+        <di:waypoint x="1672" y="268" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Participant_1ap8y14_di" bpmnElement="Participant_1ap8y14" isHorizontal="true">
+        <dc:Bounds x="156" y="67" width="2179" height="411" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1e4sb46_di" bpmnElement="Lane_1e4sb46" isHorizontal="true">
+        <dc:Bounds x="186" y="67" width="2149" height="411" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_19rgcrd_di" bpmnElement="ChargeCreditCard">
+        <dc:Bounds x="818" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03uhxkv_di" bpmnElement="SequenceFlow_03uhxkv">
+        <di:waypoint x="918" y="243" />
+        <di:waypoint x="1003" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_1lqqehn_di" bpmnElement="ExclusiveGateway_06msoyt" isMarkerVisible="true">
+        <dc:Bounds x="1177" y="218" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0cwfdxe_di" bpmnElement="ExclusiveGateway_1a6ambt" isMarkerVisible="true">
+        <dc:Bounds x="1647" y="218" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0nxo40c_di" bpmnElement="SequenceFlow_0nxo40c">
+        <di:waypoint x="263" y="243" />
+        <di:waypoint x="329" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_03l3af8_di" bpmnElement="SequenceFlow_03l3af8">
+        <di:waypoint x="1467" y="348" />
+        <di:waypoint x="1622" y="348" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_02f3t17_di" bpmnElement="Task_1prkqk2">
+        <dc:Bounds x="484" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ir6mpp_di" bpmnElement="SequenceFlow_1ir6mpp">
+        <di:waypoint x="2086" y="243" />
+        <di:waypoint x="2158" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0li5fnj_di" bpmnElement="Task_1gsetme">
+        <dc:Bounds x="1986" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="StartEvent_1y75hpt_di" bpmnElement="IntermediateThrowEvent_0vbxn6s">
+        <dc:Bounds x="227" y="225" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="210" y="268" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0ujsfgr_di" bpmnElement="Task_12xl67n">
+        <dc:Bounds x="329" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ryqwgl_di" bpmnElement="SequenceFlow_0ryqwgl">
+        <di:waypoint x="429" y="243" />
+        <di:waypoint x="484" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ho2vnh_di" bpmnElement="SequenceFlow_1ho2vnh">
+        <di:waypoint x="584" y="243" />
+        <di:waypoint x="647" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vu6owj_di" bpmnElement="SequenceFlow_0vu6owj">
+        <di:waypoint x="747" y="243" />
+        <di:waypoint x="818" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1oskl2t_di" bpmnElement="Task_067rpz2">
+        <dc:Bounds x="647" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0hyhwoc_di" bpmnElement="Task_0dcan9j">
+        <dc:Bounds x="1003" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0n2n4xb_di" bpmnElement="SequenceFlow_0n2n4xb">
+        <di:waypoint x="1103" y="243" />
+        <di:waypoint x="1177" y="243" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1h8gdyu_di" bpmnElement="SequenceFlow_1h8gdyu">
+        <di:waypoint x="1202" y="268" />
+        <di:waypoint x="1202" y="348" />
+        <di:waypoint x="1367" y="348" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1237" y="358" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="CallActivity_1ms34yr_di" bpmnElement="Task_0wxvze0">
+        <dc:Bounds x="1367" y="101" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CallActivity_0m5m73k_di" bpmnElement="Task_1wg61mw">
+        <dc:Bounds x="1367" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_145nxim_di" bpmnElement="ServiceTask_145nxim">
+        <dc:Bounds x="1779" y="203" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08pu2v8_di" bpmnElement="SequenceFlow_08pu2v8">
+        <di:waypoint x="1879" y="243" />
+        <di:waypoint x="1986" y="243" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

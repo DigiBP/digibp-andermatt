@@ -1,8 +1,15 @@
 <process-application xmlns="http://www.camunda.org/schema/1.0/ProcessApplication">
 
     <process-archive>
+        <resource>BPMN models/JustMe_suggestions.bpmn</resource>
+        <resource>BPMN models/JustMe_ordering.bpmn</resource>
+        <resource>DMN models/Occasion selection to options.dmn</resource>
+        <resource>BPMN models/JustMe_production.bpmn</resource>
+        <resource>BPMN models/JustMe_tailoring.bpmn</resource>
+        <resource>BPMN models/JustMe_newCustomer.bpmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>
+            <property name="isScanForProcessDefinitions">false</property>
         </properties>
     </process-archive>
 

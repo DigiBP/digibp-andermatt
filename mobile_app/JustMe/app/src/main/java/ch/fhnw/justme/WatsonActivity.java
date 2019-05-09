@@ -10,12 +10,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneHelper;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneInputStream;
 import com.ibm.watson.developer_cloud.android.library.audio.StreamPlayer;
@@ -24,9 +27,11 @@ import com.ibm.watson.developer_cloud.android.library.camera.CameraHelper;
 import com.ibm.watson.developer_cloud.android.library.camera.GalleryHelper;
 import com.ibm.watson.developer_cloud.assistant.v2.Assistant;
 import com.ibm.watson.developer_cloud.assistant.v2.model.CreateSessionOptions;
+import com.ibm.watson.developer_cloud.assistant.v2.model.DialogRuntimeResponseGeneric;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageInput;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageResponse;
+import com.ibm.watson.developer_cloud.assistant.v2.model.RuntimeEntity;
 import com.ibm.watson.developer_cloud.assistant.v2.model.SessionResponse;
 import com.ibm.watson.developer_cloud.http.ServiceCall;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
@@ -43,6 +48,7 @@ import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOption
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +59,19 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import ch.fhnw.justme.messages.getvariable.GetVariableResponse;
+import ch.fhnw.justme.messages.message.CorrelateMessageRequest;
+import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
+import ch.fhnw.justme.messages.startprocess.StartProcessFormResponse;
+import ch.fhnw.justme.model.Message;
+import ch.fhnw.justme.model.PictureDescription;
+import ch.fhnw.justme.model.SuggestionsFormVariables;
+import ch.fhnw.justme.model.Variable;
+import ch.fhnw.justme.services.CamundaServices;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class WatsonActivity extends AppCompatActivity {
 
@@ -84,11 +103,20 @@ public class WatsonActivity extends AppCompatActivity {
     GalleryHelper galleryHelper;
     CameraHelper cameraHelper;
 
+    CamundaServices service;
+    private static final String processKey = "Process_Suggestions";
+    private String processInstanceId;
+    private static final String WAIT_MESSAGE = "WaitMessage";
+
+    private String customerName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.watson_activity);
+
+        customerName = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.full_name_key), "");
 
         recyclerView = findViewById(R.id.chat_history);
         recyclerView.setHasFixedSize(true);
@@ -112,6 +140,16 @@ public class WatsonActivity extends AppCompatActivity {
         ensureFileReadPermission();
 
         initChatbot();
+        initializeProcessService();
+    }
+
+    private void initializeProcessService() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://andermatt.herokuapp.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        service = retrofit.create(CamundaServices.class);
     }
 
     private void ensureAudioRecordPermission() {
@@ -148,8 +186,11 @@ public class WatsonActivity extends AppCompatActivity {
                 .build());
         watsonAssistant.setEndPoint(context.getString(R.string.assistant_url));
 
-        // TODO: commented out to save a bit requests for testing
-        sendChatbotMessage(new Message(this.inputMessage.getText().toString().trim(), Message.Sender.USER));
+        if ("".equals(customerName)) {
+            sendChatbotMessage(new Message(this.inputMessage.getText().toString().trim(), Message.Sender.USER));
+        } else {
+            sendChatbotMessage(new Message(customerName.split(" ")[0], Message.Sender.USER));
+        }
 
         textToSpeech = new TextToSpeech();
         textToSpeech.setIamCredentials(new IamOptions.Builder()
@@ -203,10 +244,15 @@ public class WatsonActivity extends AppCompatActivity {
                 if (response != null &&
                         response.getOutput() != null &&
                         !response.getOutput().getGeneric().isEmpty() &&
-                        "text".equals(response.getOutput().getGeneric().get(0).getResponseType())) {
+                        DialogRuntimeResponseGeneric.ResponseType.TEXT.equals(response.getOutput().getGeneric().get(0).getResponseType())) {
 
                     Message resMessage = new Message(response.getOutput().getGeneric().get(0).getText(), Message.Sender.BOT);
                     chatEntries.add(resMessage);
+
+                    // the conversation has ended - start the process
+                    if (response.getOutput().getGeneric().size() > 1 && DialogRuntimeResponseGeneric.ResponseType.PAUSE.equals(response.getOutput().getGeneric().get(1).getResponseType())) {
+                        startClothingRecommendationProcess(processKey, response.getOutput().getEntities());
+                    }
 
                     // speak the message
                     new SayTask().execute(resMessage.getText());
@@ -217,7 +263,6 @@ public class WatsonActivity extends AppCompatActivity {
                             recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView, null, adapter.getItemCount() - 1);
 
                         }
-
                     });
                 }
             } catch (Exception e) {
@@ -226,7 +271,83 @@ public class WatsonActivity extends AppCompatActivity {
         });
 
         thread.start();
+    }
 
+    private void startClothingRecommendationProcess(String key, List<RuntimeEntity> entities) {
+        StartProcessFormRequest request = new StartProcessFormRequest();
+        SuggestionsFormVariables vars = new SuggestionsFormVariables();
+
+        for (int i = 0; i < entities.size(); i++) {
+            if ("clothing".equals(entities.get(i).getEntity())) {
+                vars.setClothing(new Variable(entities.get(i).getValue()));
+            }
+
+            if ("color".equals(entities.get(i).getEntity())) {
+                vars.setColor(new Variable(entities.get(i).getValue()));
+            }
+        }
+
+        request.setVariables(vars);
+
+        Call<StartProcessFormResponse> call = service.startProcess(key, request);
+        Log.d(ACTIVITY, String.format("What did I built? %s", call.request()));
+        try {
+            Response<StartProcessFormResponse> response = call.execute();
+            processInstanceId = response.body().getId();
+            checkVariables();
+            Log.d(ACTIVITY, String.format("What did I get? %s", response.toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void checkVariables() {
+        Call<GetVariableResponse> call = service.getVariables(processInstanceId);
+        boolean ready = false;
+        List<PictureDescription> possibilities = null;
+        String producer = null;
+        try {
+            Response<GetVariableResponse> res = call.execute();
+            Log.d(ACTIVITY, String.format("received variables: %s", res.body().toString()));
+            ready = "true".equals(res.body().getReadyForPickup().getValue());
+            ObjectMapper mapper = new ObjectMapper();
+            possibilities =  mapper.readValue(res.body().getPossibilities().getValue(), new TypeReference<List<PictureDescription>>(){});
+            Log.d(ACTIVITY, String.format("Read the following possibilities: %s", possibilities.toString()));
+
+            producer = res.body().getProducer().getValue();
+            Log.d(ACTIVITY, String.format("Read the following producer: %s", producer));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (ready) {
+            triggerWaitMessage(possibilities, producer);
+        } else {
+            runOnUiThread(() -> {
+                Handler handler = new Handler();
+                handler.postDelayed(() -> checkVariables(), 1000);
+            });
+        }
+    }
+
+    private void triggerWaitMessage(List<PictureDescription> possibilities, String producer) {
+        Log.d(ACTIVITY, "triggering wait message");
+        CorrelateMessageRequest req = new CorrelateMessageRequest(WAIT_MESSAGE, processInstanceId);
+        Call call = service.correlateMessage(req);
+        try {
+            Response res = call.execute();
+            if (res.isSuccessful()) {
+                Intent shopping = new Intent(WatsonActivity.this, ShoppingActivity.class);
+                Log.d(ACTIVITY, String.format("passing possibilities to ShoppingActivity: %s", possibilities));
+                shopping.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
+                shopping.putExtra("producer", producer);
+                startActivity(shopping);
+            } else {
+                Log.e(ACTIVITY, String.format("Something went wrong; response: %s", res.toString()));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // Speech-to-Text Record Audio permission
@@ -341,30 +462,17 @@ public class WatsonActivity extends AppCompatActivity {
     }
 
     private void showMicText(final String text) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                inputMessage.setText(text);
-            }
-        });
+        runOnUiThread(() -> inputMessage.setText(text));
     }
 
     private void enableMicButton() {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                btnRecord.setEnabled(true);
-            }
-        });
+        runOnUiThread(() -> btnRecord.setEnabled(true));
     }
 
     private void showError(final Exception e) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(WatsonActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-            }
+        runOnUiThread(() -> {
+            Toast.makeText(WatsonActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         });
     }
 

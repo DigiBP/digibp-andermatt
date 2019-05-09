@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_05p1cdd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:process id="Process_NewCustomer" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0ldgp96</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0ldgp96" sourceRef="StartEvent_1" targetRef="Task_0sb8b7i" />
+    <bpmn:serviceTask id="Task_0sb8b7i" name="Generate customerId" camunda:class="ch.fhnw.digibp.GenerateCustomerId">
+      <bpmn:incoming>SequenceFlow_0ldgp96</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wkqwqu</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1wkqwqu" sourceRef="Task_0sb8b7i" targetRef="Task_118q1le" />
+    <bpmn:serviceTask id="Task_118q1le" name="Store preferences">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/ao1vpri6r1pxl7ofihftu20f4bcqm4ww</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out=JSON.stringify({
+"id": customerId,
+"full_name": fullName,
+"address_1": addressLineOne,
+"address_2": addressLineTwo,
+"postcode": postcode,
+"city": town,
+"cardholder_name": cardHolderName,
+"card_number": cardNumber,
+"cvc": cvc,
+"yy": yy,
+"mm": mm
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1wkqwqu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0vrxeb9</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_1301qdw">
+      <bpmn:incoming>SequenceFlow_0vrxeb9</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0vrxeb9" sourceRef="Task_118q1le" targetRef="EndEvent_1301qdw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_05o23yg">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="114" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ldgp96_di" bpmnElement="SequenceFlow_0ldgp96">
+        <di:waypoint x="150" y="121" />
+        <di:waypoint x="200" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0smnnzd_di" bpmnElement="Task_0sb8b7i">
+        <dc:Bounds x="200" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wkqwqu_di" bpmnElement="SequenceFlow_1wkqwqu">
+        <di:waypoint x="300" y="121" />
+        <di:waypoint x="350" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_1hcbp2s_di" bpmnElement="Task_118q1le">
+        <dc:Bounds x="350" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1301qdw_di" bpmnElement="EndEvent_1301qdw">
+        <dc:Bounds x="500" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0vrxeb9_di" bpmnElement="SequenceFlow_0vrxeb9">
+        <di:waypoint x="450" y="121" />
+        <di:waypoint x="500" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
