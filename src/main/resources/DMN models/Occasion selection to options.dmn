@@ -10,6 +10,14 @@
           <text>"Wedding","Business Attire","Business Casual","Smart Casual","Casual / Leisure","Leisure Chic","Leisure Sporty"</text>
         </inputValues>
       </input>
+      <input id="InputClause_1gz96fw" label="Preferred Partner">
+        <inputExpression id="LiteralExpression_1ok7xns" typeRef="string">
+          <text>preferredPartner</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0qbnoev">
+          <text>"Zalando","Zara","About you","Grace Loves Lace"</text>
+        </inputValues>
+      </input>
       <input id="InputClause_1f4wn1d" label="Price range">
         <inputExpression id="LiteralExpression_113e16e" typeRef="string">
           <text>priceRange</text>
@@ -27,12 +35,9 @@
         </inputValues>
       </input>
       <input id="InputClause_0ncgkbm" label="Size">
-        <inputExpression id="LiteralExpression_1envckg" typeRef="string">
+        <inputExpression id="LiteralExpression_1envckg" typeRef="integer">
           <text>size</text>
         </inputExpression>
-        <inputValues id="UnaryTests_0scs3qt">
-          <text>"32-44","&lt;32","&gt;44","44-56","&lt;44","&gt;56"</text>
-        </inputValues>
       </input>
       <input id="InputClause_1aay05s" label="Latest delivery date">
         <inputExpression id="LiteralExpression_1ttub33" typeRef="string">
@@ -47,21 +52,6 @@
           <text>brand</text>
         </inputExpression>
       </input>
-      <input id="InputClause_123bebf" label="Piece of clothing">
-        <inputExpression id="LiteralExpression_0kxatne" typeRef="string">
-          <text>pieceOfClothing</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_1jeyok2" label="Color">
-        <inputExpression id="LiteralExpression_0qijhvu" typeRef="string">
-          <text>color</text>
-        </inputExpression>
-      </input>
-      <input id="InputClause_058ut50" label="Material">
-        <inputExpression id="LiteralExpression_0b3ivy3" typeRef="string">
-          <text>material</text>
-        </inputExpression>
-      </input>
       <output id="OutputClause_0ssv1p8" label="Producer" name="producer" typeRef="string">
         <outputValues id="UnaryTests_143cvau">
           <text>"Massmarket","Just-me Production","Just-me Tailor"</text>
@@ -72,8 +62,127 @@
           <text>"Zalando","Zara","About you","Grace Loves Lace"</text>
         </outputValues>
       </output>
+      <rule id="DecisionRule_0ulin7t">
+        <inputEntry id="UnaryTests_0brgcte">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dkbzcq">
+          <text>"Zalando"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0itfxsr">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ox5p4s">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0owm7qt">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_093uosd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1chkjh4">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0a50h77">
+          <text>"Massmarket"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0d0qkav">
+          <text>"Zalando"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1pzll20">
+        <inputEntry id="UnaryTests_1ewxt0y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1b9w57h">
+          <text>"Zara"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xhuvhk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gr57d6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1kc695t">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15qcexl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02tj0vs">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1nu3dw8">
+          <text>"Massmarket"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_174fojq">
+          <text>"Zara"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_055vxtk">
+        <inputEntry id="UnaryTests_1oql9zk">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tzh58f">
+          <text>"About you"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00yhu8y">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dn1im5">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xpkol7">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1lw6cht">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_178qsxg">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0lpmqzv">
+          <text>"Massmarket"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_08n4qyc">
+          <text>"About you"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fx657b">
+        <inputEntry id="UnaryTests_0n8b4j0">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1swmsvn">
+          <text>"Grace Loves Lace"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_06vrqgw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1aoh6fb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01oroao">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0u959ku">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15lhpjr">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1whvl3g">
+          <text>"Massmarket"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0jsb8qu">
+          <text>"Grace Loves Lace"</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_0aw9d32">
         <inputEntry id="UnaryTests_1veomsb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pm8zhx">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_022fn69">
@@ -91,24 +200,18 @@
         <inputEntry id="UnaryTests_1ur531t">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1q8gz0h">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_02lzx5e">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0fl2clc">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_0zr28mq">
           <text>"Massmarket"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0ea3lx6">
-          <text>"Zalando", "Zara", "About you"</text>
+          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0af7xfo">
         <inputEntry id="UnaryTests_0bhbpqa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00t33bx">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0n461y2">
@@ -118,7 +221,7 @@
           <text>"Female"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0vzou3u">
-          <text>"&lt;32", "&gt;44"</text>
+          <text>&lt;32, &gt;44</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1uymcyu">
           <text></text>
@@ -126,17 +229,8 @@
         <inputEntry id="UnaryTests_13fmuld">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_16p3rih">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_170mjrf">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1pkw98i">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_1szn35b">
-          <text>"Just-me Production", "Just-me Tailor"</text>
+          <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1eolvb3">
           <text></text>
@@ -146,6 +240,9 @@
         <inputEntry id="UnaryTests_1oujx8l">
           <text></text>
         </inputEntry>
+        <inputEntry id="UnaryTests_16jagf5">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_06rxhbk">
           <text></text>
         </inputEntry>
@@ -153,7 +250,7 @@
           <text>"Male"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0b3thqt">
-          <text>"&lt;44", "&gt;56"</text>
+          <text>&lt;44, &gt;56</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1gzjn02">
           <text></text>
@@ -161,17 +258,8 @@
         <inputEntry id="UnaryTests_17wvjxw">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0lmuqc1">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0bqbuzr">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0jtnrd7">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_0qnxjs9">
-          <text>"Just-me Production", "Just-me Tailor"</text>
+          <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0fxvjsx">
           <text></text>
@@ -179,6 +267,9 @@
       </rule>
       <rule id="DecisionRule_03l1lpv">
         <inputEntry id="UnaryTests_00wn0aw">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0w37gji">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0p2ypnl">
@@ -196,17 +287,8 @@
         <inputEntry id="UnaryTests_1rli9zv">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0qo7zqq">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_18w0xbc">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0psthz1">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_16h5384">
-          <text>"Massmarket", "Just-me Production"</text>
+          <text>"Massmarket,Just-me Production"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_05r63pk">
           <text></text>
@@ -214,6 +296,9 @@
       </rule>
       <rule id="DecisionRule_0e03b5j">
         <inputEntry id="UnaryTests_0y7m33g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_154jnez">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0uqddzp">
@@ -231,15 +316,6 @@
         <inputEntry id="UnaryTests_1807dgt">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_0v8eoef">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0a3tpc7">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_199l2wo">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_015k5hm">
           <text>"Massmarket"</text>
         </outputEntry>
@@ -249,6 +325,9 @@
       </rule>
       <rule id="DecisionRule_15kwn1u">
         <inputEntry id="UnaryTests_0vi8orf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p27gmp">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1e6je7x">
@@ -266,15 +345,6 @@
         <inputEntry id="UnaryTests_1tymk9i">
           <text>true</text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1y89f7g">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1j9hx89">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0tucvf7">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_0jubtdh">
           <text>"Massmarket"</text>
         </outputEntry>
@@ -282,9 +352,41 @@
           <text></text>
         </outputEntry>
       </rule>
+      <rule id="DecisionRule_0l6xla2">
+        <inputEntry id="UnaryTests_1cmwou1">
+          <text>"Wedding"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fbh520">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ww4trd">
+          <text>"medium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1f8vpow">
+          <text>"Female"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cl9ff7">
+          <text>32-44</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0qt05qz">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cz2z6r">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05meiyi">
+          <text>"Massmarket"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0kais0s">
+          <text>"Grace Loves Lace"</text>
+        </outputEntry>
+      </rule>
       <rule id="DecisionRule_1mwj6c0">
         <inputEntry id="UnaryTests_0x9lpxk">
           <text>"Wedding"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p9i4a4">
+          <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0ke2nzd">
           <text>"high"</text>
@@ -293,7 +395,7 @@
           <text>"Female"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wps0yh">
-          <text>"32-44"</text>
+          <text>32-44</text>
         </inputEntry>
         <inputEntry id="UnaryTests_154wxr1">
           <text></text>
@@ -301,25 +403,19 @@
         <inputEntry id="UnaryTests_1c8v758">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_08wwsrt">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_143ee51">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0yc2t60">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_15gwuum">
-          <text>"Massmarket", "Just-me Production", "Just-me Tailor"</text>
+          <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_05hkfl3">
-          <text>"Grace Loves Lace"</text>
+          <text></text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1d3e1vd">
         <inputEntry id="UnaryTests_0lgkxei">
           <text>"Wedding"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0awl55w">
+          <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wbr4h8">
           <text>"high"</text>
@@ -328,21 +424,12 @@
           <text>"Male"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1jzmpcn">
-          <text>"44-56"</text>
+          <text>44-56</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0gon9f3">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1fetum9">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1wdv36e">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1b8ts3z">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1s8g2wk">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_00kowp5">
@@ -356,6 +443,9 @@
         <inputEntry id="UnaryTests_0km96tj">
           <text>"Wedding"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_1bm313s">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1spgds4">
           <text></text>
         </inputEntry>
@@ -363,7 +453,7 @@
           <text>"Female"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0o8ab5q">
-          <text>"32-44"</text>
+          <text>32-44</text>
         </inputEntry>
         <inputEntry id="UnaryTests_10xnuon">
           <text></text>
@@ -371,17 +461,8 @@
         <inputEntry id="UnaryTests_0393uag">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1ij5mkv">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0ybvybq">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1wjcdk0">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_1809960">
-          <text>"Just-me Production", "Just-me Tailor"</text>
+          <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_08cb1ei">
           <text></text>
@@ -391,6 +472,9 @@
         <inputEntry id="UnaryTests_0sq9cjx">
           <text>"Wedding"</text>
         </inputEntry>
+        <inputEntry id="UnaryTests_07ftqd9">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_1h8qds9">
           <text></text>
         </inputEntry>
@@ -398,21 +482,12 @@
           <text>"Male"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_10l1d8q">
-          <text>"44-56"</text>
+          <text>44-56</text>
         </inputEntry>
         <inputEntry id="UnaryTests_07li0c7">
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0dfovzi">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0traw50">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0d7lk6v">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0djfi7u">
           <text></text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1c79lqx">
@@ -425,6 +500,9 @@
       <rule id="DecisionRule_1iyhts5">
         <inputEntry id="UnaryTests_0j7da0k">
           <text>"Business Attire","Business Casual","Smart Casual","Casual / Leisure","Leisure Chic","Leisure Sporty"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vy10x8">
+          <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0wevgi1">
           <text></text>
@@ -441,54 +519,10 @@
         <inputEntry id="UnaryTests_03u1erv">
           <text></text>
         </inputEntry>
-        <inputEntry id="UnaryTests_1y3a4ep">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1sdq9u1">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0quzc7m">
-          <text></text>
-        </inputEntry>
         <outputEntry id="LiteralExpression_11xjmzx">
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0oszf3y">
-          <text></text>
-        </outputEntry>
-      </rule>
-      <rule id="DecisionRule_0wyqwln">
-        <inputEntry id="UnaryTests_0ye8gcj">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0uwqtuj">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0whf6uo">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1jn0kai">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1g164zo">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0oiss50">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0fqgo22">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_0crh0d3">
-          <text></text>
-        </inputEntry>
-        <inputEntry id="UnaryTests_1kzudo6">
-          <text></text>
-        </inputEntry>
-        <outputEntry id="LiteralExpression_1bqsh5t">
-          <text></text>
-        </outputEntry>
-        <outputEntry id="LiteralExpression_0mb23u3">
           <text></text>
         </outputEntry>
       </rule>
