@@ -250,10 +250,10 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0x7oyvc">
-          <text>"Female 30", "Female 32", "Female 46", "Female 48", "Female 50"</text>
+          <text>"Female XXS", "Female XXL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1uymcyu">
-          <text></text>
+          <text>-</text>
         </inputEntry>
         <inputEntry id="UnaryTests_13fmuld">
           <text></text>
@@ -262,6 +262,58 @@
           <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1eolvb3">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07bhacw">
+        <inputEntry id="UnaryTests_1bgexj6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cdrqac">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vwjq00">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vxz20l">
+          <text>"Female XXS", "Female XXL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5qs62">
+          <text>"less than 20 days"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1m7a7bf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pp6pjo">
+          <text>"Just-me Production"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0hbpa73">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_120rgzx">
+        <inputEntry id="UnaryTests_02fkmfm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0li4dqe">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uiy3jl">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zh3op8">
+          <text>"Female XXS", "Female XXL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0tgsj1o">
+          <text>"less than 10 days"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r5ap82">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gccgss">
+          <text>"No ordering possible"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_04iy40x">
           <text></text>
         </outputEntry>
       </rule>
@@ -276,7 +328,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_1lf39eo">
-          <text>"Male 40", "Male 42", "Male 44", "Male 58", "Male 60", "Male 62"</text>
+          <text>"Male XXS", "Male XXL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1gzjn02">
           <text></text>
@@ -288,6 +340,58 @@
           <text>"Just-me Production,Just-me Tailor"</text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0fxvjsx">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1c318h4">
+        <inputEntry id="UnaryTests_1ksas1l">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bv5dgb">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mvttox">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_063dx07">
+          <text>"Male XXS", "Male XXL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1odwf9v">
+          <text>"less than 20 days"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_187j5bx">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q0wzva">
+          <text>"Just-me Production"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_011up96">
+          <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ydqnwf">
+        <inputEntry id="UnaryTests_0xbu7sn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0btb8it">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0a83ygn">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02lksgp">
+          <text>"Male XXS", "Male XXL"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00gu1zn">
+          <text>"less than 10 days"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ma4pvy">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x7swaa">
+          <text>"No ordering possible"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1riotna">
           <text></text>
         </outputEntry>
       </rule>
@@ -380,7 +484,7 @@
           <text>"medium"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1f8vpow">
-          <text>"Female 34", "Female 36", Female 38", "Female 40", "Female 42", "Female 44"</text>
+          <text>"Female XS", "Female S", "Female M", "Female L", "Female XL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0qt05qz">
           <text></text>
@@ -406,7 +510,7 @@
           <text>"high"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1ys4so6">
-          <text>"Female 34", "Female 36", Female 38", "Female 40", "Female 42", "Female 44"</text>
+          <text>"Female XS", "Female S", "Female M", "Female L", "Female XL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_154wxr1">
           <text></text>
@@ -432,7 +536,7 @@
           <text>"high"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_11tg6dy">
-          <text>"Male 44", "Male 46", "Male 48", "Male 50", "Male 52", "Male 54", "Male 56"</text>
+          <text>"Male XS", "Male S", "Male M", "Male L", "Male XL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0gon9f3">
           <text></text>
@@ -458,7 +562,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_0sa42k2">
-          <text>"Female 34", "Female 36", Female 38", "Female 40", "Female 42", "Female 44"</text>
+          <text>"Female XS", "Female S", "Female M", "Female L", "Female XL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_10xnuon">
           <text></text>
@@ -484,7 +588,7 @@
           <text></text>
         </inputEntry>
         <inputEntry id="UnaryTests_020h1sw">
-          <text>"Male 44", "Male 46", "Male 48", "Male 50", "Male 52", "Male 54", "Male 56"</text>
+          <text>"Male XS", "Male S", "Male M", "Male L", "Male XL"</text>
         </inputEntry>
         <inputEntry id="UnaryTests_07li0c7">
           <text></text>
