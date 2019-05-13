@@ -4,11 +4,13 @@ public class PictureDescription {
     private String url;
     private String description;
     private Double price;
+    private String partner;
 
-    public PictureDescription(String url, String description, Double price) {
+    public PictureDescription(String url, String description, Double price, String partner) {
         this.url = url;
         this.description = description;
         this.price = price;
+        this.partner = partner;
     }
 
     public PictureDescription() {
@@ -38,12 +40,21 @@ public class PictureDescription {
         this.description = description;
     }
 
+    public String getPartner() {
+        return partner;
+    }
+
+    public void setPartner(String partner) {
+        this.partner = partner;
+    }
+
     @Override
     public String toString() {
         return "PictureDescription{" +
-                ", url='" + url + '\'' +
+                "url='" + url + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", partner='" + partner + '\'' +
                 '}';
     }
 }

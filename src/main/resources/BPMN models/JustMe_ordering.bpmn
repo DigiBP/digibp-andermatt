@@ -121,10 +121,10 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
     <bpmn:sequenceFlow id="SequenceFlow_03l3af8" sourceRef="Task_1j7p16w" targetRef="Task_0lrce43" />
     <bpmn:sequenceFlow id="SequenceFlow_1d8tslp" sourceRef="Task_0lrce43" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0ke47ms" name="&#34;Just-me&#34; Fair &#38; eco product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1wg61mw">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="fair"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasJustMeProduction}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_05heb9k" name="&#34;Just-me&#34; tailored product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_0wxvze0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="tailor"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hashasJustMeTailor}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0x27abj" sourceRef="Task_1wg61mw" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0atp8io" sourceRef="Task_0wxvze0" targetRef="ExclusiveGateway_1a6ambt" />
@@ -162,7 +162,7 @@ partnerClassification=object.classification;</camunda:script>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_0n2n4xb" sourceRef="Task_0dcan9j" targetRef="ExclusiveGateway_06msoyt" />
     <bpmn:sequenceFlow id="SequenceFlow_1h8gdyu" name="Mass-market product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1j7p16w">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="mass-market"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasMassmarket}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="Task_1j7p16w" name="Email order to partner">
       <bpmn:documentation>integromat storing the email info - step two: mq impl</bpmn:documentation>
