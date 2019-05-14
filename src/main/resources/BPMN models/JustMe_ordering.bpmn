@@ -12,15 +12,14 @@
         <bpmn:flowNodeRef>Task_12xl67n</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ChargeCreditCard</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0lrce43</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_06msoyt</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_1a6ambt</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Task_0dcan9j</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1j7p16w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_0wxvze0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1wg61mw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1y47752</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Task_1gsetme</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_145nxim</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_06msoyt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_1a6ambt</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="SequenceFlow_0nxo40c" sourceRef="IntermediateThrowEvent_0vbxn6s" targetRef="Task_12xl67n" />
@@ -30,7 +29,7 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1ho2vnh" sourceRef="Task_1prkqk2" targetRef="Task_067rpz2" />
     <bpmn:sequenceFlow id="SequenceFlow_0vu6owj" sourceRef="Task_067rpz2" targetRef="ChargeCreditCard" />
-    <bpmn:sequenceFlow id="SequenceFlow_03uhxkv" sourceRef="ChargeCreditCard" targetRef="Task_0dcan9j" />
+    <bpmn:sequenceFlow id="SequenceFlow_03uhxkv" sourceRef="ChargeCreditCard" targetRef="ExclusiveGateway_06msoyt" />
     <bpmn:serviceTask id="Task_067rpz2" name="Store order items">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -44,7 +43,8 @@
 "description": order.getDescription(),
 "url": order.getUrl(),
 "price": order.getPrice(),
-"count": order.getCount()
+"count": order.getCount(),
+"partner": order.getPartner()
 }
 );</camunda:script>
             </camunda:inputParameter>
@@ -106,63 +106,19 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:incoming>SequenceFlow_03l3af8</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1d8tslp</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_06msoyt">
-      <bpmn:incoming>SequenceFlow_0n2n4xb</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0ke47ms</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_05heb9k</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_1h8gdyu</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="ExclusiveGateway_1a6ambt">
-      <bpmn:incoming>SequenceFlow_0x27abj</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_0atp8io</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_1d8tslp</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_04j78bm</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="SequenceFlow_03l3af8" sourceRef="Task_1j7p16w" targetRef="Task_0lrce43" />
     <bpmn:sequenceFlow id="SequenceFlow_1d8tslp" sourceRef="Task_0lrce43" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0ke47ms" name="&#34;Just-me&#34; Fair &#38; eco product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1wg61mw">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="fair"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasJustMeProduction}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_05heb9k" name="&#34;Just-me&#34; tailored product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_0wxvze0">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="tailor"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasJustMeTailor}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0x27abj" sourceRef="Task_1wg61mw" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_0atp8io" sourceRef="Task_0wxvze0" targetRef="ExclusiveGateway_1a6ambt" />
     <bpmn:sequenceFlow id="SequenceFlow_04j78bm" sourceRef="ExclusiveGateway_1a6ambt" targetRef="ServiceTask_145nxim" />
-    <bpmn:serviceTask id="Task_0dcan9j" name="Lookup partner information">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="method">POST</camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/ynk3ynab4s577d2rl6ilqjc8fwbm5k74</camunda:inputParameter>
-            <camunda:inputParameter name="payload">
-              <camunda:script scriptFormat="javascript">out = JSON.stringify({
-"name": partnerName
-});</camunda:script>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:outputParameter name="partnerEmail">
-              <camunda:script scriptFormat="javascript">object=JSON.parse(response);
-partnerEmail=object.email;</camunda:script>
-            </camunda:outputParameter>
-            <camunda:outputParameter name="partnerClassification">
-              <camunda:script scriptFormat="javascript">object=JSON.parse(response);
-partnerClassification=object.classification;</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>SequenceFlow_03uhxkv</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_0n2n4xb</bpmn:outgoing>
-    </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="SequenceFlow_0n2n4xb" sourceRef="Task_0dcan9j" targetRef="ExclusiveGateway_06msoyt" />
     <bpmn:sequenceFlow id="SequenceFlow_1h8gdyu" name="Mass-market product" sourceRef="ExclusiveGateway_06msoyt" targetRef="Task_1j7p16w">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${partnerClassification=="mass-market"}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasMassmarket}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="Task_1j7p16w" name="Email order to partner">
       <bpmn:documentation>integromat storing the email info - step two: mq impl</bpmn:documentation>
@@ -178,7 +134,7 @@ partnerClassification=object.classification;</camunda:script>
             </camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript">out=JSON.stringify({
-"to": partnerName,
+"to": partner,
 "subject": "Order " + orderId
 });</camunda:script>
             </camunda:inputParameter>
@@ -188,6 +144,7 @@ partnerClassification=object.classification;</camunda:script>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1h8gdyu</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03l3af8</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="externalPartnerList" camunda:elementVariable="partner" />
     </bpmn:serviceTask>
     <bpmn:callActivity id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor" calledElement="Process_Tailoring">
       <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
@@ -235,6 +192,18 @@ partnerClassification=object.classification;</camunda:script>
       <bpmn:outgoing>SequenceFlow_08pu2v8</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="SequenceFlow_08pu2v8" sourceRef="ServiceTask_145nxim" targetRef="Task_1gsetme" />
+    <bpmn:inclusiveGateway id="ExclusiveGateway_06msoyt">
+      <bpmn:incoming>SequenceFlow_03uhxkv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ke47ms</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_05heb9k</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1h8gdyu</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
+    <bpmn:inclusiveGateway id="ExclusiveGateway_1a6ambt">
+      <bpmn:incoming>SequenceFlow_1d8tslp</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0x27abj</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0atp8io</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_04j78bm</bpmn:outgoing>
+    </bpmn:inclusiveGateway>
   </bpmn:process>
   <bpmn:message id="Message_1xh4ouf" name="startOrderProcess" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -294,14 +263,8 @@ partnerClassification=object.classification;</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_03uhxkv_di" bpmnElement="SequenceFlow_03uhxkv">
         <di:waypoint x="918" y="243" />
-        <di:waypoint x="1003" y="243" />
+        <di:waypoint x="1177" y="243" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_1lqqehn_di" bpmnElement="ExclusiveGateway_06msoyt" isMarkerVisible="true">
-        <dc:Bounds x="1177" y="218" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ExclusiveGateway_0cwfdxe_di" bpmnElement="ExclusiveGateway_1a6ambt" isMarkerVisible="true">
-        <dc:Bounds x="1647" y="218" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0nxo40c_di" bpmnElement="SequenceFlow_0nxo40c">
         <di:waypoint x="263" y="243" />
         <di:waypoint x="329" y="243" />
@@ -344,13 +307,6 @@ partnerClassification=object.classification;</camunda:script>
       <bpmndi:BPMNShape id="ServiceTask_1oskl2t_di" bpmnElement="Task_067rpz2">
         <dc:Bounds x="647" y="203" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="ServiceTask_0hyhwoc_di" bpmnElement="Task_0dcan9j">
-        <dc:Bounds x="1003" y="203" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0n2n4xb_di" bpmnElement="SequenceFlow_0n2n4xb">
-        <di:waypoint x="1103" y="243" />
-        <di:waypoint x="1177" y="243" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1h8gdyu_di" bpmnElement="SequenceFlow_1h8gdyu">
         <di:waypoint x="1202" y="268" />
         <di:waypoint x="1202" y="348" />
@@ -372,6 +328,12 @@ partnerClassification=object.classification;</camunda:script>
         <di:waypoint x="1879" y="243" />
         <di:waypoint x="1986" y="243" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="InclusiveGateway_1nhfuul_di" bpmnElement="ExclusiveGateway_06msoyt">
+        <dc:Bounds x="1177" y="218" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="InclusiveGateway_1ar0b1m_di" bpmnElement="ExclusiveGateway_1a6ambt">
+        <dc:Bounds x="1647" y="218" width="50" height="50" />
+      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>

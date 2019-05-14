@@ -6,12 +6,13 @@ public class PictureDescription implements Serializable {
     private String url;
     private String description;
     private Double price;
+    private String partner;
     private int count = 0;
 
     public PictureDescription() {
     }
 
-    public PictureDescription(String url, String description, Double price, int count) {
+    public PictureDescription(String url, String description, Double price, String partner, int count) {
         this.url = url;
         this.description = description;
         this.price = price;
@@ -50,12 +51,21 @@ public class PictureDescription implements Serializable {
         this.count = count;
     }
 
+    public String getPartner() {
+        return partner;
+    }
+
+    public void setPartner(String partner) {
+        this.partner = partner;
+    }
+
     @Override
     public String toString() {
         return "PictureDescription{" +
                 "url='" + url + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
+                ", partner='" + partner + '\'' +
                 ", count=" + count +
                 '}';
     }
