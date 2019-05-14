@@ -61,7 +61,7 @@ public class StoreItemAdapter extends RecyclerView.Adapter<StoreItemAdapter.Stor
     public void onBindViewHolder(@NonNull StoreItemViewHolder holder, int position) {
         AsyncTask<String, Integer, Drawable> task = new DownloadImageTask().execute(items.get(position).getUrl());
 
-        holder.description.setText(items.get(position).getDescription());
+        holder.description.setText(String.format("%s von %s", items.get(position).getDescription(), items.get(position).getPartner()));
         holder.price.setText(items.get(position).getPrice().toString());
         holder.counter.setText(Integer.toString(holder.c));
 
