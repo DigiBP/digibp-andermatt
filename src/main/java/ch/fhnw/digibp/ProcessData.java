@@ -15,6 +15,10 @@ import java.util.logging.Logger;
 public class ProcessData implements JavaDelegate {
 
     private final static Logger LOG = Logger.getLogger("ProcessData");
+    private boolean hasMassmarket = false;
+    private boolean hasJustMeProduction = false;
+    private boolean hasJustMeTailor = false;
+    List<String> externalPartnerList = new ArrayList<>();
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
@@ -37,13 +41,29 @@ public class ProcessData implements JavaDelegate {
             item.setUrl((String) map.get("url"));
             item.setPrice(Double.parseDouble(map.get("price").toString()));
             item.setCount(Integer.parseInt(map.get("count").toString()));
+            item.setPartner((String) map.get("partner"));
+
+            hasJustMeProduction = hasJustMeProduction || "Just-me Production".equals(item.getPartner());
+            hasJustMeTailor = hasJustMeTailor || "Just-me Tailor".equals(item.getPartner());
+
+            if (!("Just-me Production".equals(item.getPartner()) && "Just-me Tailor".equals(item.getPartner()))) {
+                hasMassmarket = true;
+                externalPartnerList.add(item.getPartner());
+            }
+
 
             orderItemList.add(item);
         }
+
+        LOG.info(String.format("external partner list: %s", externalPartnerList.toString()));
 
         ObjectValue serializedOrderItems =
                 Variables.objectValue(orderItemList).serializationDataFormat("application/json").create();
 
         delegateExecution.setVariable("orderItems", serializedOrderItems);
+        delegateExecution.setVariable("hasJustMeProduction", hasJustMeProduction);
+        delegateExecution.setVariable("hasJustMeTailor", hasJustMeTailor);
+        delegateExecution.setVariable("hasMassmarket", hasMassmarket);
+        delegateExecution.setVariable("externalPartnerList", externalPartnerList);
     }
 }

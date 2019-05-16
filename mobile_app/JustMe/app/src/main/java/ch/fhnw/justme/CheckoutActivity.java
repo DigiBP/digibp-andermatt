@@ -107,8 +107,6 @@ public class CheckoutActivity extends AppCompatActivity {
             vars.setCardNumber(new Variable(creditCardNumber));
             ValueInfo valInf = new ValueInfo("application/json");
             vars.setCart(new ListVariable<PictureDescription>(possibilities, valInf));
-            // TODO: replace with actual value from Camunda!
-            vars.setPartnerName(new Variable("Zalando"));
             vars.setTotalAmount(new Variable(String.format("%.2f", totalAmount)));
             vars.setCustomerId(new Variable(customerId));
 

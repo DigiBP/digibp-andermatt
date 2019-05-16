@@ -4,13 +4,15 @@ public class OrderItem {
     private String orderId;
     private String url;
     private String description;
+    private String partner;
     private Double price;
     private Integer count;
 
-    public OrderItem(String orderId, String url, String description, Double price, Integer count) {
+    public OrderItem(String orderId, String url, String description, String partner, Double price, Integer count) {
         this.orderId = orderId;
         this.url = url;
         this.description = description;
+        this.partner = partner;
         this.price = price;
         this.count = count;
     }
@@ -40,6 +42,14 @@ public class OrderItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPartner() {
+        return partner;
+    }
+
+    public void setPartner(String partner) {
+        this.partner = partner;
     }
 
     public Double getPrice() {
