@@ -110,6 +110,13 @@ public class WatsonActivity extends AppCompatActivity {
 
     private String customerName;
 
+    private static final String FAST        = "1-10 days";
+    private static final String STANDARD    = "11-20 days";
+    private static final String SLOW        = "20+ days";
+
+    private static final String TAILOR      = "Just-me Tailor";
+    private static final String NO_ORDER    = "No ordering possible";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -273,19 +280,63 @@ public class WatsonActivity extends AppCompatActivity {
         thread.start();
     }
 
+    private String determineDeliveryDateWithinKey(String days) {
+        Integer tmp = Integer.parseInt(days);
+
+        String key = null;
+
+        if (tmp > 20) {
+            key = SLOW;
+        } else if (tmp > 10) {
+            key = STANDARD;
+        } else {
+            key = FAST;
+        }
+
+        return key;
+    }
+
     private void startClothingRecommendationProcess(String key, List<RuntimeEntity> entities) {
         StartProcessFormRequest request = new StartProcessFormRequest();
         SuggestionsFormVariables vars = new SuggestionsFormVariables();
 
+        String sex = "";
+        String size = "";
+
         for (int i = 0; i < entities.size(); i++) {
-            if ("clothing".equals(entities.get(i).getEntity())) {
-                vars.setClothing(new Variable(entities.get(i).getValue()));
+            String entity = entities.get(i).getEntity();
+            String value = entities.get(i).getValue();
+
+            if ("clothing".equals(entity)) {
+                vars.setClothing(new Variable(value));
             }
 
             if ("color".equals(entities.get(i).getEntity())) {
-                vars.setColor(new Variable(entities.get(i).getValue()));
+                vars.setColor(new Variable(value));
+            }
+
+            if ("size".equals(entity)) {
+                size = value;
+            }
+
+            if ("sex".equals(entity)) {
+                sex = value;
+            }
+
+            if ("delivery".equals(entity)) {
+                vars.setDelivery(new Variable(determineDeliveryDateWithinKey(value)));
+            }
+
+            if ("priceClass".equals(entity)) {
+                vars.setPriceClass(new Variable(value));
+            }
+
+            if ("occasion".equals(entity)) {
+                vars.setOccasion(new Variable(value));
             }
         }
+
+        vars.setSexAndSize(new Variable(sex + ' ' + size));
 
         request.setVariables(vars);
 
