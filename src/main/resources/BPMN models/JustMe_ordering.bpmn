@@ -34,7 +34,7 @@
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/52fxw0m2k7omfc8mblfrn06m7nqhcn3i</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/0t1tvs5e3nxfsazxt8g49inalfnn8ee8</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="payload">
               <camunda:script scriptFormat="javascript">out = JSON.stringify(
@@ -62,7 +62,6 @@
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="orderItems" camunda:elementVariable="order" />
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Task_1prkqk2" name="Store order information">
-      <bpmn:documentation>REST call to integromat storing order</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -82,7 +81,7 @@
 }
 );</camunda:script>
             </camunda:inputParameter>
-            <camunda:inputParameter name="url">https://hook.integromat.com/gsh7vqblzotopwnmy2um46k204icjloz</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/07mi66k3pbav7lqus2wa488phqlco1sp</camunda:inputParameter>
           </camunda:inputOutput>
           <camunda:connectorId>http-connector</camunda:connectorId>
         </camunda:connector>
@@ -95,14 +94,10 @@
       <bpmn:outgoing>SequenceFlow_0ryqwgl</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="ChargeCreditCard" name="Charge credit card" camunda:class="ch.fhnw.digibp.ChargeCreditCard">
-      <bpmn:documentation>integromat call to show, we done something, maybe also mq?
-ah, no, send something to this url mocking service</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_0vu6owj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03uhxkv</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="Task_0lrce43" name="Handle payment to partner" camunda:class="ch.fhnw.digibp.PaymentToPartner">
-      <bpmn:documentation>just do something??? tbd...
-maybe something, the backoffice need to do? so send a message to them?</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_03l3af8</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1d8tslp</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -121,11 +116,10 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${hasMassmarket}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:serviceTask id="Task_1j7p16w" name="Email order to partner">
-      <bpmn:documentation>integromat storing the email info - step two: mq impl</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/whkj5y0o5vsowubo7lap2p2rbgbs5xv2</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/e9jj78rovesp79zgtxe9h9xi6yt5zwpe</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
@@ -147,12 +141,10 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="externalPartnerList" camunda:elementVariable="partner" />
     </bpmn:serviceTask>
     <bpmn:callActivity id="Task_0wxvze0" name="Send order to &#34;Just-me&#34;-tailor" calledElement="Process_Tailoring">
-      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_05heb9k</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0atp8io</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:callActivity id="Task_1wg61mw" name="Send order to &#34;Just-me&#34; production" calledElement="Process_Production">
-      <bpmn:documentation>probably subtasks or sending message to intermediate event</bpmn:documentation>
       <bpmn:incoming>SequenceFlow_0ke47ms</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0x27abj</bpmn:outgoing>
     </bpmn:callActivity>
@@ -160,11 +152,10 @@ maybe something, the backoffice need to do? so send a message to them?</bpmn:doc
       <bpmn:incoming>SequenceFlow_1ir6mpp</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Task_1gsetme" name="Update order status">
-      <bpmn:documentation>REST call to integromat updating order row with state</bpmn:documentation>
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/3x97x2wxfju79g48u633qxmdklaxq3qt</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/6dvwasdbduwjub55tpcws3hehmlsgevn</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
