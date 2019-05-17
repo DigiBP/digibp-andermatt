@@ -7,19 +7,15 @@ import java.util.Optional;
 
 public class InitializeDecisionVariables implements JavaDelegate {
     @Override
-    public void execute(DelegateExecution delegateExecution) throws Exception {
-        String occasion             = (String) Optional.ofNullable(delegateExecution.getVariable("occasion")).orElse("");
-        String preferredPartner     = (String) Optional.ofNullable(delegateExecution.getVariable("preferredPartner")).orElse("");
-        String priceRange           = (String) Optional.ofNullable(delegateExecution.getVariable("priceRange")).orElse("");
-        String sexAndSize           = (String) Optional.ofNullable(delegateExecution.getVariable("sexAndSize")).orElse("");
-        String latestDeliveryDate   = (String) Optional.ofNullable(delegateExecution.getVariable("latestDeliveryDate")).orElse("");
-        Boolean brand = (Boolean) Optional.ofNullable(delegateExecution.getVariable("brand")).orElse(false);
+    public void execute(DelegateExecution delegateExecution) {
+        String sexAndSize   = (String) Optional.ofNullable(delegateExecution.getVariable("sexAndSize")).orElse("");
+        String delivery     = (String) Optional.ofNullable(delegateExecution.getVariable("delivery")).orElse("");
+        String priceClass   = (String) Optional.ofNullable(delegateExecution.getVariable("priceClass")).orElse(  "");
+        String occasion     = (String) Optional.ofNullable(delegateExecution.getVariable("occasion")).orElse("");
 
-        delegateExecution.setVariable("occasion",           occasion);
-        delegateExecution.setVariable("preferredPartner",   preferredPartner);
-        delegateExecution.setVariable("priceRange",         priceRange);
-        delegateExecution.setVariable("sexAndSize",         sexAndSize);
-        delegateExecution.setVariable("latestDeliveryDate", latestDeliveryDate);
-        delegateExecution.setVariable("brand",              brand);
+        delegateExecution.setVariable("sexAndSize", sexAndSize);
+        delegateExecution.setVariable("delivery",   delivery);
+        delegateExecution.setVariable("priceClass", priceClass);
+        delegateExecution.setVariable("occasion",   occasion);
     }
 }
