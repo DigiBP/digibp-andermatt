@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.internal.LinkedTreeMap;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneHelper;
 import com.ibm.watson.developer_cloud.android.library.audio.MicrophoneInputStream;
 import com.ibm.watson.developer_cloud.android.library.audio.StreamPlayer;
@@ -30,9 +31,9 @@ import com.ibm.watson.developer_cloud.assistant.v2.Assistant;
 import com.ibm.watson.developer_cloud.assistant.v2.model.CreateSessionOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.DialogRuntimeResponseGeneric;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageInput;
+import com.ibm.watson.developer_cloud.assistant.v2.model.MessageInputOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageResponse;
-import com.ibm.watson.developer_cloud.assistant.v2.model.RuntimeEntity;
 import com.ibm.watson.developer_cloud.assistant.v2.model.SessionResponse;
 import com.ibm.watson.developer_cloud.http.ServiceCall;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
@@ -53,6 +54,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -122,9 +124,12 @@ public class WatsonActivity extends AppCompatActivity {
     private static final String NO_ORDER    = "No ordering possible";
 
     private String sexBackupForTailor = "";
+    private String sizeBackupForTailor = "";
 
     private boolean isInTailorDialog = false;
     private Intent shoppingIntent;
+
+    private AsyncTask currentPalaver = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -250,8 +255,12 @@ public class WatsonActivity extends AppCompatActivity {
                     watsonAssistantSession = call.execute();
                 }
 
+                MessageInputOptions inputOptions = new MessageInputOptions();
+                inputOptions.setReturnContext(true);
+
                 MessageInput input = new MessageInput.Builder()
                         .text(inputMessage.getText())
+                        .options(inputOptions)
                         .build();
                 MessageOptions options = new MessageOptions.Builder()
                         .assistantId(context.getString(R.string.assistant_id))
@@ -269,7 +278,10 @@ public class WatsonActivity extends AppCompatActivity {
                     chatEntries.add(resMessage);
 
                     // speak the message
-                    new SayTask().execute(resMessage.getText());
+                    if (currentPalaver != null) {
+                        currentPalaver.cancel(true);
+                    }
+                    currentPalaver = new SayTask().execute(resMessage.getText());
 
                     runOnUiThread(() -> {
                         adapter.notifyDataSetChanged();
@@ -281,10 +293,13 @@ public class WatsonActivity extends AppCompatActivity {
 
                     // the conversation has ended - start the process
                     if (response.getOutput().getGeneric().size() > 1 && DialogRuntimeResponseGeneric.ResponseType.PAUSE.equals(response.getOutput().getGeneric().get(1).getResponseType())) {
+                        LinkedTreeMap map = (LinkedTreeMap) response.getContext().getSkills().get("main skill");
+                        LinkedTreeMap tmp = (LinkedTreeMap) map.get("user_defined");
+
                         if (!isInTailorDialog) {
-                            startClothingRecommendationProcess(suggestionsProcessKey, response.getOutput().getEntities());
+                            startClothingRecommendationProcess(suggestionsProcessKey, tmp);
                         } else {
-                            startNewCustomerMeasurementsProcess(measurementsProcessKey, response.getOutput().getEntities());
+                            startNewCustomerMeasurementsProcess(measurementsProcessKey, tmp);
                             startActivity(shoppingIntent);
                         }
                     }
@@ -297,59 +312,66 @@ public class WatsonActivity extends AppCompatActivity {
         thread.start();
     }
 
-    private void startNewCustomerMeasurementsProcess(String key, List<RuntimeEntity> entities) {
+    private void startNewCustomerMeasurementsProcess(String processKey, LinkedTreeMap<String, Object> entries) {
         StartProcessFormRequest request = new StartProcessFormRequest();
-        MeasurementsFormVariables vars = new MeasurementsFormVariables();
+        MeasurementsFormVariables measurementsFormVariables = new MeasurementsFormVariables();
 
-        vars.setCustomerId(new Variable(customerId));
-        vars.setUnderbustCircumference(new Variable("")); // default because of camunda
+        for(Map.Entry<String, Object> e : entries.entrySet()) {
+            Variable var = new Variable(e.getValue().toString()); // in order to keep the sanity of the developer
+            String key = e.getKey();
 
-        for(RuntimeEntity e : entities) {
-            Variable var = new Variable(e.getValue()); // in order to keep the sanity of the developer
-            if ("NeckCircumference".equals(e.getEntity())) {
-                vars.setNeckCircumference(var);
+            if ("NeckCircumference".equals(key)) {
+                measurementsFormVariables.setNeckCircumference(var);
             }
 
-            if ("ShoulderLength".equals(e.getEntity())) {
-                vars.setShoulderLength(var);
+            if ("ShoulderLength".equals(key)) {
+                measurementsFormVariables.setShoulderLength(var);
             }
 
-            if ("ChestCircumference".equals(e.getEntity())) {
-                vars.setChestCircumference(var);
+            if ("ChestCircumference".equals(key)) {
+                measurementsFormVariables.setChestCircumference(var);
             }
 
-            if ("UnderbustCircumference".equals(e.getEntity())) {
-                vars.setUnderbustCircumference(var);
+            if ("UnderbustCircumference".equals(key)) {
+                measurementsFormVariables.setUnderbustCircumference(var);
             }
 
-            if ("WaistCircumference".equals(e.getEntity())) {
-                vars.setWaistCircumference(var);
+            if ("WaistCircumference".equals(key)) {
+                measurementsFormVariables.setWaistCircumference(var);
             }
 
-            if ("ArmLength".equals(e.getEntity())) {
-                vars.setArmLength(var);
+            if ("ArmLength".equals(key)) {
+                measurementsFormVariables.setArmLength(var);
             }
 
-            if ("HipCircumference".equals(e.getEntity())) {
-                vars.setHipCircumference(var);
+            if ("HipCircumference".equals(key)) {
+                measurementsFormVariables.setHipCircumference(var);
             }
 
-            if ("WristCircumference".equals(e.getEntity())) {
-                vars.setWristCircumference(var);
+            if ("WristCircumference".equals(key)) {
+                measurementsFormVariables.setWristCircumference(var);
             }
 
-            if ("WaistToKnee".equals(e.getEntity())) {
-                vars.setWaistToKnee(var);
+            if ("WaistToKnee".equals(key)) {
+                measurementsFormVariables.setWaistToKnee(var);
             }
 
-            if ("Height".equals(e.getEntity())) {
-                vars.setHeight(var);
+            if ("Height".equals(key)) {
+                measurementsFormVariables.setHeight(var);
             }
         }
 
-        request.setVariables(vars);
+        measurementsFormVariables.setCustomerId(new Variable(customerId));
 
-        Call<StartProcessFormResponse> call = service.startProcess(key, request);
+        if (    measurementsFormVariables.getUnderbustCircumference() == null ||
+                measurementsFormVariables.getUnderbustCircumference().getValue() == null ||
+                measurementsFormVariables.getUnderbustCircumference().getValue().isEmpty()) {
+            measurementsFormVariables.setUnderbustCircumference(new Variable("")); // default because of camunda
+        }
+
+        request.setVariables(measurementsFormVariables);
+
+        Call<StartProcessFormResponse> call = service.startProcess(processKey, request);
         Log.d(ACTIVITY, String.format("What did I built? %s", call.request()));
         try {
             Response<StartProcessFormResponse> response = call.execute();
@@ -360,7 +382,7 @@ public class WatsonActivity extends AppCompatActivity {
     }
 
     private String determineDeliveryDateWithinKey(String days) {
-        Integer tmp = Integer.parseInt(days);
+        Double tmp = Double.parseDouble(days);
 
         String key = null;
 
@@ -375,50 +397,48 @@ public class WatsonActivity extends AppCompatActivity {
         return key;
     }
 
-    private void startClothingRecommendationProcess(String key, List<RuntimeEntity> entities) {
+    private void startClothingRecommendationProcess(String key, LinkedTreeMap<String, Object> map) {
         StartProcessFormRequest request = new StartProcessFormRequest();
-        SuggestionsFormVariables vars = new SuggestionsFormVariables();
+        SuggestionsFormVariables suggestionsFormVariables = new SuggestionsFormVariables();
 
-        String sex = "";
-        String size = "";
-
-        for (int i = 0; i < entities.size(); i++) {
-            String entity = entities.get(i).getEntity();
-            String value = entities.get(i).getValue();
+        for (Map.Entry<String,Object> e : map.entrySet()) {
+            String entity = e.getKey();
+            String value = e.getValue().toString();
 
             if ("clothing".equals(entity)) {
-                vars.setClothing(new Variable(value));
+                suggestionsFormVariables.setClothing(new Variable(value));
             }
 
-            if ("color".equals(entities.get(i).getEntity())) {
-                vars.setColor(new Variable(value));
+            if ("color".equals(entity)) {
+                suggestionsFormVariables.setColor(new Variable(value));
             }
 
             if ("size".equals(entity)) {
-                size = value;
+                this.sizeBackupForTailor = value;
             }
 
             if ("sex".equals(entity)) {
-                sex = value;
-                this.sexBackupForTailor = sex;
+                this.sexBackupForTailor = value;
             }
 
             if ("delivery".equals(entity)) {
-                vars.setDelivery(new Variable(determineDeliveryDateWithinKey(value)));
+                suggestionsFormVariables.setDelivery(new Variable(determineDeliveryDateWithinKey(value)));
             }
 
             if ("priceClass".equals(entity)) {
-                vars.setPriceClass(new Variable(value));
+                suggestionsFormVariables.setPriceClass(new Variable(value));
             }
 
             if ("occasion".equals(entity)) {
-                vars.setOccasion(new Variable(value));
+                suggestionsFormVariables.setOccasion(new Variable(value));
+            }
+
+            if (!this.sizeBackupForTailor.isEmpty() && !this.sexBackupForTailor.isEmpty()) {
+                suggestionsFormVariables.setSexAndSize(new Variable(this.sexBackupForTailor + ' ' + this.sizeBackupForTailor));
             }
         }
 
-        vars.setSexAndSize(new Variable(sex + ' ' + size));
-
-        request.setVariables(vars);
+        request.setVariables(suggestionsFormVariables);
 
         Call<StartProcessFormResponse> call = service.startProcess(key, request);
         Log.d(ACTIVITY, String.format("What did I built? %s", call.request()));
@@ -474,18 +494,20 @@ public class WatsonActivity extends AppCompatActivity {
                 shoppingIntent.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
                 shoppingIntent.putExtra("producer", producer);
 
-                if (NO_ORDER.equals(producer)) {
-                    Message message = new Message(NO_ORDER, Message.Sender.USER);
-                    sendChatbotMessage(message);
-                }
+                Log.d(ACTIVITY, String.format("producer: %s", producer));
 
-                if (TAILOR.equals(producer)) {
-                    Message message = new Message(TAILOR + ' ' + sexBackupForTailor, Message.Sender.USER);
-                    isInTailorDialog = true;
-                    sendChatbotMessage(message);
-                } else {
-                    startActivity(shoppingIntent);
-                }
+                runOnUiThread(() -> {
+                    if (NO_ORDER.equals(producer)) {
+                        Message message = new Message(NO_ORDER, Message.Sender.USER);
+                        sendChatbotMessage(message);
+                    } else if (TAILOR.equals(producer)) {
+                        Message message = new Message(TAILOR + ' ' + sexBackupForTailor, Message.Sender.USER);
+                        isInTailorDialog = true;
+                        sendChatbotMessage(message);
+                    } else {
+                        startActivity(shoppingIntent);
+                    }
+                });
             } else {
                 Log.e(ACTIVITY, String.format("Something went wrong; response: %s", res.toString()));
             }
@@ -702,7 +724,10 @@ public class WatsonActivity extends AppCompatActivity {
                 runOnUiThread(() -> {
                     Message mes = new Message("This picture looks odd. Can you try something else?", Message.Sender.BOT);
                     chatEntries.add(mes);
-                    new SayTask().execute(mes.getText());
+                    if (currentPalaver != null) {
+                        currentPalaver.cancel(true);
+                    }
+                    currentPalaver = new SayTask().execute(mes.getText());
                     this.adapter.notifyDataSetChanged();
                     e.printStackTrace();
                 });
