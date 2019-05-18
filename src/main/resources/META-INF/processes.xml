@@ -6,6 +6,7 @@
         <resource>BPMN models/JustMe_production.bpmn</resource>
         <resource>BPMN models/JustMe_tailoring.bpmn</resource>
         <resource>BPMN models/JustMe_newCustomer.bpmn</resource>
+        <resource>BPMN models/JustMe_newMeasurements.bpmn</resource>
         <resource>DMN models/Occasion selection to options_another possibility.dmn</resource>
         <properties>
             <property name="additionalResourceSuffixes">html,js</property>

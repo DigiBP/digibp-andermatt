@@ -3,6 +3,7 @@ package ch.fhnw.justme;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -63,6 +64,7 @@ import ch.fhnw.justme.messages.getvariable.GetVariableResponse;
 import ch.fhnw.justme.messages.message.CorrelateMessageRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormRequest;
 import ch.fhnw.justme.messages.startprocess.StartProcessFormResponse;
+import ch.fhnw.justme.model.MeasurementsFormVariables;
 import ch.fhnw.justme.model.Message;
 import ch.fhnw.justme.model.PictureDescription;
 import ch.fhnw.justme.model.SuggestionsFormVariables;
@@ -104,11 +106,13 @@ public class WatsonActivity extends AppCompatActivity {
     CameraHelper cameraHelper;
 
     CamundaServices service;
-    private static final String processKey = "Process_Suggestions";
+    private static final String suggestionsProcessKey = "Process_Suggestions";
+    private static final String measurementsProcessKey = "New_Measurements";
     private String processInstanceId;
     private static final String WAIT_MESSAGE = "WaitMessage";
 
     private String customerName;
+    private String customerId;
 
     private static final String FAST        = "1-10 days";
     private static final String STANDARD    = "11-20 days";
@@ -117,13 +121,21 @@ public class WatsonActivity extends AppCompatActivity {
     private static final String TAILOR      = "Just-me Tailor";
     private static final String NO_ORDER    = "No ordering possible";
 
+    private String sexBackupForTailor = "";
+
+    private boolean isInTailorDialog = false;
+    private Intent shoppingIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.watson_activity);
 
-        customerName = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE).getString(getString(R.string.full_name_key), "");
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        customerName = prefs.getString(getString(R.string.full_name_key), "");
+        customerId = prefs.getString(getString(R.string.customer_id_key), "");
 
         recyclerView = findViewById(R.id.chat_history);
         recyclerView.setHasFixedSize(true);
@@ -256,11 +268,6 @@ public class WatsonActivity extends AppCompatActivity {
                     Message resMessage = new Message(response.getOutput().getGeneric().get(0).getText(), Message.Sender.BOT);
                     chatEntries.add(resMessage);
 
-                    // the conversation has ended - start the process
-                    if (response.getOutput().getGeneric().size() > 1 && DialogRuntimeResponseGeneric.ResponseType.PAUSE.equals(response.getOutput().getGeneric().get(1).getResponseType())) {
-                        startClothingRecommendationProcess(processKey, response.getOutput().getEntities());
-                    }
-
                     // speak the message
                     new SayTask().execute(resMessage.getText());
 
@@ -271,6 +278,16 @@ public class WatsonActivity extends AppCompatActivity {
 
                         }
                     });
+
+                    // the conversation has ended - start the process
+                    if (response.getOutput().getGeneric().size() > 1 && DialogRuntimeResponseGeneric.ResponseType.PAUSE.equals(response.getOutput().getGeneric().get(1).getResponseType())) {
+                        if (!isInTailorDialog) {
+                            startClothingRecommendationProcess(suggestionsProcessKey, response.getOutput().getEntities());
+                        } else {
+                            startNewCustomerMeasurementsProcess(measurementsProcessKey, response.getOutput().getEntities());
+                            startActivity(shoppingIntent);
+                        }
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -278,6 +295,68 @@ public class WatsonActivity extends AppCompatActivity {
         });
 
         thread.start();
+    }
+
+    private void startNewCustomerMeasurementsProcess(String key, List<RuntimeEntity> entities) {
+        StartProcessFormRequest request = new StartProcessFormRequest();
+        MeasurementsFormVariables vars = new MeasurementsFormVariables();
+
+        vars.setCustomerId(new Variable(customerId));
+        vars.setUnderbustCircumference(new Variable("")); // default because of camunda
+
+        for(RuntimeEntity e : entities) {
+            Variable var = new Variable(e.getValue()); // in order to keep the sanity of the developer
+            if ("NeckCircumference".equals(e.getEntity())) {
+                vars.setNeckCircumference(var);
+            }
+
+            if ("ShoulderLength".equals(e.getEntity())) {
+                vars.setShoulderLength(var);
+            }
+
+            if ("ChestCircumference".equals(e.getEntity())) {
+                vars.setChestCircumference(var);
+            }
+
+            if ("UnderbustCircumference".equals(e.getEntity())) {
+                vars.setUnderbustCircumference(var);
+            }
+
+            if ("WaistCircumference".equals(e.getEntity())) {
+                vars.setWaistCircumference(var);
+            }
+
+            if ("ArmLength".equals(e.getEntity())) {
+                vars.setArmLength(var);
+            }
+
+            if ("HipCircumference".equals(e.getEntity())) {
+                vars.setHipCircumference(var);
+            }
+
+            if ("WristCircumference".equals(e.getEntity())) {
+                vars.setWristCircumference(var);
+            }
+
+            if ("WaistToKnee".equals(e.getEntity())) {
+                vars.setWaistToKnee(var);
+            }
+
+            if ("Height".equals(e.getEntity())) {
+                vars.setHeight(var);
+            }
+        }
+
+        request.setVariables(vars);
+
+        Call<StartProcessFormResponse> call = service.startProcess(key, request);
+        Log.d(ACTIVITY, String.format("What did I built? %s", call.request()));
+        try {
+            Response<StartProcessFormResponse> response = call.execute();
+            Log.d(ACTIVITY, String.format("What did I get? %s", response.toString()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String determineDeliveryDateWithinKey(String days) {
@@ -321,6 +400,7 @@ public class WatsonActivity extends AppCompatActivity {
 
             if ("sex".equals(entity)) {
                 sex = value;
+                this.sexBackupForTailor = sex;
             }
 
             if ("delivery".equals(entity)) {
@@ -360,13 +440,14 @@ public class WatsonActivity extends AppCompatActivity {
         try {
             Response<GetVariableResponse> res = call.execute();
             Log.d(ACTIVITY, String.format("received variables: %s", res.body().toString()));
+
+            producer = res.body().getProducer().getValue();
+            Log.d(ACTIVITY, String.format("Read the following producer: %s", producer));
+
             ready = "true".equals(res.body().getReadyForPickup().getValue());
             ObjectMapper mapper = new ObjectMapper();
             possibilities =  mapper.readValue(res.body().getPossibilities().getValue(), new TypeReference<List<PictureDescription>>(){});
             Log.d(ACTIVITY, String.format("Read the following possibilities: %s", possibilities.toString()));
-
-            producer = res.body().getProducer().getValue();
-            Log.d(ACTIVITY, String.format("Read the following producer: %s", producer));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -388,11 +469,23 @@ public class WatsonActivity extends AppCompatActivity {
         try {
             Response res = call.execute();
             if (res.isSuccessful()) {
-                Intent shopping = new Intent(WatsonActivity.this, ShoppingActivity.class);
+                shoppingIntent = new Intent(WatsonActivity.this, ShoppingActivity.class);
                 Log.d(ACTIVITY, String.format("passing possibilities to ShoppingActivity: %s", possibilities));
-                shopping.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
-                shopping.putExtra("producer", producer);
-                startActivity(shopping);
+                shoppingIntent.putExtra("possibilities", new ArrayList<PictureDescription>(possibilities));
+                shoppingIntent.putExtra("producer", producer);
+
+                if (NO_ORDER.equals(producer)) {
+                    Message message = new Message(NO_ORDER, Message.Sender.USER);
+                    sendChatbotMessage(message);
+                }
+
+                if (TAILOR.equals(producer)) {
+                    Message message = new Message(TAILOR + ' ' + sexBackupForTailor, Message.Sender.USER);
+                    isInTailorDialog = true;
+                    sendChatbotMessage(message);
+                } else {
+                    startActivity(shoppingIntent);
+                }
             } else {
                 Log.e(ACTIVITY, String.format("Something went wrong; response: %s", res.toString()));
             }
@@ -607,7 +700,9 @@ public class WatsonActivity extends AppCompatActivity {
                 });
             } catch (RuntimeException e) {
                 runOnUiThread(() -> {
-                    chatEntries.add(new Message("This picture looks odd. Can you try something else?", Message.Sender.BOT));
+                    Message mes = new Message("This picture looks odd. Can you try something else?", Message.Sender.BOT);
+                    chatEntries.add(mes);
+                    new SayTask().execute(mes.getText());
                     this.adapter.notifyDataSetChanged();
                     e.printStackTrace();
                 });

@@ -6,14 +6,16 @@ public class GetVariableResponse {
     Variable readyForPickup;
     Variable possibilities;
     Variable producer;
+    Variable partner;
 
     public GetVariableResponse() {
     }
 
-    public GetVariableResponse(Variable readyForPickup, Variable possibilities, Variable producer) {
+    public GetVariableResponse(Variable readyForPickup, Variable possibilities, Variable producer, Variable partner) {
         this.readyForPickup = readyForPickup;
         this.possibilities = possibilities;
         this.producer = producer;
+        this.partner = partner;
     }
 
     public Variable getReadyForPickup() {
@@ -40,12 +42,21 @@ public class GetVariableResponse {
         this.producer = producer;
     }
 
+    public Variable getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Variable partner) {
+        this.partner = partner;
+    }
+
     @Override
     public String toString() {
         return "GetVariableResponse{" +
                 "readyForPickup=" + readyForPickup +
                 ", possibilities=" + possibilities +
                 ", producer=" + producer +
+                ", partner=" + partner +
                 '}';
     }
 }
