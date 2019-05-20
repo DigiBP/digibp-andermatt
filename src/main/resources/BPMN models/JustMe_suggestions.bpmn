@@ -65,7 +65,7 @@ execution.setVariable("partner", result.partner);</bpmn:script>
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
-            <camunda:inputParameter name="url">https://hook.integromat.com/4h6kirpda5issfiqlfstf9ttzr55fvji</camunda:inputParameter>
+            <camunda:inputParameter name="url">https://hook.integromat.com/w02zan5m9agpgf2t2x5iulxck14m9pm6</camunda:inputParameter>
             <camunda:inputParameter name="method">POST</camunda:inputParameter>
             <camunda:inputParameter name="headers">
               <camunda:map>
@@ -86,10 +86,10 @@ partner=object.partnerList;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_189qqhh" sourceRef="ExclusiveGateway_0r69i3t" targetRef="Task_198xkod" />
     <bpmn:sequenceFlow id="SequenceFlow_16c9ic7" sourceRef="Task_198xkod" targetRef="ExclusiveGateway_1qi6gc2" />
     <bpmn:sequenceFlow id="SequenceFlow_0krv67h" name="yes" sourceRef="ExclusiveGateway_0f1wzoo" targetRef="Task_1wiqpip">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="javascript">out=(producer.contains("Massmarket") &amp;&amp; partner == null)</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${producer == "Massmarket" &amp;&amp; (partner == null || partner== "")}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0yyuej7" name="no" sourceRef="ExclusiveGateway_0f1wzoo" targetRef="ExclusiveGateway_0r69i3t">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression" language="javascript">out=!(producer.contains("Massmarket") &amp;&amp; partner == null)</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${producer != "Massmarket" || (partner != null &amp;&amp; partner != "")}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1pi0rgj" sourceRef="Task_1wiqpip" targetRef="ExclusiveGateway_0r69i3t" />
     <bpmn:receiveTask id="Task_02ow78w" name="Wait for variable pickup" messageRef="Message_16p7eac">
