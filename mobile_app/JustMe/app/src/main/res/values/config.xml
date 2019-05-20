@@ -10,7 +10,7 @@
     <string name="STT_url">https://gateway-lon.watsonplatform.net/speech-to-text/api</string>
 
     <!--Watson Text To Speech(TTS) service credentials-->
-    <string name="TTS_apikey">jr8wwYrszzJq5ETb0RabOtudjlBwnt-soKRSc7N85J_8</string>
+    <string name="TTS_apikey">W5mAxDYt2kdWBkx25BBiWMj4m6V2vx72m9wAk2AvADBG</string>
     <string name="TTS_url">https://stream-fra.watsonplatform.net/text-to-speech/api</string>
 
     <!--Watson Visual Recognition(VR) service credentials-->

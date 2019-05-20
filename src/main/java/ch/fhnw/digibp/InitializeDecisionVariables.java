@@ -18,6 +18,9 @@ public class InitializeDecisionVariables implements JavaDelegate {
         String priceClass   = (String) Optional.ofNullable(delegateExecution.getVariable("priceClass")).orElse(  "");
         String occasion     = (String) Optional.ofNullable(delegateExecution.getVariable("occasion")).orElse("");
 
+        LOG.info(String.format("sexAndSize: %s, delivery: %s, priceClass: %s, occasion: %s", sexAndSize, delivery,
+                priceClass, occasion));
+
         delegateExecution.setVariable("sexAndSize", sexAndSize);
         delegateExecution.setVariable("delivery",   delivery);
         delegateExecution.setVariable("priceClass", priceClass);
