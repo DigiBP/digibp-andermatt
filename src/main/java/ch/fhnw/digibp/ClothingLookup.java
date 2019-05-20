@@ -36,13 +36,15 @@ public class ClothingLookup implements JavaDelegate {
         List<PictureDescription> possibilities = new ArrayList<>();
 
         for (String s : partnerList) {
-            //TODO: add some more items and distinguish via "clothing"
-            PictureDescription item = new PictureDescription(
-                    "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/PE/R2/1E/00/KG/11/PER21E00K-G11@10.1.jpg",
-                    "Strickjacke",
-                    17.50,
-                    s);
-            possibilities.add(item);
+            if (!s.isEmpty()) {
+                //TODO: add some more items and distinguish via "clothing"
+                PictureDescription item = new PictureDescription(
+                        "https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/PE/R2/1E/00/KG/11/PER21E00K-G11@10.1.jpg",
+                        "Strickjacke",
+                        17.50,
+                        s);
+                possibilities.add(item);
+            }
         }
 
         if ("Just-me Production".equals(producer) || "Just-me Tailor".equals(producer)) {
