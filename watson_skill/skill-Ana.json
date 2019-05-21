@@ -1,0 +1,2879 @@
+{
+  "name": "Ana",
+  "intents": [
+    {
+      "intent": "still-here",
+      "examples": [
+        {
+          "text": "I wasn't done"
+        },
+        {
+          "text": "I need more help"
+        },
+        {
+          "text": "I wasn't finished"
+        },
+        {
+          "text": "Still talking with me?"
+        },
+        {
+          "text": "I'm not done"
+        },
+        {
+          "text": "Come back"
+        },
+        {
+          "text": "k"
+        }
+      ]
+    },
+    {
+      "intent": "General_Greetings",
+      "examples": [
+        {
+          "text": "Have you been well?"
+        },
+        {
+          "text": "Hello Agent"
+        },
+        {
+          "text": "Hello I am looking for some help here"
+        },
+        {
+          "text": "Hey how are you doing"
+        },
+        {
+          "text": "Hey there all"
+        },
+        {
+          "text": "Looking good eve"
+        },
+        {
+          "text": "Ok take me back"
+        },
+        {
+          "text": "What's new?"
+        },
+        {
+          "text": "What's up?"
+        },
+        {
+          "text": "Who is this?"
+        },
+        {
+          "text": "You there"
+        },
+        {
+          "text": "How r u?"
+        },
+        {
+          "text": "How is it going?"
+        },
+        {
+          "text": "How have you been?"
+        },
+        {
+          "text": "How are you today?"
+        },
+        {
+          "text": "Hey there"
+        },
+        {
+          "text": "Hey twin"
+        },
+        {
+          "text": "Hey you"
+        },
+        {
+          "text": "Hi advisor"
+        },
+        {
+          "text": "How are things going?"
+        },
+        {
+          "text": "Hi there"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Good day"
+        },
+        {
+          "text": "Good evening"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Good to see you"
+        },
+        {
+          "text": "Greetings"
+        }
+      ],
+      "description": "Greet the bot."
+    },
+    {
+      "intent": "General_Jokes",
+      "examples": [
+        {
+          "text": "Can you tell a joke?"
+        },
+        {
+          "text": "What is your favorite joke?"
+        },
+        {
+          "text": "What do you do for fun?"
+        },
+        {
+          "text": "Tell me something funny"
+        },
+        {
+          "text": "Tell me a joke"
+        },
+        {
+          "text": "Surprise me with something hilarious"
+        },
+        {
+          "text": "One more joke"
+        },
+        {
+          "text": "I'm bored"
+        },
+        {
+          "text": "I want a joke"
+        },
+        {
+          "text": "I am getting bored"
+        },
+        {
+          "text": "Do you like humor?"
+        },
+        {
+          "text": "Do you like fun?"
+        },
+        {
+          "text": "Do you have humor?"
+        },
+        {
+          "text": "Do you have a joke?"
+        },
+        {
+          "text": "Can you tell me a joke?"
+        },
+        {
+          "text": "Are there jokes?"
+        },
+        {
+          "text": "Another joke"
+        }
+      ],
+      "description": "Request a joke."
+    },
+    {
+      "intent": "General_Negative_Feedback",
+      "examples": [
+        {
+          "text": "You are on my nerves"
+        },
+        {
+          "text": "You are very frustrating"
+        },
+        {
+          "text": "You do not seem smart"
+        },
+        {
+          "text": "You're really frustrating"
+        },
+        {
+          "text": "Stupid"
+        },
+        {
+          "text": "Why are you so annoying?"
+        },
+        {
+          "text": "Why are you stupid?"
+        },
+        {
+          "text": "Robots are stupid"
+        },
+        {
+          "text": "Robots are boring"
+        },
+        {
+          "text": "Quit annoying me"
+        },
+        {
+          "text": "It is annoying"
+        },
+        {
+          "text": "I hate you"
+        },
+        {
+          "text": "I hate this!"
+        },
+        {
+          "text": "I do not like you"
+        },
+        {
+          "text": "Hate you"
+        },
+        {
+          "text": "Everyone hates you"
+        },
+        {
+          "text": "Do not like you?"
+        },
+        {
+          "text": "You are having delusions"
+        },
+        {
+          "text": "You're really irritating"
+        },
+        {
+          "text": "You're too stupid"
+        }
+      ],
+      "description": "Express unfavorable feedback."
+    },
+    {
+      "intent": "General_Connect_to_Agent",
+      "examples": [
+        {
+          "text": "Hi can you transfer me"
+        },
+        {
+          "text": "I need to speak to a representative. How would I go about doing so?"
+        },
+        {
+          "text": "I don't want to talk to you"
+        },
+        {
+          "text": "I don't want to talk to a bot."
+        },
+        {
+          "text": "A real agent, please."
+        },
+        {
+          "text": "Agent help"
+        },
+        {
+          "text": "Call agent"
+        },
+        {
+          "text": "Can I connect to an agent?"
+        },
+        {
+          "text": "Can I speak to a human please?"
+        },
+        {
+          "text": "Can I speak to a live person?"
+        },
+        {
+          "text": "Can I speak to an advisor?"
+        },
+        {
+          "text": "Can I speak with somebody?"
+        },
+        {
+          "text": "Can I talk to someone?"
+        },
+        {
+          "text": "Can you assist me to connect to an agent?"
+        },
+        {
+          "text": "Can you connect me with a real person?"
+        },
+        {
+          "text": "Connect me to a live operator please."
+        },
+        {
+          "text": "Contact person"
+        },
+        {
+          "text": "Could you please transfer me to your master?"
+        },
+        {
+          "text": "Customer service representative please."
+        },
+        {
+          "text": "Do not want a robot?"
+        },
+        {
+          "text": "How can I skip the recorded menu and go straight to a live person?"
+        },
+        {
+          "text": "Yes, take me to a real person"
+        },
+        {
+          "text": "Where is the closest agent?"
+        },
+        {
+          "text": "Send me to an agent"
+        },
+        {
+          "text": "Put me through to someone"
+        },
+        {
+          "text": "Pls connect"
+        },
+        {
+          "text": "Please let me talk to a human being."
+        },
+        {
+          "text": "Please connect me to a live agent"
+        },
+        {
+          "text": "Please assist me to get to an agent"
+        },
+        {
+          "text": "Operator please"
+        },
+        {
+          "text": "Need help from human"
+        },
+        {
+          "text": "Is there anyone there I can actually talk to for real?"
+        },
+        {
+          "text": "I would like to speak to someone"
+        },
+        {
+          "text": "I would like to speak to a human"
+        },
+        {
+          "text": "I want to talk to a person"
+        },
+        {
+          "text": "I want an agent to help me"
+        },
+        {
+          "text": "I want agent"
+        },
+        {
+          "text": "I want a manager"
+        }
+      ],
+      "description": "Request a human agent."
+    },
+    {
+      "intent": "greeting",
+      "examples": [
+        {
+          "text": "Don't go"
+        },
+        {
+          "text": "Anya"
+        },
+        {
+          "text": "Good morning"
+        },
+        {
+          "text": "Good evening"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hey Ana"
+        },
+        {
+          "text": "Hi"
+        },
+        {
+          "text": "Hi Ana"
+        },
+        {
+          "text": "It's me again"
+        },
+        {
+          "text": "Good afternoon"
+        },
+        {
+          "text": "Ana"
+        }
+      ]
+    },
+    {
+      "intent": "goodbye",
+      "examples": [
+        {
+          "text": "Bye"
+        },
+        {
+          "text": "That's all"
+        },
+        {
+          "text": "See ya"
+        },
+        {
+          "text": "Nothing more"
+        },
+        {
+          "text": "Later"
+        },
+        {
+          "text": "I don't need any more help"
+        },
+        {
+          "text": "Goodbye"
+        },
+        {
+          "text": "Catch you later"
+        },
+        {
+          "text": "I'm done"
+        }
+      ]
+    },
+    {
+      "intent": "General_Positive_Feedback",
+      "examples": [
+        {
+          "text": "You are the best"
+        },
+        {
+          "text": "Brilliant!"
+        },
+        {
+          "text": "Can't believe you are that good"
+        },
+        {
+          "text": "How cool is this?"
+        },
+        {
+          "text": "I like what you did there! :)"
+        },
+        {
+          "text": "I'm looking forward to working with you again! :)"
+        },
+        {
+          "text": "Love your work"
+        },
+        {
+          "text": "Ok thank you"
+        },
+        {
+          "text": "Thank you"
+        },
+        {
+          "text": "This is good"
+        },
+        {
+          "text": "This is great"
+        },
+        {
+          "text": "This is so cool"
+        },
+        {
+          "text": "You are awesome"
+        },
+        {
+          "text": "You are great"
+        },
+        {
+          "text": "You are wonderful"
+        },
+        {
+          "text": "You gave me exactly what I need!"
+        },
+        {
+          "text": "You the man"
+        },
+        {
+          "text": "You're a genius!"
+        },
+        {
+          "text": "You've been so helpful :)"
+        }
+      ],
+      "description": "Express positive sentiment or gratitude."
+    },
+    {
+      "intent": "clothing_recommendation",
+      "examples": [
+        {
+          "text": "yellow shirt"
+        },
+        {
+          "text": "I would like to have a green shirt"
+        },
+        {
+          "text": "blue trouser"
+        },
+        {
+          "text": "bottle green shirt"
+        },
+        {
+          "text": "i want to buy a green trouser"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "positive",
+      "examples": [
+        {
+          "text": "you're awesome"
+        },
+        {
+          "text": "that's great"
+        },
+        {
+          "text": "thanks"
+        },
+        {
+          "text": "this is fantastic"
+        },
+        {
+          "text": "I love you"
+        },
+        {
+          "text": "muchas gracias"
+        },
+        {
+          "text": "fantastic"
+        },
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "thank you Ana"
+        },
+        {
+          "text": "thank you so much"
+        },
+        {
+          "text": "I really appreciate it"
+        }
+      ]
+    },
+    {
+      "intent": "General_Ending",
+      "examples": [
+        {
+          "text": "Ok goodbye"
+        },
+        {
+          "text": "See you later"
+        },
+        {
+          "text": "See you"
+        },
+        {
+          "text": "Shut up"
+        },
+        {
+          "text": "Stop doing this"
+        },
+        {
+          "text": "Stop talking to me"
+        },
+        {
+          "text": "Thank you for your time"
+        },
+        {
+          "text": "Thanks, bye!"
+        },
+        {
+          "text": "Thanks very much, bye!"
+        },
+        {
+          "text": "That is all"
+        },
+        {
+          "text": "That's everything"
+        },
+        {
+          "text": "Time to go"
+        },
+        {
+          "text": "Go away"
+        },
+        {
+          "text": "Go off"
+        },
+        {
+          "text": "Bye bye"
+        },
+        {
+          "text": "Bye now"
+        },
+        {
+          "text": "Catch you later"
+        },
+        {
+          "text": "Cya later"
+        },
+        {
+          "text": "End trial"
+        },
+        {
+          "text": "Finished now, good bye"
+        },
+        {
+          "text": "Get lost"
+        },
+        {
+          "text": "Ending this session"
+        },
+        {
+          "text": "Going now"
+        },
+        {
+          "text": "Good. bye."
+        },
+        {
+          "text": "Goodbye"
+        },
+        {
+          "text": "Have a nice day?"
+        },
+        {
+          "text": "Hey bot go away"
+        },
+        {
+          "text": "I am leaving"
+        },
+        {
+          "text": "I am out of here"
+        },
+        {
+          "text": "I d like to stop doing this"
+        },
+        {
+          "text": "I have got to go"
+        },
+        {
+          "text": "I want to quit"
+        },
+        {
+          "text": "I'm done"
+        },
+        {
+          "text": "Im done"
+        },
+        {
+          "text": "Im good thank you"
+        },
+        {
+          "text": "I'm leaving now"
+        },
+        {
+          "text": "It was nice chatting with you"
+        }
+      ],
+      "description": "End the conversation."
+    },
+    {
+      "intent": "General_Agent_Capabilities",
+      "examples": [
+        {
+          "text": "Hi, what do you do?"
+        },
+        {
+          "text": "I'd like to know what type of questions you can answer for me."
+        },
+        {
+          "text": "How can you solve my problems?"
+        },
+        {
+          "text": "How can you help me?"
+        },
+        {
+          "text": "How can I use you?"
+        },
+        {
+          "text": "Is there anything you can help me with?"
+        },
+        {
+          "text": "Help now"
+        },
+        {
+          "text": "Do you have a list of things I can talk to you about?"
+        },
+        {
+          "text": "Can you tell me what services you are able to help me with?"
+        },
+        {
+          "text": "Can you please give me a list of the types of things you can help me with?"
+        },
+        {
+          "text": "I do not know what to ask"
+        },
+        {
+          "text": "How do I use you?"
+        },
+        {
+          "text": "Where can I find the frequently asked questions?"
+        },
+        {
+          "text": "What kinds of things can you do?"
+        },
+        {
+          "text": "What is this 4?"
+        },
+        {
+          "text": "What features are in here?"
+        },
+        {
+          "text": "What else can you help me with?"
+        },
+        {
+          "text": "What do you handle?"
+        },
+        {
+          "text": "What do you do?"
+        },
+        {
+          "text": "What can I ask you to do?"
+        },
+        {
+          "text": "What are your skills?"
+        },
+        {
+          "text": "What are you used for?"
+        },
+        {
+          "text": "What are you good at?"
+        },
+        {
+          "text": "What are you capable of?"
+        },
+        {
+          "text": "What are you able to understand?"
+        },
+        {
+          "text": "What are you able to deal with?"
+        },
+        {
+          "text": "What are my options?"
+        },
+        {
+          "text": "What are my options that you can help with?"
+        },
+        {
+          "text": "Tell me something"
+        },
+        {
+          "text": "Tell me about what kind of things you do?"
+        }
+      ],
+      "description": "Request capabilities of the bot."
+    },
+    {
+      "intent": "General_Security_Assurance",
+      "examples": [
+        {
+          "text": "Precautions hackers?"
+        },
+        {
+          "text": "Protection hacks?"
+        },
+        {
+          "text": "Secure conversation?"
+        },
+        {
+          "text": "What guards do you have in place to protect your customer's data?"
+        },
+        {
+          "text": "What makes this chat trustworthy?"
+        },
+        {
+          "text": "What safety measures are used to ensure that chat is secure?"
+        },
+        {
+          "text": "Why would I trust this chat?"
+        },
+        {
+          "text": "Will my conversation remain secured?"
+        },
+        {
+          "text": "Are you safe?"
+        },
+        {
+          "text": "Are you safe on hackers?"
+        },
+        {
+          "text": "Is my card info secure?"
+        },
+        {
+          "text": "Is this a trusted chat site?"
+        },
+        {
+          "text": "Is there a reason to distrust this chat?"
+        },
+        {
+          "text": "Is my payment information secure?"
+        },
+        {
+          "text": "How do I know this chat is not a scam?"
+        },
+        {
+          "text": "How do I know if my card info is kept safe?"
+        },
+        {
+          "text": "Do you have protection against hacks?"
+        },
+        {
+          "text": "Customer info secured?"
+        },
+        {
+          "text": "Conversation secure?"
+        },
+        {
+          "text": "Can I be sure that my stored card details are held securely?"
+        },
+        {
+          "text": "Is this an official chat?"
+        },
+        {
+          "text": "Is this conversation secure?"
+        },
+        {
+          "text": "In what way can I tell if my plastic is safe?"
+        },
+        {
+          "text": "I'd like proof of a secure chat"
+        },
+        {
+          "text": "How safe is my data?"
+        },
+        {
+          "text": "How is my credit card info secured?"
+        }
+      ],
+      "description": "Express concerns about the security of the bot."
+    },
+    {
+      "intent": "no-response",
+      "examples": [
+        {
+          "text": "Help me"
+        },
+        {
+          "text": "Get me a beer"
+        },
+        {
+          "text": "I want a beer"
+        },
+        {
+          "text": "I may die"
+        },
+        {
+          "text": "I need to learn more about decapitation coverage"
+        },
+        {
+          "text": "Well, I am under pressure"
+        },
+        {
+          "text": "What should I do if I accidentally cut my finger off?"
+        },
+        {
+          "text": "I have an emergency"
+        }
+      ]
+    },
+    {
+      "intent": "negative",
+      "examples": [
+        {
+          "text": "You're stupid"
+        },
+        {
+          "text": "Why won't you work"
+        },
+        {
+          "text": "Why can't you do your job"
+        },
+        {
+          "text": "I hate you"
+        },
+        {
+          "text": "I hate this thing"
+        },
+        {
+          "text": "Dumb machine"
+        },
+        {
+          "text": "Dumb bot"
+        },
+        {
+          "text": "You're quite rude"
+        },
+        {
+          "text": "Wow that's mean"
+        },
+        {
+          "text": "Give me someone real to talk to"
+        }
+      ]
+    },
+    {
+      "intent": "tailorPourHomme",
+      "examples": [
+        {
+          "text": "Just-me Tailor Male"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "off_topic",
+      "examples": [
+        {
+          "text": "Are you single?"
+        },
+        {
+          "text": "Do you like your job?"
+        },
+        {
+          "text": "Are you real?"
+        },
+        {
+          "text": "What is the meaning of life?"
+        },
+        {
+          "text": "What is the weather?"
+        },
+        {
+          "text": "Are you a robot?"
+        }
+      ]
+    },
+    {
+      "intent": "General_Human_or_Bot",
+      "examples": [
+        {
+          "text": "Tell me, are you a human or no?"
+        },
+        {
+          "text": "Am I chatting with a human?"
+        },
+        {
+          "text": "Am I talking to Watson?"
+        },
+        {
+          "text": "Am I talking to a Bot?"
+        },
+        {
+          "text": "Am I talking to a person or am I talking to an AI?"
+        },
+        {
+          "text": "Are you a human or a bot?"
+        },
+        {
+          "text": "Are you a robot?"
+        },
+        {
+          "text": "Are you even real?"
+        },
+        {
+          "text": "Are you human?"
+        },
+        {
+          "text": "Are you real?"
+        },
+        {
+          "text": "How can you prove you are a human?"
+        },
+        {
+          "text": "Is this a computer?"
+        }
+      ],
+      "description": "Ask if speaking to a human or a bot."
+    },
+    {
+      "intent": "reset",
+      "examples": [
+        {
+          "text": "No ordering possible"
+        }
+      ],
+      "description": "reset"
+    },
+    {
+      "intent": "tailorPourFemme",
+      "examples": [
+        {
+          "text": "Just-me Tailor Female"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "General_About_You",
+      "examples": [
+        {
+          "text": "Do you have a name?"
+        },
+        {
+          "text": "Describe your self"
+        },
+        {
+          "text": "Can I use another language?"
+        },
+        {
+          "text": "About you"
+        },
+        {
+          "text": "Who are you?"
+        },
+        {
+          "text": "Where were you born?"
+        },
+        {
+          "text": "Where are you from?"
+        },
+        {
+          "text": "What should I know about you?"
+        },
+        {
+          "text": "What languages do you speak?"
+        },
+        {
+          "text": "Tell me something about yourself"
+        },
+        {
+          "text": "Tell me about your life"
+        },
+        {
+          "text": "Let us talk about you"
+        },
+        {
+          "text": "Introduce your self"
+        },
+        {
+          "text": "I want to set up the chat bot for my shop"
+        },
+        {
+          "text": "How old are you?"
+        },
+        {
+          "text": "How do you function?"
+        },
+        {
+          "text": "How can I configure you?"
+        },
+        {
+          "text": "What's your name?"
+        },
+        {
+          "text": "Do you know who you are?"
+        },
+        {
+          "text": "Why are you here?"
+        }
+      ],
+      "description": "Request generic personal attributes."
+    }
+  ],
+  "entities": [
+    {
+      "entity": "preferredPartner",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Zara",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Zalando",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Grace Loves Lace",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "About you",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "family",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "child",
+          "synonyms": [
+            "child",
+            "daughter",
+            "kid",
+            "minion",
+            "son"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "parent",
+          "synonyms": [
+            "father",
+            "mother"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "spouse",
+          "synonyms": [
+            "husband",
+            "partner",
+            "significant other",
+            "wife"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "procedures",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "eye wear",
+          "synonyms": [
+            "bifocals",
+            "contacts",
+            "correction",
+            "glasses",
+            "laser",
+            "laser treatment",
+            "lasik",
+            "lenses",
+            "specks",
+            "vision correction"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "eye exam",
+          "synonyms": [
+            "annual exam",
+            "check vision",
+            "eye exams"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "physiotherapy",
+          "synonyms": [
+            "massage",
+            "muscle pain",
+            "muscle therapy",
+            "myofascial",
+            "physical therapist",
+            "physical therapy",
+            "rehabilitation",
+            "stretching",
+            "therapy exercises"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "orthodontics",
+          "synonyms": [
+            "braces",
+            "smile correction",
+            "straighten"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "psychologist",
+          "synonyms": [
+            "addiction",
+            "counseling",
+            "couples counseling",
+            "depression",
+            "family counseling",
+            "head doctor",
+            "ptsd",
+            "shrink",
+            "therapist",
+            "therapy"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "teeth cleaning",
+          "synonyms": [
+            "biannual",
+            "binannual checkup",
+            "checkup with dentist",
+            "dental checkup",
+            "flossing",
+            "flouride",
+            "teeth cleaned"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "tooth repair",
+          "synonyms": [
+            "bridge",
+            "cap",
+            "cavity",
+            "chipped tooth",
+            "crack",
+            "crown",
+            "filling",
+            "implant",
+            "post",
+            "root canal",
+            "tooth ache",
+            "tooth pain",
+            "tooth removal"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "chiropractor",
+          "synonyms": [
+            "adjustment",
+            "back",
+            "back adjusted",
+            "back doctor",
+            "back pain",
+            "chiropractic",
+            "massage",
+            "spine"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "occasion",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Business Casual",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Business Attire",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Wedding",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Leisure Sporty",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Leisure Chic",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Casual / Leisure",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Smart Casual",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": []
+    },
+    {
+      "entity": "sys-person",
+      "values": []
+    },
+    {
+      "entity": "brand",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "location",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "address",
+          "synonyms": [
+            "place",
+            "office",
+            "centre",
+            "branch"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sex",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Female",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Male",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "details",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "start",
+          "synonyms": [
+            "first",
+            "start date"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "limit",
+          "synonyms": [
+            "balance",
+            "cash",
+            "deductible",
+            "remaining"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "coverage",
+          "synonyms": [
+            "covered",
+            "insurance covers",
+            "percentage"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "code",
+          "synonyms": [
+            "billing code",
+            "billing information",
+            "doctor code",
+            "number for form"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "end",
+          "synonyms": [
+            "end date",
+            "end of coverage",
+            "last",
+            "plan end",
+            "plan termination"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "term",
+          "synonyms": [
+            "billing period",
+            "period"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "priceClass",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "high",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "low",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "medium",
+          "synonyms": []
+        }
+      ]
+    },
+    {
+      "entity": "response",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "do not",
+            "don't",
+            "false",
+            "negative",
+            "nope",
+            "not",
+            "not right",
+            "not that"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": [
+            "alright",
+            "correct",
+            "fine",
+            "I guess",
+            "I think so",
+            "maybe",
+            "si",
+            "sure",
+            "totally",
+            "ya",
+            "yah",
+            "ye",
+            "yeah",
+            "yep",
+            "you bet",
+            "yup"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "verb",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "claim",
+          "synonyms": [
+            "expense",
+            "file",
+            "reimbursement"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "information",
+          "synonyms": [
+            "additional details",
+            "data",
+            "description",
+            "info"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "latestDeliveryDate",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "within 20 days",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "within 10 days",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "priceRange",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "low",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "medium",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "high",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "color",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "black",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "purple",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "yellow",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "green",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "blue",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "types",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "vision",
+          "synonyms": [
+            "contacts",
+            "eye",
+            "eye exam",
+            "eye exams",
+            "eye glasses",
+            "eyes",
+            "glasses",
+            "laser treatment",
+            "lasik",
+            "ocular",
+            "optometrist"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "physical",
+          "synonyms": [
+            "adjustment",
+            "back",
+            "chiropractor",
+            "physical therapy",
+            "spine"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "mental",
+          "synonyms": [
+            "anxiety",
+            "depression",
+            "mental health",
+            "psychiatrist",
+            "psychologist",
+            "psychotherapy",
+            "shrink",
+            "therapist"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dental",
+          "synonyms": [
+            "bicuspid",
+            "braces",
+            "bridge",
+            "cavity",
+            "crown",
+            "dental work",
+            "dentist",
+            "molar",
+            "oral surgeon",
+            "orthodontist",
+            "root canal",
+            "teeth",
+            "teeth cleaning",
+            "tooth",
+            "tooth repair"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "sys-location",
+      "values": []
+    },
+    {
+      "entity": "clothing",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "trouser",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "shirt",
+          "synonyms": [
+            "sleeve"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "size",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "XXL",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "XL",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "L",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "M",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "S",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "XS",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "XXS",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-07-10"
+    }
+  },
+  "description": "Skill to be used for testing and training.",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "For which occasion do you plan on wearing the items?"
+      },
+      "parent": "slot_16_1557827551773",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_18_1557827551773",
+      "previous_sibling": "handler_17_1557827551773"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_16_1557827551773",
+      "context": {
+        "occasion": "@occasion"
+      },
+      "conditions": "@occasion",
+      "event_name": "input",
+      "dialog_node": "handler_17_1557827551773"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "variable": "$size",
+      "dialog_node": "slot_3_1556526588911",
+      "previous_sibling": "slot_8_1554917309282"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1554917042242",
+      "variable": "$sex",
+      "dialog_node": "slot_7_1557827525600",
+      "previous_sibling": "slot_4_1557827519691"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "variable": "$clothing",
+      "dialog_node": "slot_8_1554917309282",
+      "previous_sibling": "slot_3_1554917272840"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1554917042242",
+      "variable": "$occasion",
+      "dialog_node": "slot_16_1557827551773",
+      "previous_sibling": "slot_10_1557827534482"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "variable": "$color",
+      "dialog_node": "slot_3_1554917272840",
+      "previous_sibling": "handler_2_1554917272779"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "variable": "$delivery",
+      "dialog_node": "slot_4_1557827519691",
+      "previous_sibling": "slot_3_1556526588911"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "variable": "$priceClass",
+      "dialog_node": "slot_10_1557827534482",
+      "previous_sibling": "slot_7_1557827525600"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Can I recommend you something interesting to wear?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1554917042242",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_2_1554917272779"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your chest?"
+      },
+      "parent": "slot_4_1558172714534",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1558172714534",
+      "previous_sibling": "handler_5_1558172714534"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_4_1558172714534",
+      "context": {
+        "ChestCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_5_1558172714534"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your neck?"
+      },
+      "parent": "slot_12_1558170547232",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_14_1558170547232",
+      "previous_sibling": "handler_13_1558170547232"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_12_1558170547232",
+      "context": {
+        "NeckCircumference": "@sys-number"
+      },
+      "metadata": {},
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_13_1558170547232"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1554917309282",
+      "context": {
+        "clothing": "@clothing"
+      },
+      "metadata": {},
+      "conditions": "@clothing",
+      "event_name": "input",
+      "dialog_node": "handler_9_1554917309282",
+      "previous_sibling": "handler_10_1554917309282"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1554917309282",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_10_1554917309282"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Total height?"
+      },
+      "parent": "slot_22_1558172726623",
+      "event_name": "focus",
+      "dialog_node": "handler_24_1558172726623",
+      "previous_sibling": "handler_23_1558172726623"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_22_1558172726623",
+      "context": {
+        "Height": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_23_1558172726623"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Hi ! What should I call you?"
+      },
+      "parent": "slot_1_1523340074454",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_3_1523340074454",
+      "previous_sibling": "handler_2_1523340074454"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_1_1523340074454",
+      "context": {
+        "person": "@sys-person"
+      },
+      "conditions": "@sys-person",
+      "event_name": "input",
+      "dialog_node": "handler_2_1523340074454"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your chest?"
+      },
+      "parent": "slot_27_1558171916525",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_29_1558171916525",
+      "previous_sibling": "handler_28_1558171916525"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_27_1558171916525",
+      "context": {
+        "ChestCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_28_1558171916525"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your waist?"
+      },
+      "parent": "slot_7_1558172716049",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1558172716049",
+      "previous_sibling": "handler_8_1558172716049"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_7_1558172716049",
+      "context": {
+        "WaistCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_8_1558172716049"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Roughly, in how many days would you like the delivery?"
+      },
+      "parent": "slot_4_1557827519691",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_6_1557827519691",
+      "previous_sibling": "handler_5_1557827519691"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1557827519691",
+      "context": {
+        "delivery": "@sys-number"
+      },
+      "metadata": {},
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_5_1557827519691"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Length of your shoulders?"
+      },
+      "parent": "slot_1_1558172712832",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1558172712832",
+      "previous_sibling": "handler_2_1558172712832"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_1_1558172712832",
+      "context": {
+        "ShoulderLength": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_2_1558172712832"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "Alright. What can I do for you? I mostly search boring insurance documents or help you file claims."
+      },
+      "parent": "node_2_1472663851939",
+      "conditions": "input.text",
+      "dialog_node": "node_10_1476150029988"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Length of your arm?"
+      },
+      "parent": "slot_10_1558172717570",
+      "event_name": "focus",
+      "dialog_node": "handler_12_1558172717570",
+      "previous_sibling": "handler_11_1558172717570"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_10_1558172717570",
+      "context": {
+        "ArmLength": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_11_1558172717570"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_8_1558170438170",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1558170438170",
+      "previous_sibling": "handler_9_1558170438170"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_8_1558170438170",
+      "event_name": "input",
+      "dialog_node": "handler_9_1558170438170"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$UnderbustCircumference",
+      "dialog_node": "slot_30_1558171939651",
+      "previous_sibling": "slot_27_1558171916525"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$NeckCircumference",
+      "dialog_node": "slot_21_1558171888694",
+      "previous_sibling": "slot_48_1558171959975"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$WaistCircumference",
+      "dialog_node": "slot_33_1558171948781",
+      "previous_sibling": "slot_30_1558171939651"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_16_1558171799273",
+      "event_name": "focus",
+      "dialog_node": "handler_17_1558171818028",
+      "previous_sibling": "slot_45_1558171957801"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$HipCircumference",
+      "dialog_node": "slot_39_1558171953405",
+      "previous_sibling": "slot_36_1558171951676"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$ShoulderLength",
+      "dialog_node": "slot_24_1558171905078",
+      "previous_sibling": "slot_21_1558171888694"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$WristCircumference",
+      "dialog_node": "slot_42_1558171955328",
+      "previous_sibling": "slot_39_1558171953405"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$ArmLength",
+      "dialog_node": "slot_36_1558171951676",
+      "previous_sibling": "slot_33_1558171948781"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$WaistToKnee",
+      "dialog_node": "slot_45_1558171957801",
+      "previous_sibling": "slot_42_1558171955328"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$ChestCircumference",
+      "dialog_node": "slot_27_1558171916525",
+      "previous_sibling": "slot_24_1558171905078"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_16_1558171799273",
+      "metadata": {},
+      "variable": "$Height",
+      "dialog_node": "slot_48_1558171959975"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Total height?"
+      },
+      "parent": "slot_48_1558171959975",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_50_1558171959975",
+      "previous_sibling": "handler_49_1558171959975"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_48_1558171959975",
+      "context": {
+        "Height": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_49_1558171959975"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$WaistCircumference",
+      "dialog_node": "slot_7_1558172716049",
+      "previous_sibling": "slot_4_1558172714534"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$ShoulderLength",
+      "dialog_node": "slot_1_1558172712832",
+      "previous_sibling": "slot_12_1558170547232"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$NeckCircumference",
+      "dialog_node": "slot_12_1558170547232",
+      "previous_sibling": "slot_22_1558172726623"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$ArmLength",
+      "dialog_node": "slot_10_1558172717570",
+      "previous_sibling": "slot_7_1558172716049"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$ChestCircumference",
+      "dialog_node": "slot_4_1558172714534",
+      "previous_sibling": "slot_1_1558172712832"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$HipCircumference",
+      "dialog_node": "slot_13_1558172718973",
+      "previous_sibling": "slot_10_1558172717570"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$WaistToKnee",
+      "dialog_node": "slot_19_1558172722565",
+      "previous_sibling": "slot_16_1558172720264"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$WristCircumference",
+      "dialog_node": "slot_16_1558172720264",
+      "previous_sibling": "slot_13_1558172718973"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "variable": "$Height",
+      "dialog_node": "slot_22_1558172726623",
+      "previous_sibling": "handler_11_1558170547227"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Let's start with an easy measurement. What is your height?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1558170425122",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_11_1558170547227"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_2_1558170293916",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1558170386806",
+      "previous_sibling": "slot_8_1558170438170"
+    },
+    {
+      "type": "slot",
+      "parent": "node_2_1558170293916",
+      "dialog_node": "slot_8_1558170438170",
+      "previous_sibling": "node_7_1558170425122"
+    },
+    {
+      "type": "frame",
+      "title": "tailor information gathering",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We will present you some templates which will be tailored to you."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 0,
+            "typing": true,
+            "response_type": "pause"
+          }
+        ]
+      },
+      "parent": "node_2_1558170293916",
+      "metadata": {
+        "fallback": "leave"
+      },
+      "dialog_node": "node_7_1558170425122",
+      "digress_out": "allow_all",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your underbust?"
+      },
+      "parent": "slot_30_1558171939651",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_32_1558171939651",
+      "previous_sibling": "handler_31_1558171939651"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_30_1558171939651",
+      "context": {
+        "UnderbustCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_31_1558171939651"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Measurement from waist to knee?"
+      },
+      "parent": "slot_45_1558171957801",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_47_1558171957801",
+      "previous_sibling": "handler_46_1558171957801"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_45_1558171957801",
+      "context": {
+        "WaistToKnee": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_46_1558171957801"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your wrist?"
+      },
+      "parent": "slot_16_1558172720264",
+      "event_name": "focus",
+      "dialog_node": "handler_18_1558172720264",
+      "previous_sibling": "handler_17_1558172720264"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_16_1558172720264",
+      "context": {
+        "WristCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_17_1558172720264"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Length of your arm?"
+      },
+      "parent": "slot_36_1558171951676",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_38_1558171951676",
+      "previous_sibling": "handler_37_1558171951676"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_36_1558171951676",
+      "context": {
+        "ArmLength": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_37_1558171951676"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1554917272840",
+      "context": {
+        "color": "@color"
+      },
+      "metadata": {},
+      "conditions": "@color",
+      "event_name": "input",
+      "dialog_node": "handler_4_1554917272840",
+      "previous_sibling": "handler_5_1554917272840"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What color do you like?"
+      },
+      "parent": "slot_3_1554917272840",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_5_1554917272840"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your hip?"
+      },
+      "parent": "slot_13_1558172718973",
+      "event_name": "focus",
+      "dialog_node": "handler_15_1558172718973",
+      "previous_sibling": "handler_14_1558172718973"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_13_1558172718973",
+      "context": {
+        "HipCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_14_1558172718973"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your neck?"
+      },
+      "parent": "slot_21_1558171888694",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_23_1558171888694",
+      "previous_sibling": "handler_22_1558171888694"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_21_1558171888694",
+      "context": {
+        "NeckCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_22_1558171888694"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Measurement from waist to knee?"
+      },
+      "parent": "slot_19_1558172722565",
+      "event_name": "focus",
+      "dialog_node": "handler_21_1558172722565",
+      "previous_sibling": "handler_20_1558172722565"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_19_1558172722565",
+      "context": {
+        "WaistToKnee": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_20_1558172722565"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "How pricy can the items be? I understand best low, medium and high"
+      },
+      "parent": "slot_10_1557827534482",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_12_1557827534482",
+      "previous_sibling": "handler_11_1557827534482"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1557827534482",
+      "context": {
+        "priceClass": "@priceClass"
+      },
+      "metadata": {},
+      "conditions": "@priceClass",
+      "event_name": "input",
+      "dialog_node": "handler_11_1557827534482"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_6_1475611948267",
+      "metadata": {},
+      "variable": "$person",
+      "dialog_node": "slot_1_1523340074454"
+    },
+    {
+      "type": "frame",
+      "title": "tailor information gathering",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We will present you some templates which will be tailored to you."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 0,
+            "typing": true,
+            "response_type": "pause"
+          }
+        ]
+      },
+      "parent": "node_15_1558171717022",
+      "metadata": {
+        "fallback": "leave"
+      },
+      "dialog_node": "node_16_1558171799273",
+      "digress_out": "allow_all",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "For a perfect fit, which size do you generally wear?"
+      },
+      "parent": "slot_3_1556526588911",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_5_1556526588911",
+      "previous_sibling": "handler_4_1556526588911"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1556526588911",
+      "context": {
+        "size": "@size"
+      },
+      "metadata": {},
+      "conditions": "@size",
+      "event_name": "input",
+      "dialog_node": "handler_4_1556526588911"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Are you female or male?"
+      },
+      "parent": "slot_7_1557827525600",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_9_1557827525600",
+      "previous_sibling": "handler_8_1557827525600"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_7_1557827525600",
+      "context": {
+        "sex": "@sex"
+      },
+      "conditions": "@sex",
+      "event_name": "input",
+      "dialog_node": "handler_8_1557827525600"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your hip?"
+      },
+      "parent": "slot_39_1558171953405",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_41_1558171953405",
+      "previous_sibling": "handler_40_1558171953405"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_39_1558171953405",
+      "context": {
+        "HipCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_40_1558171953405"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your waist?"
+      },
+      "parent": "slot_33_1558171948781",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_35_1558171948781",
+      "previous_sibling": "handler_34_1558171948781"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_33_1558171948781",
+      "context": {
+        "WaistCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_34_1558171948781"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "What did you need to know about @procedures?"
+      },
+      "parent": "node_2_1475683599072",
+      "conditions": "@procedures",
+      "dialog_node": "node_4_1476111372486"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Circumference of your wrist?"
+      },
+      "parent": "slot_42_1558171955328",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_44_1558171955328",
+      "previous_sibling": "handler_43_1558171955328"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_42_1558171955328",
+      "context": {
+        "WristCircumference": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_43_1558171955328"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "Length of your shoulders?"
+      },
+      "parent": "slot_24_1558171905078",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_26_1558171905078",
+      "previous_sibling": "handler_25_1558171905078"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_24_1558171905078",
+      "context": {
+        "ShoulderLength": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_25_1558171905078"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I'm on the clock. Let's talk later."
+      },
+      "conditions": "#off_topic",
+      "dialog_node": "node_1_1472137756520",
+      "previous_sibling": "node_1_1475683470899"
+    },
+    {
+      "type": "standard",
+      "title": "tailorPourHomme",
+      "output": {
+        "text": {
+          "values": [
+            "The items we want to recommend you, must be tailored. In order to provide a good fit, we need additional information from you. Let's start with your height. In cm please."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_7_1558170425122"
+      },
+      "conditions": "#tailorPourHomme",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_2_1558170293916",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1554917042242"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": {
+          "values": [
+            "Hello $person ! How can I can help you today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "#greeting || #General_Greetings",
+      "dialog_node": "node_4_1470846498634",
+      "previous_sibling": "node_9_1475612074357"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I'm not confident enough to answer that one. Maybe try something else?"
+      },
+      "conditions": "intents[0].confidence < 0.80",
+      "dialog_node": "node_7_1475612009751",
+      "previous_sibling": "node_1_1472655156255"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I can't help you with that. I'm just a bot to help you with your insurance documents."
+      },
+      "conditions": "#no-response",
+      "dialog_node": "node_1_1475683470899",
+      "previous_sibling": "node_2_1472663851939"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "Always happy to help $person!"
+      },
+      "metadata": {},
+      "conditions": "#positive",
+      "dialog_node": "node_1_1472655156255",
+      "previous_sibling": "node_1_1472578460792"
+    },
+    {
+      "type": "standard",
+      "title": "tailorPourFemme",
+      "output": {
+        "text": {
+          "values": [
+            "The items we want to recommend you, must be tailored. In order to provide a good fit, we need additional information from you. Let's start with your height. In cm please."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "conditions": "#tailorPourFemme",
+      "dialog_node": "node_15_1558171717022",
+      "previous_sibling": "node_2_1558170293916"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I'm sorry you feel that way."
+      },
+      "conditions": "#negative",
+      "dialog_node": "node_1_1472578460792",
+      "previous_sibling": "node_1_1472137756520"
+    },
+    {
+      "type": "frame",
+      "title": "#item_recommendation",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Just a moment..."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 0,
+            "typing": false,
+            "response_type": "pause"
+          }
+        ]
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "conditions": "#clothing_recommendation || @clothing || @color",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1554917042242",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_7_1475612009751",
+      "digress_out_slots": "not_allowed"
+    },
+    {
+      "type": "standard",
+      "title": "reset",
+      "output": {
+        "text": {
+          "values": [
+            "We were not able to find a suitable match. Please try something else?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "context": {
+        "sex": null,
+        "size": null,
+        "color": null,
+        "clothing": null,
+        "delivery": null,
+        "occasion": null,
+        "priceClass": null
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1554917042242"
+      },
+      "conditions": "#reset",
+      "dialog_node": "node_1_1558169819534",
+      "previous_sibling": "node_1_1471530144227"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I'm not able to answer that."
+      },
+      "conditions": "intents.size() == 0",
+      "dialog_node": "node_9_1475612074357",
+      "previous_sibling": "node_6_1475611948267"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "Goodbye."
+      },
+      "conditions": "#goodbye",
+      "dialog_node": "node_1_1471530144227",
+      "previous_sibling": "node_4_1470846498634"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "Sorry, I don't understand that one."
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_10_1475612266683",
+      "previous_sibling": "node_15_1558171717022"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "Sure. What can I help you with?"
+      },
+      "conditions": "#still-here",
+      "dialog_node": "node_2_1475683599072",
+      "previous_sibling": "node_1_1558169819534"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "text": "I'm fantastic. How are you?"
+      },
+      "conditions": "#casual_conversation",
+      "dialog_node": "node_2_1472663851939",
+      "previous_sibling": "node_2_1475683599072"
+    },
+    {
+      "type": "frame",
+      "output": {
+        "text": {
+          "values": [
+            "Hey $person ! Can I recommend you something? You can also send me a picture of something similar you like."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {
+        "fallback": "leave"
+      },
+      "conditions": "conversation_start",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_6_1475611948267",
+      "digress_out": "allow_all",
+      "digress_out_slots": "not_allowed"
+    }
+  ],
+  "workspace_id": "f5c917c6-745b-4d6e-9dcf-720f26facd97",
+  "counterexamples": [],
+  "learning_opt_out": false,
+  "status": "Available"
+}
