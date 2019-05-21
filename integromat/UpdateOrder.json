@@ -1,0 +1,418 @@
+{
+    "name": "JustMe update order",
+    "flow": [
+        {
+            "id": 1,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 159196,
+                "maxResults": 2
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -119,
+                    "y": 0
+                },
+                "restore": {
+                    "hook": {
+                        "label": "update-store-order"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hook",
+                        "type": "hook",
+                        "label": "Webhook",
+                        "required": true
+                    },
+                    {
+                        "name": "maxResults",
+                        "type": "number",
+                        "label": "Maximum number of results"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "orderId",
+                        "type": "text"
+                    },
+                    {
+                        "name": "trackingId",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "google-sheets:filterRows",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 648026
+            },
+            "mapper": {
+                "limit": "1",
+                "filter": [
+                    [
+                        {
+                            "a": "A",
+                            "b": "{{1.orderId}}",
+                            "o": "text:equal"
+                        }
+                    ]
+                ],
+                "sheetId": "order",
+                "sortOrder": "asc",
+                "spreadsheetId": "1hZDN35uJeJd2xXCHLp3FjpmKwqDh1fHaW1Fdh0-W23I",
+                "includesHeaders": true,
+                "valueRenderOption": "FORMATTED_VALUE",
+                "dateTimeRenderOption": "FORMATTED_STRING"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 181,
+                    "y": 0
+                },
+                "restore": {
+                    "orderBy": {
+                        "mode": "chose",
+                        "label": ""
+                    },
+                    "sheetId": {
+                        "mode": "chose",
+                        "label": "order"
+                    },
+                    "sortOrder": {
+                        "mode": "chose",
+                        "label": "Ascending"
+                    },
+                    "__IMTCONN__": {
+                        "label": "JustMe (egemen.kaba@gmail.com)"
+                    },
+                    "spreadsheetId": {
+                        "mode": "chose",
+                        "label": "JustMe ERP"
+                    },
+                    "includesHeaders": {
+                        "mode": "chose",
+                        "label": "Yes"
+                    },
+                    "valueRenderOption": {
+                        "mode": "chose",
+                        "label": "Formatted value"
+                    },
+                    "dateTimeRenderOption": {
+                        "mode": "chose",
+                        "label": "Formatted string"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "spreadsheetId",
+                        "type": "select",
+                        "label": "Spreadsheet",
+                        "required": true
+                    },
+                    {
+                        "name": "valueRenderOption",
+                        "type": "select",
+                        "label": "Value render option",
+                        "validate": {
+                            "enum": [
+                                "FORMATTED_VALUE",
+                                "UNFORMATTED_VALUE",
+                                "FORMULA"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "dateTimeRenderOption",
+                        "type": "select",
+                        "label": "Date and time render option",
+                        "validate": {
+                            "enum": [
+                                "SERIAL_NUMBER",
+                                "FORMATTED_STRING"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "type": "number",
+                        "label": "Maximum number of returned rows"
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet",
+                        "required": true
+                    },
+                    {
+                        "name": "includesHeaders",
+                        "type": "select",
+                        "label": "Table contains headers",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                true,
+                                false
+                            ]
+                        }
+                    },
+                    {
+                        "name": "filter",
+                        "type": "filter",
+                        "label": "Filter",
+                        "options": {
+                            "store": "rpc://google-sheets@2/rpcGetFilterKeys?includesHeaders=true"
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "sortOrder",
+                        "type": "select",
+                        "label": "Sort order",
+                        "validate": {
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "orderBy",
+                        "type": "select",
+                        "label": "Order by"
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "__IMTLENGTH__",
+                        "type": "uinteger",
+                        "label": "Total number of bundles"
+                    },
+                    {
+                        "name": "__IMTINDEX__",
+                        "type": "uinteger",
+                        "label": "Bundle order position"
+                    },
+                    {
+                        "name": "__ROW_NUMBER__",
+                        "type": "number",
+                        "label": "Row number"
+                    },
+                    {
+                        "name": "0",
+                        "type": "text",
+                        "label": "id (A)"
+                    },
+                    {
+                        "name": "1",
+                        "type": "text",
+                        "label": "total_amount (B)"
+                    },
+                    {
+                        "name": "2",
+                        "type": "text",
+                        "label": "card_number (C)"
+                    },
+                    {
+                        "name": "3",
+                        "type": "text",
+                        "label": "state (D)"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "module": "google-sheets:updateCell",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 648026
+            },
+            "mapper": {
+                "cell": "D{{3.`__ROW_NUMBER__`}}",
+                "value": "PROCESSED",
+                "sheetId": "order",
+                "spreadsheetId": "1hZDN35uJeJd2xXCHLp3FjpmKwqDh1fHaW1Fdh0-W23I",
+                "valueInputOption": "USER_ENTERED"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 481,
+                    "y": 0
+                },
+                "restore": {
+                    "sheetId": {
+                        "mode": "chose",
+                        "label": "order"
+                    },
+                    "__IMTCONN__": {
+                        "label": "JustMe (egemen.kaba@gmail.com)"
+                    },
+                    "spreadsheetId": {
+                        "mode": "chose",
+                        "label": "JustMe ERP"
+                    },
+                    "valueInputOption": {
+                        "mode": "chose",
+                        "label": "User entered"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "spreadsheetId",
+                        "type": "select",
+                        "label": "Spreadsheet",
+                        "required": true
+                    },
+                    {
+                        "name": "cell",
+                        "type": "text",
+                        "label": "Cell",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "text",
+                        "label": "Value"
+                    },
+                    {
+                        "name": "valueInputOption",
+                        "type": "select",
+                        "label": "Value input option",
+                        "validate": {
+                            "enum": [
+                                "USER_ENTERED",
+                                "RAW"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 6,
+            "module": "google-sheets:updateCell",
+            "version": 2,
+            "parameters": {
+                "__IMTCONN__": 648026
+            },
+            "mapper": {
+                "cell": "E{{3.`__ROW_NUMBER__`}}",
+                "value": "{{1.trackingId}}",
+                "sheetId": "order",
+                "spreadsheetId": "1hZDN35uJeJd2xXCHLp3FjpmKwqDh1fHaW1Fdh0-W23I",
+                "valueInputOption": "USER_ENTERED"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 781,
+                    "y": 0
+                },
+                "restore": {
+                    "sheetId": {
+                        "mode": "chose",
+                        "label": "order"
+                    },
+                    "__IMTCONN__": {
+                        "label": "JustMe (egemen.kaba@gmail.com)"
+                    },
+                    "spreadsheetId": {
+                        "mode": "chose",
+                        "label": "JustMe ERP"
+                    },
+                    "valueInputOption": {
+                        "mode": "chose",
+                        "label": "User entered"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "spreadsheetId",
+                        "type": "select",
+                        "label": "Spreadsheet",
+                        "required": true
+                    },
+                    {
+                        "name": "cell",
+                        "type": "text",
+                        "label": "Cell",
+                        "required": true
+                    },
+                    {
+                        "name": "value",
+                        "type": "text",
+                        "label": "Value"
+                    },
+                    {
+                        "name": "valueInputOption",
+                        "type": "select",
+                        "label": "Value input option",
+                        "validate": {
+                            "enum": [
+                                "USER_ENTERED",
+                                "RAW"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sheetId",
+                        "type": "select",
+                        "label": "Sheet",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": false,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.integromat.com"
+    }
+}
