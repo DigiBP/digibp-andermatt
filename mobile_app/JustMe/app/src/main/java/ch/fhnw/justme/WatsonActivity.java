@@ -34,6 +34,7 @@ import com.ibm.watson.developer_cloud.assistant.v2.model.MessageInput;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageInputOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageOptions;
 import com.ibm.watson.developer_cloud.assistant.v2.model.MessageResponse;
+import com.ibm.watson.developer_cloud.assistant.v2.model.RuntimeEntity;
 import com.ibm.watson.developer_cloud.assistant.v2.model.SessionResponse;
 import com.ibm.watson.developer_cloud.http.ServiceCall;
 import com.ibm.watson.developer_cloud.service.security.IamOptions;
@@ -274,7 +275,14 @@ public class WatsonActivity extends AppCompatActivity {
                         !response.getOutput().getGeneric().isEmpty() &&
                         DialogRuntimeResponseGeneric.ResponseType.TEXT.equals(response.getOutput().getGeneric().get(0).getResponseType())) {
 
-                    Message resMessage = new Message(response.getOutput().getGeneric().get(0).getText(), Message.Sender.BOT);
+
+                    Message resMessage;
+                    if (chatEntries != null && chatEntries.size() > 0 && chatEntries.get(chatEntries.size()-1).getBitmap() != null) {
+                        resMessage = new Message(getVrMessage(response), Message.Sender.BOT);
+                        chatEntries.add(resMessage);
+                    }
+
+                    resMessage = new Message(response.getOutput().getGeneric().get(0).getText(), Message.Sender.BOT);
                     chatEntries.add(resMessage);
 
                     // speak the message
@@ -310,6 +318,33 @@ public class WatsonActivity extends AppCompatActivity {
         });
 
         thread.start();
+    }
+
+    private String getVrMessage(MessageResponse response) {
+        String clothing = null;
+        String color = null;
+
+        for (RuntimeEntity ent : response.getOutput().getEntities()) {
+            if ("clothing".equals(ent.getEntity())) {
+                clothing = ent.getValue();
+            }
+
+            if ("color".equals(ent.getEntity())) {
+                color = ent.getValue();
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        if (clothing != null && !clothing.isEmpty()) {
+            sb.append(String.format("I get that you want a %s", clothing));
+        }
+        if (color != null && !color.isEmpty()) {
+            if (clothing != null && !clothing.isEmpty()) {
+                sb.append(String.format(" in the color %s", color));
+            } else {
+                sb.append(String.format("I get that you want something %s", color));
+            }
+        }
+        return sb.toString();
     }
 
     private void startNewCustomerMeasurementsProcess(String processKey, LinkedTreeMap<String, Object> entries) {
