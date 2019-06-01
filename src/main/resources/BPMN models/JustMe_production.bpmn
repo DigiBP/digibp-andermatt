@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_08mimld" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_08mimld" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:process id="Process_Production" isExecutable="true">
     <bpmn:endEvent id="EndEvent_10qwce3" name="Order handled">
       <bpmn:incoming>SequenceFlow_1z0pzyh</bpmn:incoming>
@@ -13,23 +13,23 @@
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_14fkj7f" sourceRef="ReceiveTask_1d81hqq" targetRef="ServiceTask_1dkx1yh" />
     <bpmn:sequenceFlow id="SequenceFlow_0q7kcc9" sourceRef="ServiceTask_1dkx1yh" targetRef="ManualTask_1yiw8l1" />
-    <bpmn:userTask id="SendTask_1bebhfc" name="Fetch materials ">
+    <bpmn:userTask id="SendTask_1bebhfc" name="Fetch materials " camunda:candidateGroups="producer">
       <bpmn:incoming>SequenceFlow_14yglhk</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0va0b16</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ReceiveTask_1d81hqq" name="Material fetched">
+    <bpmn:userTask id="ReceiveTask_1d81hqq" name="Material fetched" camunda:candidateGroups="producer">
       <bpmn:incoming>SequenceFlow_0va0b16</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_14fkj7f</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ServiceTask_1dkx1yh" name="Produce order">
+    <bpmn:userTask id="ServiceTask_1dkx1yh" name="Produce order" camunda:candidateGroups="producer">
       <bpmn:incoming>SequenceFlow_14fkj7f</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0q7kcc9</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_1yiw8l1" name="Pack order">
+    <bpmn:userTask id="ManualTask_1yiw8l1" name="Pack order" camunda:candidateGroups="producer">
       <bpmn:incoming>SequenceFlow_0q7kcc9</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_16cogu2</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_0rkezqx" name="Ship order">
+    <bpmn:userTask id="ManualTask_0rkezqx" name="Ship order" camunda:candidateGroups="producer">
       <bpmn:incoming>SequenceFlow_16cogu2</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1z0pzyh</bpmn:outgoing>
     </bpmn:userTask>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0f6u6qh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_0f6u6qh" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:process id="Process_Tailoring" isExecutable="true">
     <bpmn:endEvent id="EndEvent_0cmfszs" name="Order handled">
       <bpmn:incoming>SequenceFlow_1lt5x2s</bpmn:incoming>
@@ -13,23 +13,23 @@
     <bpmn:startEvent id="StartEvent_1trrwl5">
       <bpmn:outgoing>SequenceFlow_0d7zlfr</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="ManualTask_1ad7v1x" name="Print cutting pattern">
+    <bpmn:userTask id="ManualTask_1ad7v1x" name="Print cutting pattern" camunda:candidateGroups="tailor">
       <bpmn:incoming>SequenceFlow_0d7zlfr</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_03u2pfi</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_1x23bgv" name="Fetch materials">
+    <bpmn:userTask id="ManualTask_1x23bgv" name="Fetch materials" camunda:candidateGroups="tailor">
       <bpmn:incoming>SequenceFlow_03u2pfi</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_19wiszo</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_1qi3k81" name="Tailor clothes">
+    <bpmn:userTask id="ManualTask_1qi3k81" name="Tailor clothes" camunda:candidateGroups="tailor">
       <bpmn:incoming>SequenceFlow_19wiszo</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_15d8n20</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_0f7o9gb" name="Pack order">
+    <bpmn:userTask id="ManualTask_0f7o9gb" name="Pack order" camunda:candidateGroups="tailor">
       <bpmn:incoming>SequenceFlow_15d8n20</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0oau7in</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="ManualTask_0mo7rpw" name="Ship order">
+    <bpmn:userTask id="ManualTask_0mo7rpw" name="Ship order" camunda:candidateGroups="tailor">
       <bpmn:incoming>SequenceFlow_0oau7in</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1lt5x2s</bpmn:outgoing>
     </bpmn:userTask>
