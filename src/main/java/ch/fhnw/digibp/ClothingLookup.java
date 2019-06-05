@@ -33,13 +33,11 @@ public class ClothingLookup implements JavaDelegate {
 
         malePictures = new ArrayList<>();
         malePictures.add("https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/C1/Q2/2D/00/3K/11/C1Q22D003-K11@8.jpg");
-        malePictures.add("https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/BO/H2/2E/01/IG/11/BOH22E01I-G11@2.jpg");
         malePictures.add("https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/SU/O2/2O/00/0Q/11/SUO22O000-Q11@4.jpg");
         malePictures.add("https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PI/92/2B/A1/8Q/11/PI922BA18-Q11@12.jpg");
         malePictures.add("https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/TO/72/2D/0E/QK/11/TO722D0EQ-K11@12.jpg");
         malePictures.add("https://mosaic04.ztat.net/vgs/media/packshot/pdp-zoom/PI/92/2D/05/VT/11/PI922D05V-T11@8.jpg");
-        malePictures.add("https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/EL/92/2S/00/UK/11/EL922S00U-K11@10.jpg");
-        malePictures.add("https://mosaic03.ztat.net/vgs/media/packshot/pdp-zoom/TO/72/2O/0J/RQ/11/TO722O0JR-Q11@10.jpg");
+        malePictures.add("https://mosaic03.ztat.net/vgs/media/pack/article-image-mhq/PI/92/2D/05/LK/11/PI922D05L-K11@3.jpg");
 
         sustainability = new ArrayList<>();
         sustainability.add("Sustainability: low");
